@@ -1,0 +1,296 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load comments %}
+{% load comments_xtd %}
+{% load ratings %}
+
+{% block head_extra %}
+    {{ booking_form.media }}
+{% endblock head_extra %}
+
+{% block head_title %} {{ object }} - {% endblock head_title %}
+
+{% block content %}
+
+	<!-- breadcrumb -->
+	<div class="w3_breadcrumb">
+		<div class="breadcrumb-inner">	
+			<ul>
+				<li><a href="/">Home</a> <i>//</i></li>
+				<li><a href="{% url 'shop:all' %}">All Professionals</a> <i>//</i></li>
+				<li>{{ object }}</li>
+			</ul>
+		</div>
+	</div>
+	<!-- //breadcrumb -->
+
+	<section class="col-sm-12">
+		<div class="jumbotron">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 well well-sm">
+						{% if object.dashboard_banner_image_1 %}
+							<img src="{{ object.image.url }}" class='img-responsive' alt="{{ object.name }}">
+						{% else %}
+							{% if object.user == request.user %}
+								<h3 class="text-center"> 
+									<a href="{% url 'shop:shop-update' slug=object.slug %}" class="btn btn-success"> Update Shop Account Now </a>
+								</h3>
+							{% else %}
+							{% endif %}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+	    </div>
+    </section>
+
+    <section>
+    	<div class="container">
+    		<div class="col-sm-6">
+    			<hr/>
+    			<div class="col-sm-6 col-sm-offset-3"> 
+    				{% if object.user_image %}
+    					<img src="{{ object.user_image.url }}" alt="" class="img-circle img-responsive">	
+    				{% else %}
+    					<img src="{% static 'staticfiles/client/images/user.png' %}" alt="" class="img-circle img-responsive">	
+    				{% endif %}
+    			</div>
+    			<div class="col-sm-6 col-sm-offset-3">
+    				<h1 class="text-primary"> {{ object.user }} </h1>
+    				<hr/>
+    				<h3>
+    					<i class="glyphicon glyphicon-user" aria-hidden="true"></i> |<strong> {{ object }} </strong>
+    				</h3>
+    				<hr/>
+    				<h3>
+    					<i class="glyphicon glyphicon-bishop" aria-hidden="true"></i> - <strong> {{ object.profession }} </strong> - <strong> {{ object.category }} </strong>
+    				</h3>
+    				<hr/>
+    			</div>
+    			<div class="col-sm-12 well well-sm">
+    				{% if object.map_embed %}
+    					{{ object.map_embed | safe }}
+    				{% else %}
+    					{% if object.user == request.user %}
+    						<a href="{% url 'shop:shop-update' slug=object.slug %}" class="btn btn-block btn-success"> Paste Map Embed Code Here. </a>
+    					{% else %}
+    						<h3 class="text-center text-primary"> Map Not Rendered </h3>
+    					{% endif %}
+    				{% endif %}
+    			</div>
+    		</div>
+    		<div class="col-sm-6">
+    			<hr/>
+    			<div class="panel panel-default">
+				  <div class="panel-body">
+				  {% if object.work_image %}
+    					{{ object.work_image }}
+    				{% else %}
+    					{% if object.user == request.user %}
+    						<a href="{% url 'shop:shop-update' slug=object.slug %}" class="btn btn-block btn-success"> Upload Work Images. </a>
+    					{% else %}
+    						<h3 class="text-center text-primary"> User Is Yet To Complete Shop Profile </h3>
+    					{% endif %}
+    				{% endif %}
+				  </div>
+				  <div class="panel-footer">
+				  <h3 class="text-center"> Work Images </h3>
+				  </div>
+				</div>
+
+				<div class="panel panel-default">
+				  <div class="panel-body">
+				  	{% if object.shop_description %}
+    					<p class="text-center">{{ object.get_markdown_content }}</p>
+    				{% else %}
+    					{% if object.user == request.user %}
+    						<a href="" class="btn btn-block btn-success"> Tell Why You Are The Better Option </a>
+    					{% else %}
+    						<h3 class="text-center text-primary"> User Is Yet To Complete Shop Profile </h3>
+    					{% endif %}
+    				{% endif %}
+				  </div>
+				  <div class="panel-footer">
+				  	<h3 class="text-center">  Shop Description </h3>
+				  </div>
+				</div>
+
+				<div class="panel panel-default">
+				  <div class="panel-body">
+				  	{% if object.cancellation_policy %}
+    					<p class="text-center">{{ object.cancel_markdown }}</p>
+    				{% else %}
+    					{% if object.user == request.user %}
+    						<a href="" class="btn btn-block btn-success">
+    							Setup your cancellation policy to protect yourself from no-shows and late cancellations...
+    						</a>
+    					{% else %}
+    						<h3 class="text-center text-primary"> User Is Yet To Complete Shop Profile </h3>
+    					{% endif %}
+    				{% endif %}
+				  </div>
+				  <div class="panel-footer">
+				  	<h3 class="text-center">  Cancellation Policy </h3>
+				  </div>
+				</div>
+
+				{% if object.user == request.user %}
+					<div class="panel panel-default">
+					  <div class="panel-body">
+					  		{% for booking in object_ %}
+	    						<p class="text-center text-info"> {{ booking.user }} - {{ booking }}</p><hr/>
+	    					{% empty %}
+	    					<p class="text-center text-info">
+	    						<h3 class="text-center text-info"> No bookings Made Yet!. </h3>
+	    					</p>
+	    				{% endfor %}
+					  </div>
+					  <div class="panel-footer">
+					  	<h3 class="text-center">
+					  		<a href="{% url 'shop:shop-bookings' slug=object.slug %}">
+					  			Your Bookings 
+					  		</a>
+					  	</h3>
+					  </div>
+					</div>
+				{% endif %}
+
+    		</div>
+    		<div class="col-sm-12">
+    			<div class="col-sm-6 col-sm-offset-3">
+	    			{% if object.user == request.user %}
+	    				<a href="" class="btn btn-block btn-danger"> Dashboard </a>
+	    			{% else %}
+	    				<!-- Small modal -->
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"> Book A Request Now </button>
+
+						<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+						  <div class="modal-dialog modal-sm" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title" id="myModalLabel">
+						        	Bookings For {{ object }}
+						        </h4>
+						      </div>
+						      <div class="modal-body">
+						        <form method="POST" action="" enctype='multipart/form-data'> 
+						        	{% csrf_token %}
+  									<input type="hidden" name="instance_location_destination" value="{{request.get_full_path}}" />
+
+  									{{ booking_form|crispy}}
+  									<span class="input-group-btn">
+    									<button class="btn btn-info btn-block" type="submit"> Book </button>
+  									</span>
+								</form>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+	    			{% endif %}
+	    		</div>
+    		</div>
+    	</div>
+    	<br/>
+    </section>
+
+    <section>
+    	<div class="container well well-sm">
+    		<h3 class="text-center text-info">
+    			Reviews on {{ object }}
+    		</h3>
+    		<hr/>
+    		{% ratings object %}
+    	</div>
+    </section>
+
+    <section>
+    	<div class="container">
+    		<div class="col-sm-12">
+
+    			<h3 class="page-header text-center">{{ object.title }}</h3>
+				<p class="small text-center">{{ object.publish|date:"l, j F Y" }}</p>
+				<p>
+				  {{ object.body|linebreaks }}
+				</p>
+
+				{% get_comment_count for object as comment_count %}
+				<div class="text-center" style="padding-top:20px">
+				  <a href="{% url 'shop:all' %}">Back to the Shops</a>
+				  &nbsp;&sdot;&nbsp;
+				  {{ comment_count }} comments complaints have been posted.
+				</div>
+
+				<div class="comment">
+				  <h4 class="text-center">Your comment/complaints</h4>
+				  <hr/>
+				  <div class="well">
+				    {% render_comment_form for object %}
+				  </div>
+				</div>
+
+				<hr/>
+				<ul class="media-list">
+				  {% render_xtdcomment_tree for object %}
+				</ul>
+
+    		</div>
+    	</div>
+    	<br/>
+    </section>
+
+	<!-- <div class="clients-section" {% if object.dashboard_banner_image_1 %} style="background-image:'{{ object.dashboard_banner_image_1.url }}';" {% endif %}>
+    	<div class="container">
+	    	<div class="title-agileits">
+	    		<h3 class="w3l-agile">{{ object }}</h3> 
+			</div>
+			{% if request.user == object.user %}
+	    	<div class="mis-stage"> 
+				{% if not object.dashboard_banner_image_1 %}
+					<h4 class="text-center text-primary">
+						Update Shop Info <a href="#" class="btn btn-danger"> Update Shop Here </a>
+					</h4>
+				{% endif %}
+			</div>
+			{% endif %}
+		</div>
+	</div> -->
+
+
+
+
+
+
+
+
+
+<!-- {{ object }} <br/>
+{{ object.user }} <br/>
+{{ object.business_name }} <br/>
+{{ object.profession }} <br/>
+{{ object.category }} <br/>
+{{ object.mobile_number }} <br/>
+
+
+<hr/>
+
+{% if request.user == object.user %}
+	<a href="#"> Manage Dashboard </a>
+{% else %}
+	<a href="#"> book us now </a>
+{% endif %}
+
+<form method="POST" action="" enctype='multipart/form-data'> {% csrf_token %}
+
+  <input type="hidden" name="instance_location_destination" value="{{request.get_full_path}}" />
+  {{ booking_form | crispy }}
+  <span class="input-group-btn">
+    <button class="btn btn-info" type="submit"> Book Now </button>
+  </span>
+
+</form> -->
+
+{% endblock %}

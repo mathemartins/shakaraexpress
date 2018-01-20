@@ -1,0 +1,74 @@
+<!--A Design popularge
+	Author: mathemartins
+	Author URL: http://mathemartins.com
+-->
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>{% block head_title%} {% endblock head_title%} ShakaraExpress</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Hair Salon Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="{% static 'staticfiles/client/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+<!-- pop-up -->
+<link href="{% static 'staticfiles/client/css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all" />
+<!-- //pop-up -->
+<link href="{% static 'staticfiles/client/css/mislider.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'staticfiles/client/css/mislider-custom.css' %}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{% static 'staticfiles/client/css/zoomslider.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'staticfiles/client/css/style.css' %}" />
+<link href="{% static 'staticfiles/client/css/font-awesome.css' %}" rel="stylesheet"> 
+<script type="text/javascript" src="{% static 'staticfiles/client/js/modernizr-2.6.2.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'staticfiles/client/css/flexslider.css' %}" type="text/css" media="screen" property="" />
+
+<!--/web-fonts-->
+<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed" rel="stylesheet">
+<!--//web-fonts-->
+
+<!-- star ratings -->
+<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+<!--// star ratings -->
+
+<style type="text/css">
+	{% block style %} {% endblock style %}
+</style>
+</head>
+<!DOCTYPE HTML>
+<body>
+
+	{% url 'homepage' as homepage %}
+
+	{% if request.path == homepage %}
+		{% include 'site-utils/home-banner/banner.html' %}
+	{% else %}
+		{% include 'site-utils/nav/navbar.html' %}
+	{% endif %}
+	{% block head_extra %}{% endblock head_extra %}
+	{% block content %}
+
+		{% block offercontent %}
+			
+		{% endblock offercontent %}
+
+	{% endblock content %}
+
+	<!-- footer starts -->
+	{% include 'site-utils/footer/footer.html' %}
+
+	<script>
+	$(document).ready(function(){
+		{% block jquery %}
+
+		{% endblock jquery %}
+	})
+	</script>
+</body>
+</html>

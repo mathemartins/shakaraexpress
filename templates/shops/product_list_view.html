@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load comments %}
+{% load comments_xtd %}
+{% load ratings %}
+
+{% block head_extra %}
+    {{ apply_form.media }}
+{% endblock head_extra %}
+
+{% block head_title %} {{ request.user }} - {% endblock head_title %}
+
+{% block content %}
+<h1>My Shop Products</h1>
+<p>
+    <form method="GET" action="">
+    <input type='text' name='q' placeholder='Search' value='{{ request.GET.q }}'>
+    <input type='submit' value='Search'/>
+    </form>
+</p>
+
+<table>
+	{% for instance in product_list %}
+    <tr class="">
+    	<td>
+    		{{ instance.id }}
+    	</td>
+    	<td>
+    		<a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</a>
+    	</td>
+    	<td>
+    	</td>
+    	<td>{{ instance.price }}
+    	</td>
+    	<td><a href='{{ instance.get_edit_url }}'>Edit</a> | <a href="#">Delete</a>
+    	</td>
+   </tr>
+{% empty %}
+    <li>No Product</li>
+{% endfor %}
+
+</table>
+
+
+{% endblock %}

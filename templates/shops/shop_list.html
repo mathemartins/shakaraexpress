@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block head_title %} shops - {% endblock head_title %}
+
+{% block content %}
+
+	<!-- breadcrumb -->
+	<div class="w3_breadcrumb">
+		<div class="breadcrumb-inner">	
+			<ul>
+				<li><a href="/">Home</a> <i>//</i></li>
+				<li>All Professionals</li>
+			</ul>
+		</div>
+	</div>
+	<!-- //breadcrumb -->
+
+	<!-- /beauty search -->
+	<br/>
+	<div class="container">
+	    <form action="" method="GET" class="newsletter">
+	    	<div class="col-sm-4">
+				<input class="form-control" type="text" name="q" placeholder="Haircut, Salon Name, Stylist" required="True" value="{{ request.GET.q }}">
+			</div>
+			<div class="col-sm-4">
+				<input class="form-control" type="text" name="q2" placeholder="location" required="True" value="{{ request.GET.q2 }}">
+			</div>
+			<div class="col-sm-4">
+				<button class="btn btn-info btn-block" type="submit"> 
+					<i class="fa fa-search"></i> Search
+				</button>
+			</div>
+		</form>
+	</div>
+ 	<!-- //beauty search-->
+
+	{% for shop in objects %}
+		<hr/>
+		<!-- about-bottom -->
+		<div class="price" id="price">
+			{% if shop.work_image %}
+				<div class="col-md-6">
+					<img src="{{ shop.work_image.url }}" class="img-responsive">
+				</div>
+			{% else %}
+			<div class="col-md-6 w3l_about_bottom_left">
+			</div>
+			{% endif %}
+		    <div class="col-md-6 w3l_about_bottom_right">
+				<div class="title-agileits1">
+		            <h3><a href="{{shop.get_absolute_url}}">{{ shop }}</a></h3>
+				</div>
+				<p>{{ shop.get_markdown_content }}</p>
+				<hr/>
+				<a href="{{ shop.get_absolute_url }}" class="btn btn-block btn-warning"> Get A Booking Now </a>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	{% empty %}
+		<!-- about-bottom -->
+		<div class="price" id="price">
+		    <div class="col-md-6 w3l_about_bottom_right">
+				<div class="title-agileits1">
+	                <h3 class="text-danger text-center"> Query Search Does Not Match The Required Output</h3>
+	                <hr/>
+	                <h3 class="text-center text-danger">No Registered Professional </h3>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	{% endfor %}
+
+{% endblock %}

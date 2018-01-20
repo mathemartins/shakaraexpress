@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block head_title %} Shakara Express {% endblock head_title %}
+
+{% block content %}
+
+	<!-- /beauty search -->
+	<br/>
+	<div class="container">
+		<div class="title-agileits">
+        	<h2 class="w3l-agile">Discover &amp; book beauty and barber appointments.</h2> 
+	    </div>
+	    <form action="{% url 'shop:all' %}" autocomplete="on" method='GET' class="newsletter">
+	    	<div class="col-sm-4">
+				<input class="form-control" type="text" name="q" placeholder="Haircut, Salon Name, Stylist" required="True" value="{{ request.GET.q }}">
+			</div>
+			<div class="col-sm-4">
+				<input class="form-control" type="text" name="q2" placeholder="location" required="True" value="{{ request.GET.q2 }}">
+			</div>
+			<div class="col-sm-4">
+				<button class="btn btn-info btn-block" type="submit"> 
+					<i class="fa fa-search"></i> Search
+				</button>
+			</div>
+		</form>
+	</div>
+ 	<!-- //beauty search-->
+
+ 	<!-- work-services -->
+	<div class="w3l-services-agile" >
+		<div class="container">
+			<div class="title-agileits">
+                <h3 class="w3l-agile">What We Do</h3> 
+			</div>
+		</div>
+		<div class="w3layouts_work_grids">
+			<section class="slider">
+				<div class="flexslider">
+					<ul class="slides">
+						<li>
+							<div class="w3layouts_work_grid_left">
+								<img src="{% static 'staticfiles/client/images/5.jpg' %}" alt=" " class="img-responsive" />
+								<div class="w3layouts_work_grid_left_pos">
+									<img src="{% static 'staticfiles/client/images/6.jpg' %}" alt=" " class="img-responsive" />
+								</div>
+							</div>
+							<div class="w3layouts_work_grid_right">
+								<h4>Professional Barber Shop</h4>
+								<h5>Hair Salon Services</h5>
+								<p>Sed tempus vestibulum lacus blandit faucibus. 
+									Nunc imperdiet, diam nec rhoncus ullamcorper, nisl nulla suscipit ligula, 
+									at imperdiet urna. </p>
+							</div>
+							<div class="clearfix"> </div>
+						</li>
+						<li>
+							<div class="w3layouts_work_grid_left">
+								<img src="{% static 'staticfiles/client/images/5.jpg' %}" alt=" " class="img-responsive" />
+								<div class="w3layouts_work_grid_left_pos">
+									<img src="{% static 'staticfiles/client/images/9.jpg' %}" alt=" " class="img-responsive" />
+								</div>
+							</div>
+							<div class="w3layouts_work_grid_right">
+								<h4>Looking a beautiful style</h4>
+								<h5>Hair and beard cutting expert</h5>
+								<p>Duis vitae faucibus quam. Sed tempus vestibulum lacus blandit faucibus. 
+									Nunc imperdiet, diam nec rhoncus ullamcorper, nisl nulla suscipit ligula, 
+									at imperdiet urna. </p>
+							</div>
+							<div class="clearfix"> </div>
+						</li>
+						<li>
+							<div class="w3layouts_work_grid_left">
+								<img src="{% static 'staticfiles/client/images/5.jpg' %}" alt=" " class="img-responsive" />
+								<div class="w3layouts_work_grid_left_pos">
+									<img src="{% static 'staticfiles/client/images/7.jpg' %}" alt=" " class="img-responsive" />
+								</div>
+							</div>
+							<div class="w3layouts_work_grid_right">
+								<h4>Professional Barber Shop</h4>
+								<h5>Hair Salon Services</h5>
+								<p>Sed tempus vestibulum lacus blandit faucibus. 
+									Nunc imperdiet, diam nec rhoncus ullamcorper, nisl nulla suscipit ligula, 
+									at imperdiet urna. </p>
+							</div>
+							<div class="clearfix"> </div>
+						</li>
+						<li>
+							<div class="w3layouts_work_grid_left">
+								<img src="{% static 'staticfiles/client/images/5.jpg' %}" alt=" " class="img-responsive" />
+								<div class="w3layouts_work_grid_left_pos">
+									<img src="{% static 'staticfiles/client/images/8.jpg' %}" alt=" " class="img-responsive" />
+								</div>
+							</div>
+							<div class="w3layouts_work_grid_right">
+								<h4>Looking a beautiful style</h4>
+								<h5>Hair and beard cutting expert</h5>
+								<p>Duis vitae faucibus quam. Sed tempus vestibulum lacus blandit faucibus. 
+									Nunc imperdiet, diam nec rhoncus ullamcorper, nisl nulla suscipit ligula, 
+									at imperdiet urna. </p>
+							</div>
+							<div class="clearfix"> </div>
+						</li>
+						<li>
+							<div class="w3layouts_work_grid_left">
+								<img src="{% static 'staticfiles/client/images/5.jpg' %}" alt=" " class="img-responsive" />
+								<div class="w3layouts_work_grid_left_pos">
+									<img src="{% static 'staticfiles/client/images/9.jpg' %}" alt=" " class="img-responsive" />
+								</div>
+							</div>
+							<div class="w3layouts_work_grid_right">
+								<h4>Professional Barber Shop</h4>
+								<h5>Hair Salon Services</h5>
+								<p>Sed tempus vestibulum lacus blandit faucibus. 
+									Nunc imperdiet, diam nec rhoncus ullamcorper, nisl nulla suscipit ligula, 
+									at imperdiet urna. </p>
+							</div>
+							<div class="clearfix"> </div>
+						</li>
+					</ul>
+				</div>
+			</section>
+			
+		</div>	
+	</div>
+	<!-- //work -->
+
+	<!-- blog -->
+	<div class="blog" id="blog">
+		<div class="container">
+			<div class="title-agileits">
+                 <h3 class="w3l-agile">Shakara For Business</h3> 
+			</div>
+			<div class="w3-agile-blog-grids">
+				<div class="w3-agile-blog-grid">
+					<div class="col-md-5 w3-agile-blog-left">
+						<a href="single.html"><img src="{% static 'staticfiles/client/images/7.jpg' %}" alt="" /></a>
+					</div>
+					<div class="col-md-6 w3-agile-blog-right">
+						<div class="w3-agile-blog-right-top">
+							<div class="blog-left-left">
+								<i class="fa fa-pencil" aria-hidden="true"></i>
+							</div>
+							<div class="blog-left-right-top">
+								<h4><a href="single.html">Are you a professional stylist, beauty, or a spa professional? </a></h4>
+								<p>Manage your business, <a href="#">accept payments </a> and grow your clientele using Shakara Express.</p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="w3-agile-blog-right-info">
+							<p>Nullam in dui dolor. Donec faucibus, est sed mattis placerat, lorem orci vestibulum lorem, vel accumsan nisl urna eget leo.</p>
+							<a href="#" class="hvr-shutter-in-horizontal">Set Up My Business</a>
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //blog -->
+
+<div class="clients-section">
+    <div class="container">
+	    <div class="title-agileits">
+                 <h3 class="w3l-agile">Our Customers Says</h3> 
+			</div>
+	    <div class="mis-stage"> 
+				<!-- The element to select and apply miSlider to - the class is optional -->
+				<ol class="mis-slider">
+					<!-- The slider element - the class is optional -->
+					<li class="mis-slide"> 
+					<!-- A slide element - the class is optional --> 
+						<a href="#" class="mis-container"> 
+						<!-- A slide container - this element is optional, if absent the plugin adds it automatically -->
+						<figure> 
+						<!-- Slide content - whatever you want --> 
+						<img src="images/t1.jpg" alt=" " class="img-responsive" />
+						<figcaption>Carl Lii<span>Sed maximus eros quis leo congue ipsum sagittis.</span></figcaption>
+						</figure>
+						</a> </li>
+					<li class="mis-slide"> <a href="#" class="mis-container">
+						<figure> <img src="images/t2.jpg" alt=" " class="img-responsive" />
+						<figcaption>Michael Paul<span>Sed maximus eros quis leo congue ipsum sagittis.</span></figcaption>
+						</figure>
+						</a> </li>
+					<li class="mis-slide"> <a href="link" class="mis-container">
+						<figure> <img src="images/t3.jpg" alt=" " class="img-responsive" />
+						<figcaption>Henry Doe<span>Sed maximus eros quis leo congue ipsum sagittis.</span></figcaption>
+						</figure>
+						</a> </li>
+					<li class="mis-slide"> <a href="#" class="mis-container">
+						<figure> <img src="images/t4.jpg" alt=" " class="img-responsive" />
+						<figcaption>Laura James<span>Sed maximus eros quis leo congue ipsum sagittis.</span></figcaption>
+						</figure>
+						</a> </li>
+					<li class="mis-slide"> <a href="#" class="mis-container">
+						<figure> <img src="images/t1.jpg" alt=" " class="img-responsive" />
+						<figcaption>Thomas Carl<span>Sed maximus eros quis leo congue ipsum sagittis.</span></figcaption>
+						</figure>
+						</a> </li>
+					<li class="mis-slide"> <a href="#" class="mis-container">
+						<figure> <img src="images/t5.jpg" alt=" " class="img-responsive" />
+						<figcaption>Rosy Crisp<span>Sed maximus eros quis leo congue ipsum sagittis.</span></figcaption>
+						</figure>
+						</a> </li>
+				</ol>
+
+			</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+
+{% for instance in product_list %}
+    <li class="">
+    	<a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</a><br/>
+    	
+    	{{ instance.get_html_price|safe }}
+   </li>
+{% empty %}
+    <li>No Product</li>
+{% endfor %}

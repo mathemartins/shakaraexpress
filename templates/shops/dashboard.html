@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load comments %}
+{% load comments_xtd %}
+{% load ratings %}
+
+{% block head_extra %}
+    {{ apply_form.media }}
+{% endblock head_extra %}
+
+{% block head_title %} {{ object }} - {% endblock head_title %}
+
+{% block content %}
+
+	<section>
+		<div class="container">
+			{% if apply_form %}
+				<br/>
+				<h1 class="text-center text-primary">{{ title }}</h1>
+				<hr/>
+				<div class="col-sm-8">
+					<div class="jumbotron">
+						<h2 class="text-center text-danger">
+							Are you a beauty professional, stylist or barber?
+						</h2>
+						<hr/>
+						<strong class="text-info text-center">
+							#1 Appointment booking software for independent professionals
+						</strong>
+					</div>
+				</div>
+				<div class="col-sm-4 well well-sm">
+					<form method='POST' action=''> {% csrf_token %}
+						<h3 class="text-center">Rules For Shakara Express</h3><hr/>
+						<ol>
+							<li>
+								by checking agree to terms, you have accepted <a href="#">our rules</a> here at shakara express
+							</li>
+						</ol> 
+						{{ apply_form|crispy }} 
+						<br/>
+						<input type='submit' class="btn btn-block btn-primary" />
+					</form>
+				</div>
+
+				<div class="col-sm-12">
+					<div class="jumbotron">
+						<h3 class="text-info text-center"> Shakara Express For Business </h3>
+					</div>
+				</div>
+
+			{% endif %}
+		</div>
+	</section>
+
+	<section>
+		<div class="container">
+			
+			{% if products %}
+				<div class='col-sm-12'>
+					<h4>My Products<br/><small><a href='{% url "shop:product_create" %}'>Add</a> | <a href='{% url "shop:product_list" %}'>View All</a></small></h4>
+					{% include "products/product_list_snippet.html" with product_list=products %}
+				</div>
+			{% endif %}
+
+			<hr/>
+
+			{% if transactions %}
+				<div class='col-sm-12'>
+					<h3>Today's sales are #{{ today_sales }}</h3>
+					{% include "shops/transaction_list.html" with transaction_list=transactions_today %}
+
+					<br/>
+
+					<h3>Recent Transaction History (Total Sales: ${{ total_sales }})</h3>
+					{% include "shops/transaction_list.html" with transaction_list=transactions %}
+
+					<p>
+						<a href='{% url "shop:transactions" %}'>View all transactions</a>
+					</p>
+				</div>
+			{% endif %}
+
+		</div>
+	</section>
+{% endblock %}

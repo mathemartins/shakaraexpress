@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load comments %}
+{% load comments_xtd %}
+{% load ratings %}
+
+{% block head_extra %}
+    {{ booking_form.media }}
+{% endblock head_extra %}
+
+{% block head_title %} {{ book_object }} - {% endblock head_title %}
+
+{% block content %}
+	
+	<section>
+		<br/>
+		<div class="container">
+			<div class="col-sm-6 col-sm-offset-3 well well-sm">
+				<h3 class="text-center text-danger"> 
+					Booking User - {{ book_object.user }} 
+				</h3> 
+				<hr/>
+				<h3 class="text-center text-danger"> 
+					Booking Code - {{ book_object }} 
+				</h3> 
+				<hr/>
+				<h3 class="text-center text-danger"> 
+					Booking Shop - {{ book_object.shop }} 
+				</h3> 
+				<hr/>
+				<h3 class="text-center text-danger"> 
+					Booking Date - {{ book_object.booking_date }} 
+				</h3> 
+				<hr/>
+				<h3 class="text-center text-danger"> 
+					Contact - {{ book_object.mobile_contact }} 
+				</h3> 
+				<hr/>
+				<h3 class="text-center text-danger"> 
+					Promo Code - {{ book_object.promotional_codes }} 
+				</h3> 
+				<hr/>
+				<h3 class="text-center text-danger"> 
+					Extras - {{ book_object.extra_notes }} 
+				</h3> 
+				<hr/>
+			</div>
+		</div>
+		<br/>
+	</section>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load comments %}
+{% load comments_xtd %}
+{% load ratings %}
+
+{% block head_extra %}
+    {{ apply_form.media }}
+{% endblock head_extra %}
+
+{% block head_title %} {{ object }} - {% endblock head_title %}
+
+{% block content %}
+<h1>{% if vendor_name %}{{ vendor_name }} {% endif %}Products</h1>
+<p>
+	<form method="GET" action="">
+		<input type='text' name='q' placeholder='Search' value='{{ request.GET.q }}'>
+		<input type='submit' value='Search'/>
+	</form>
+</p>
+<ul>
+
+	{% include "products/product_list_snippet.html" with product_list=object_list %}
+
+</ul>
+
+
+{% endblock %}
