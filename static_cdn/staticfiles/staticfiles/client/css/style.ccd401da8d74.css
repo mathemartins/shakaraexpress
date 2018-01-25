@@ -1902,7 +1902,7 @@ ul.top-links li a i.fa:hover {
 }
 .check-box input[type="checkbox"]:checked+label span:first-child:before {
     content: "";
-    background: url("../images/tick.eebf92523256.png")no-repeat;
+    background: url("../images/tick.d43f800b5c41.png")no-repeat;
     position: absolute;
     left: 2px;
     top: 2px;
