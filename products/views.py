@@ -67,6 +67,7 @@ class ProductUpdateView(ProductManagerMixin, SubmitBtnMixin, MultiSlugMixin, Upd
 		for x in tags:
 			tag_list.append(x.title)
 		"""
+		print (initial)
 		return initial
 
 	def form_valid(self, form):
@@ -92,12 +93,7 @@ class ProductDetailView(MultiSlugMixin, DetailView):
 		context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
 		obj = self.get_object()
 		tags = obj.tag_set.all()
-		rating_avg = obj.productrating_set.aggregate(Avg("rating"), Count("rating"))
-		context["rating_avg"] = rating_avg
 		if self.request.user.is_authenticated():
-			rating_obj = ProductRating.objects.filter(user=self.request.user, product=obj)
-			if rating_obj.exists():
-				context['my_rating'] = rating_obj.first().rating
 			for tag in tags:
 				new_view = TagView.objects.add_count(self.request.user, tag)
 		return context

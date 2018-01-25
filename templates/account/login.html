@@ -1,0 +1,75 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <h1 class="text-info text-center"> <br/> <strong>{% trans "Sign In" %}</strong> <hr/></h1>
+  <div class="col-sm-6">
+    {% get_providers as socialaccount_providers %}
+    <div class="well well-sm">
+    {% if socialaccount_providers %}
+      <p class="text-center text-default">{% blocktrans with site.name as site_name %}Please sign in with one
+      of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+      for a Shakara Express account and sign in below:
+      {% endblocktrans %}</p>
+    </div>
+
+      <div class="socialaccount_ballot">
+        <ul class="socialaccount_providers">
+          <!--{% include "socialaccount/snippets/provider_list.html" with process="login" %}-->
+
+          {% load socialaccount %}
+          {% providers_media_js %}
+          <a href="{% provider_login_url "facebook" method="oauth2" %}" class="btn btn-info btn-block"> <i class="fa fa-facebook-square"></i> Facebook </a> <br/>
+        </ul>
+      </div>
+      {% include "socialaccount/snippets/login_extra.html" %}
+      <div class="login-or"> <h2 class="text-warning text-center"> {% trans 'or' %} </h2> </div>
+      {% else %}
+      <div class="">
+      <p class="text-warning">{% blocktrans %}If you have not created an account yet, then please
+      <a href="{{ signup_url }}" class="btn btn-success">sign up</a> first.<gr/>{% endblocktrans %} <hr/> </p>
+      </div>
+      {% endif %}
+
+      
+
+  </div>
+
+  <div class="col-sm-6">
+
+    <form class="login" method="POST" action="{% url 'account_login' %}">
+        {% csrf_token %}
+        {{ form|crispy }}<br/>
+
+        {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+
+        <a class="button secondaryAction btn btn-warning col-sm-6 col-sm-offset-3" href="{% url 'account_reset_password' %}"> <i class="fa fa-unlock"></i> {% trans "Forgot Password?" %}</a>
+        
+        <button class="primaryAction btn btn-success btn-block" type="submit">{% trans "login" %}</button>
+    </form>
+
+  </div>
+
+      
+
+  <div class="col-sm-12">
+    <hr/>
+    <h3 class="text-default text-center">
+      Shakara Express - <strong class="text-primary"> Built By PrimaxLabs. </strong>
+    </h3>
+    <br/>
+  </div>
+</div>
+</div>
+</div>
+
+{% endblock %}

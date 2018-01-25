@@ -77,6 +77,7 @@ class ShopDashboard(ShopAccountMixin, FormMixin, View):
 			context["title"] = "Shop Dashboard"
 			
 			#products = Product.objects.filter(shop=account)
+			print (context)
 			context["products"] = self.get_products()
 			transactions_today = self.get_transactions_today()
 			context["transactions_today"] = transactions_today
@@ -85,6 +86,8 @@ class ShopDashboard(ShopAccountMixin, FormMixin, View):
 			context["transactions"] = self.get_transactions().exclude(pk__in=transactions_today)[:5]
 		else:
 			pass
+
+		print (self.get_products())
 		
 		return render(request, "shops/dashboard.html", context)
 

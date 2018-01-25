@@ -6,7 +6,7 @@ from shops.mixins import ShopAccountMixin
 
 class ProductManagerMixin(ShopAccountMixin, object):
 	def get_object(self, *args, **kwargs):
-		seller = self.get_account()
+		shop = self.get_account()
 		obj = super(ProductManagerMixin, self).get_object(*args, **kwargs)
 		try:
 			obj.shop  == shop

@@ -25,6 +25,7 @@ from dashboard.views import DashboardView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.homepage, name='homepage'),
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^client/dashboard/$', DashboardView.as_view(), name='dashboard'),
     url(r'^test/$', CheckoutTestView.as_view(), name='test'),
     url(r'^checkout/$', CheckoutAjaxView.as_view(), name='checkout'),

@@ -1,0 +1,39 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "Signup" %} | Shakara Express {% endblock %}
+
+{% block content %}
+<div class="container">
+	<br/>
+	<h1 class="text-center text-info">
+		<strong>{% trans "Sign Up" %}</strong>
+	</h1><br/>
+
+	<div class="well well-sm">
+	<p class="text-default text-center">{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+	</div>
+
+	<div class="col-sm-6">
+		<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+		  {% csrf_token %}
+		  {{ form|crispy }}
+		  {% if redirect_field_value %}
+		  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+		  {% endif %}
+		  <button type="submit" class="btn btn-success btn-block">{% trans "Register" %} &raquo;</button>
+		</form>
+	</div>
+	<div class="col-sm-6">
+		<div class="well well-sm">
+			<p> Already have a third-party account?, sign-in from your third party account to use Shakara Express </p>
+		</div>
+		{% load socialaccount %}
+          {% providers_media_js %}
+          <a href="{% provider_login_url "facebook" method="oauth2" %}" class="btn btn-info btn-block"> <i class="fa fa-facebook-square"></i> Facebook </a> <br/>
+	</div>
+</div>
+
+{% endblock %}

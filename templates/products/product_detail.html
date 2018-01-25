@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load comments %}
+{% load comments_xtd %}
+{% load ratings %}
+
+{% block head_extra %}
+    {{ apply_form.media }}
+{% endblock head_extra %}
+
+{% block head_title %} {{ object }} - {% endblock head_title %}
+
+
+{% block content %}
+
+<section>
+	<div class="container">
+		<h1 class="text-center"> PRODUCT: <strong>{{ object.title }}</strong> </h1> <hr/>
+		<strong>by: 
+			<a href='{{ object.shops.get_absolute_url }}'>{{ object.shop.user.username }}</a> 
+		</strong><hr/>
+
+		<div class="col-sm-6 col-sm-offset-3">
+			<p class="text-center">{{ object.description }}</p>
+			<p class="text-center">{{ object.transaction_set.count }} purchases made.</p>
+			<p class="text-center">{{ object.get_html_price|safe }}</p>
+		</div>
+		<hr/>
+
+		<div class="col-sm-4 col-sm-offset-4">
+			{% if object.media %} <img src="{{ img.media.url }}" class="img-responsive" />{% else %} <h3>
+				No Image For Product
+			</h3> {% endif %}
+		</div>
+	</div>
+</section>
+
+<section>
+	<div class="container">
+		<br/>
+		{% if request.user.is_authenticated %}
+			<p class="text-center"><a id='purchase-btn' href="#">{% if object.media %}Purchase{% else %}Pre-Order{% endif %}</a></p>
+			<div id='dialog-confirm' title='Confirm Purchase' style='display:none'>
+				<p>Your card on file will be charged after you agree below.</p>
+			</div>
+		{% endif %}
+	</div>
+</section>
+<div class='clearfix'></div>
+
+{% endblock content %}

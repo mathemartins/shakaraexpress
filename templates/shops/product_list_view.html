@@ -13,35 +13,58 @@
 {% block head_title %} {{ request.user }} - {% endblock head_title %}
 
 {% block content %}
-<h1>My Shop Products</h1>
-<p>
-    <form method="GET" action="">
-    <input type='text' name='q' placeholder='Search' value='{{ request.GET.q }}'>
-    <input type='submit' value='Search'/>
-    </form>
-</p>
 
-<table>
-	{% for instance in product_list %}
-    <tr class="">
-    	<td>
-    		{{ instance.id }}
-    	</td>
-    	<td>
-    		<a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</a>
-    	</td>
-    	<td>
-    	</td>
-    	<td>{{ instance.price }}
-    	</td>
-    	<td><a href='{{ instance.get_edit_url }}'>Edit</a> | <a href="#">Delete</a>
-    	</td>
-   </tr>
-{% empty %}
-    <li>No Product</li>
-{% endfor %}
+    <section>
+        <!-- breadcrumb -->
+            <div class="w3_breadcrumb">
+                <div class="breadcrumb-inner">  
+                    <ul>
+                        <li><a href="/">Home</a> <i>//</i></li>
+                        <li>shop products</li>
+                    </ul>
+                </div>
+            </div>
+        <!-- //breadcrumb -->
+    </section>
 
-</table>
+    <section>
+        <div class="container">
+            <br/>
+            <h1 class="text-center">My Shop Products</h1><hr/>
 
+            <div class="col-sm-4 col-sm-offset-4">
+                <form method="GET" action="">
+                    <input type='text' name='q' placeholder='Search' class="form-control" value='{{ request.GET.q }}'>
+                    <input type='submit' class="btn btn-primary btn-block" value='Search'/>
+                </form>
+            </div>
+
+            <div class="col-sm-6 col-sm-offset-3">
+                <table class="table">
+                {% for instance in product_list %}
+                    <tr class="">
+                        <td>
+                            {{ instance.id }}
+                        </td>
+                        <td>
+                            <a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</a>
+                        </td>
+                        <td>
+                        </td>
+                        <td>{{ instance.price }}
+                        </td>
+                        <td>{% if instance.media %} <img src="{{ instance.media.url }}" class="img-responsive">{% else %} No Media For Product {% endif %}
+                        </td>
+                        <td><a href='{{ instance.get_edit_url }}'>Edit</a> | <a href="#">Delete</a>
+                        </td>
+                   </tr>
+                {% empty %}
+                    <h2 class="text-center">No Product</h2>
+                {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </section>
 
 {% endblock %}

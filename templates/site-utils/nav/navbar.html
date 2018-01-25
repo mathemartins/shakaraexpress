@@ -16,7 +16,7 @@
 									<span class="icon-bar"></span>
 								</button>
 								<h1>
-									<a href="index.html">
+									<a href="/">
 										<div class="col-sm-6">
 											<img src="{% static 'staticfiles/client/images/sha.png' %}" class="img-responsive">
 										</div>
@@ -26,17 +26,27 @@
 							<!-- navbar-header -->
 							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 									<ul class="nav navbar-nav linkEffects linkHoverEffect_12">
-										<li><a href="index.html" class="active"><span>Home</span></a></li>
-										<li><a href="about.html"><span>About</span></a></li> 
+										<li><a href="#" class="active"><span>Home</span></a></li>
+										<li><a href="#"><span>About</span></a></li> 
 										<li class="dropdown">
-												<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Short Codes"><span>Short Codes</span></span> <b class="caret"></b></a>
+												<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Short Codes"><span>Categories</span></span> <b class="caret"></b></a>
 												 <ul class="dropdown-menu agileinfo">
-													<li><a href="icons.html">Font Icons</a></li>
+													<li><a href="#">Wellness</a></li>
 												
-													<li><a href="codes.html">Typography</a></li>
+													<li><a href="#">Fashion</a></li>
+
+													<li><a href="#">Beauty</a></li>
+
+													<li><a href="#">Spa</a></li>
+
+													<li><a href="#">Bookings</a></li>
 											     </ul>
 											</li>
-										<li><a href="gallery.html"><span>Gallery</span></a></li> 
+										{% if request.user.is_authenticated %}
+											<li><a href="{% url 'account_logout' %}"><span>LogOut</span></a></li> 
+										{% else %}
+											<li><a href="{% url 'account_login' %}"><span>LogIn</span></a></li> 
+										{% endif %}
 										<!-- <li><a href="contact.html"><span>Contact</span></a></li>  -->
 									</ul>
 

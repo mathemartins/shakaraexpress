@@ -56,6 +56,19 @@
 	</section>
 
 	<section>
+		<!-- breadcrumb -->
+			<div class="w3_breadcrumb">
+				<div class="breadcrumb-inner">	
+					<ul>
+						<li><a href="/">Home</a> <i>//</i></li>
+						<li>Shop Dashboard</li>
+					</ul>
+				</div>
+			</div>
+		<!-- //breadcrumb -->
+	</section>
+
+	<section>
 		<div class="container">
 			
 			{% if products %}
@@ -64,6 +77,18 @@
 					{% include "products/product_list_snippet.html" with product_list=products %}
 				</div>
 			{% endif %}
+
+			<div class='col-sm-6 col-sm-offset-3'>
+				<br/>
+				<h3 class="text-center text-warning">
+					<strong> Quick Buttons On Products </strong>
+				</h3>
+				<hr/>
+				<a href='{% url "shop:product_create" %}' class="btn btn-primary btn-block">Add My Product</a>
+				<hr/>
+				<a href='{% url "shop:product_list" %}' class="btn btn-warning btn-block">See My Products</a>
+				<hr/>
+			</div>
 
 			<hr/>
 

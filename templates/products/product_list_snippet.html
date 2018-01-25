@@ -1,10 +1,42 @@
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
 
 {% for instance in product_list %}
-    <li class="">
-    	<a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</a><br/>
-    	
-    	{{ instance.get_html_price|safe }}
-   </li>
+
+	<hr/>
+	<!-- about-bottom -->
+	<div class="price" id="price">
+		{% if instance.media %}
+			<div class="col-md-6">
+				<img src="{{ instance.media.url }}" class="img-responsive">
+			</div>
+		{% else %}
+		<div class="col-md-6 w3l_about_bottom_left">
+		</div>
+		{% endif %}
+	    <div class="col-md-6 w3l_about_bottom_right">
+			<div class="title-agileits1">
+	            <h3><a href="{{instance.get_absolute_url}}">{{ instance }}</a></h3>
+			</div>
+			<p>{{ instance.get_html_price|safe }}</p>
+			<hr/>
+			<a href="{{ instance.get_absolute_url }}" class="btn btn-block btn-warning"> Get Product Now </a>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
 {% empty %}
-    <li>No Product</li>
+    
+	<!-- about-bottom -->
+	<div class="price" id="price">
+	    <div class="col-md-6 w3l_about_bottom_right">
+			<div class="title-agileits1">
+                <h3 class="text-danger text-center"> Query Search Does Not Match The Required Output</h3>
+                <hr/>
+                <h3 class="text-center text-danger">No Product Yet </h3>
+			</div>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+
 {% endfor %}

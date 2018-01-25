@@ -1,0 +1,8 @@
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+<form method="POST" action="" enctype='multipart/form-data'>
+{% csrf_token %}
+{{ form|crispy }}
+<input type='submit' class="btn btn-success btn-block" value='{% if submit_btn %}{{ submit_btn }}{% else %}Submit{% endif %}' />
+</form>

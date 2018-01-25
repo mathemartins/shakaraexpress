@@ -52,12 +52,15 @@ INSTALLED_APPS = [
     'imagekit',
 
     # custom app
-    "artisan",
-    "core",
-    "skill",
-    "tag",
-    "analytics",
-    "dashboard",
+    'shops',
+    'bookings',
+    'notifications',
+    'core',
+    'products',
+    'tags',
+    'billing',
+    'dashboard',
+    'analytics',
 
     # third-party-app-modules
     'storages',
@@ -68,6 +71,8 @@ INSTALLED_APPS = [
     'django_comments_xtd',
     'django_comments',
     'star_ratings',
+    'pagedown',
+    'markdown_deux',
 
     # socialmedia auth
     'allauth.socialaccount.providers.facebook',
@@ -91,6 +96,11 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'dev.urls'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+RECENT_BOOKING_NUMBER = 10
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 TEMPLATES = [
     {
@@ -177,19 +187,19 @@ import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
-CORS_REPLACE_HTTPS_REFERER       = True
-HOST_SCHEME                      = "https://"
-SECURE_PROXY_SSL_HEADER          = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT              = True
-SESSION_COOKIE_SECURE            = True
-CSRF_COOKIE_SECURE               = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS   = True
-SECURE_HSTS_SECONDS              = 1000000
-SECURE_FRAME_DENY                = True
+# CORS_REPLACE_HTTPS_REFERER       = True
+# HOST_SCHEME                      = "https://"
+# SECURE_PROXY_SSL_HEADER          = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT              = True
+# SESSION_COOKIE_SECURE            = True
+# CSRF_COOKIE_SECURE               = True
+# SECURE_HSTS_INCLUDE_SUBDOMAINS   = True
+# SECURE_HSTS_SECONDS              = 1000000
+# SECURE_FRAME_DENY                = True
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = False
 
 
 # Password validation
@@ -241,3 +251,5 @@ STATICFILES_DIRS = (
 STATIC_ROOT = os.path.join(BASE_DIR, "static_cdn", "staticfiles")
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "static_cdn", "media")

@@ -1,0 +1,26 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Verify Your E-mail Address" %} | Shakara Express {% endblock %}
+
+{% block content %}
+	<div class="container"><br/>
+	    <h1 class="text-info text-center">
+	    	<strong>
+	    		{% trans "Verify Your E-mail Address" %}
+	    	</strong>
+	    </h1>
+	    <br/>
+
+	    <div class="well well-sm">
+	    	<p class="text-center text-default">
+	    		{% blocktrans %}
+	    			We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes.
+	    		{% endblocktrans %}
+	    	</p>
+	    </div>
+	    <br/>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load comments %}
+{% load comments_xtd %}
+{% load ratings %}
+
+{% block head_extra %}
+    {{ apply_form.media }}
+{% endblock head_extra %}
+
+{% block head_title %} {{ request.user }} - {% endblock head_title %}
+
+
+{% block content %}
+
+<section>
+	<div class="container">
+		<br/>
+		<div class="col-sm-6 col-sm-offset-3">
+			{% include "form_include.html" with form=form submit_btn=submit_btn %}
+		</div>
+	</div>
+	<br/>
+</section>
+
+
+{% endblock content %}
