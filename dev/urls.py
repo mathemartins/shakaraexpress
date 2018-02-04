@@ -19,16 +19,24 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 from core import views
-from checkout.views import CheckoutTestView, CheckoutAjaxView
+from checkout.views import CheckoutTestView, CheckoutAjaxView, CheckoutAjaxBookingView, CheckoutTestBookingView
 from dashboard.views import DashboardView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.homepage, name='homepage'),
+    url(r'^featured/$', views.featured_objects, name='featured'),
+    url(r'^nearby/$', views.nearby_shops, name='nearby'),
+    url(r'^wellness/$', views.wellness, name='wellness'),
+    url(r'^fashion/$', views.fashion, name='fashion'),
+    url(r'^beauty/$', views.beauty, name='beauty'),
+    url(r'^spa/$', views.spa, name='spa'),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^client/dashboard/$', DashboardView.as_view(), name='dashboard'),
     url(r'^test/$', CheckoutTestView.as_view(), name='test'),
+    url(r'^booking/confirm/$', CheckoutTestBookingView.as_view(), name='booking-confirm'),
     url(r'^checkout/$', CheckoutAjaxView.as_view(), name='checkout'),
+    url(r'^booking/checkout/$', CheckoutAjaxBookingView.as_view(), name='checkout-booking'),
     url(r'^shops/', include("shops.urls", namespace='shop')),
     url(r'^bookings/', include('bookings.urls', namespace='book')),
     url(r'^products/', include("products.urls", namespace='products')),

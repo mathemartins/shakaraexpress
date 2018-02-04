@@ -8,7 +8,7 @@ class NewShopForm(forms.ModelForm):
 		model = ShopAccount
 		fields = [
 			"business_name",
-			"profession",
+			"service",
 			"category",
 			"mobile_number",
 			"let_client_book_online",

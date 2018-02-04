@@ -12,12 +12,17 @@ from django.core.urlresolvers import reverse
 from markdown_deux import markdown
 
 # Create your models here.
-from shops.models import ShopAccount
+from shops.models import ShopAccount, Service
 from bookings.utils import (
 	booking_code_generator, 
 	statistics_average_calculator, 
 	get_read_time,
 )
+
+pay_style = (
+        ('card', 'card'),
+        ('cash', 'cash'),
+    )
 
 class BookingManager(models.Manager):
     """docstring for BookingManager"""
@@ -39,13 +44,15 @@ class Booking (models.Model):
     """docstring for Question"""
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
     destination = models.CharField(max_length=200, blank=True, null=True)
+    service = models.ManyToManyField(Service, related_name="select_services", blank=True)
     shop = models.ForeignKey(ShopAccount, null=True, blank=True)
-    booking_date = models.DateTimeField()
+    booking_date = models.DateTimeField(null=True, blank=True)
     mobile_contact = models.CharField(max_length=11, blank=True, null=True)
     optional_names = models.CharField(max_length=100, blank=True, null=True)
     promotional_code = models.CharField(max_length=50, blank=True, null=True)
     extra_notes = models.TextField(blank=True, null=True)
     booking_code = models.CharField(max_length=5, blank=True, null=True)
+    mode_of_payment = models.CharField(choices=pay_style, max_length=100)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
     active = models.BooleanField(default=True)

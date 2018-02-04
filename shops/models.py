@@ -17,13 +17,14 @@ from markdown_deux import markdown
 # Create your models here.
 
 
-class Profession(models.Model):
-	profession = models.CharField(max_length=200)
+class Service(models.Model):
+	service = models.CharField(max_length=200)
+	price = models.DecimalField(max_digits=100, decimal_places=2, default=500.00, null=True, blank=True) #100.00
 	active = models.BooleanField(default=False)
 	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 
 	def __str__(self):
-		return "%s" % self.profession
+		return "%s" % self.service
 
 sections = (
 		('Beauty', 'Beauty'),
@@ -43,13 +44,14 @@ class ShopAccount(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	managers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="manager_workers", blank=True)
 	business_name = models.CharField(max_length=200)
+	business_type = models.CharField(max_length=200, blank=True, null=True)
 	shop_description = models.TextField(null=True, blank=True)
 	dashboard_banner_image_1 = models.ImageField(upload_to = upload_location, null = True, blank = True)
 	user_image = ProcessedImageField(upload_to=upload_location, processors=[ResizeToFill(150, 150)], 
 								format='JPEG', options={'quality':100}, null=True, blank=True)
 	work_image = ProcessedImageField(upload_to=upload_location, processors=[ResizeToFill(300, 150)], 
 								format='JPEG', options={'quality':100}, null=True, blank=True)
-	profession = models.OneToOneField(Profession, on_delete=models.CASCADE, primary_key=True)
+	service = models.OneToOneField(Service, on_delete=models.CASCADE, primary_key=True)
 	category = models.CharField(choices=sections, max_length=100)
 	let_client_book_online = models.BooleanField(default=False)
 	address = models.CharField(max_length=200)
@@ -57,6 +59,7 @@ class ShopAccount(models.Model):
 	cancellation_policy = models.TextField()
 	mobile_number = models.CharField(max_length=11)
 	active = models.BooleanField(default=False)
+	featured = models.BooleanField(default=False)
 	slug = models.SlugField(null=True, blank=True)
 	updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)

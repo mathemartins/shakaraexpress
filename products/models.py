@@ -26,6 +26,7 @@ class Product(models.Model):
 	sale_active = models.BooleanField(default=False)
 	sale_price = models.DecimalField(max_digits=100,
 			 decimal_places=2, default=500.00, null=True, blank=True) #100.00
+	featured = models.BooleanField(default=False)
 
 	def __str__(self): #def __unicode__(self):
 		return self.title

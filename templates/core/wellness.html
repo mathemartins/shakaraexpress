@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% load urlify %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block head_title %} {% endblock head_title %}
+
+{% block content %}
+
+	<!-- breadcrumb -->
+	<div class="w3_breadcrumb">
+		<div class="breadcrumb-inner">	
+			<ul>
+				<li><a href="/">Home</a> <i>//</i></li>
+				<li>Wellness</li>
+			</ul>
+		</div>
+	</div>
+	<!-- //breadcrumb -->
+	
+	<section>
+		<div class="container">
+
+		{% for obj in wellness %}
+			<hr/>
+			<!-- about-bottom -->
+			<div class="price" id="price">
+				{% if obj.work_image %}
+					<div class="col-md-6">
+						<img src="{{ obj.work_image.url }}" class="img-responsive">
+					</div>
+				{% else %}
+				<div class="col-md-6 w3l_about_bottom_left">
+				</div>
+				{% endif %}
+			    <div class="col-md-6 w3l_about_bottom_right">
+					<div class="title-agileits1">
+			            <h3><a href="{{obj.get_absolute_url}}">{{ obj }}</a></h3>
+					</div>
+					<p>{{ obj.get_markdown_content }}</p>
+					<hr/>
+					<a href="{{ obj.get_absolute_url }}" class="btn btn-block btn-warning"> Get A Booking Now </a>
+					<hr/>
+				<p class=" text-center well well-sm">
+					<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
+						<i class="fa fa-facebook-square fa-2x"></i> 
+					</a>
+					<a href="https://twitter.com/home?status={{ instance.content| truncatechars:80 |urlify }}%20{{ request.build_absolute_uri }}/">
+						<i class="fa fa-twitter-square fa-2x"></i>
+					</a>
+					<a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}' class="text-danger">
+						<i class="fa fa-google-plus-square fa-2x"></i>
+					</a>
+					<a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ instance.title }}&summary={{ share_string }}&source={{ request.build_absolute_uri }}">
+			          <i class="fa fa-linkedin-square fa-2x"></i>
+		      		</a>
+				</p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		{% empty %}
+			<!-- about-bottom -->
+			<div class="price" id="price">
+			    <div class="col-md-6 w3l_about_bottom_right">
+					<div class="title-agileits1">
+		                <h3 class="text-danger text-center">
+		                	No Shop In That Category Yet
+		                </h3>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		{% endfor %}
+			
+		</div>
+	</section>
+
+{% endblock %}

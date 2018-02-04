@@ -154,6 +154,8 @@ def shop_account_detail(request, slug=None):
 		print (request.POST)
 	if booking_form.is_valid():
 		instance = booking_form.save(commit=False)
+		service = booking_form.cleaned_data['service']
+		print (service)
 		shop_id = obj.pk
 		booking_code = booking_code_generator()
 		instance.user = request.user
@@ -164,7 +166,7 @@ def shop_account_detail(request, slug=None):
 
 		# to shop owner
 		subject = "Booking From Your Shop At ShakaraExpress"
-		message = "%s, just made a booking on your shop %s, his mobile number is %d" %(instance.optional_names, obj.business_name, instance.mobile_number)
+		message = "%s, just made a booking on your shop %s, his mobile number is %s" %(instance.optional_names, obj.business_name, instance.mobile_contact)
 		sender = "hellotrackamechanic@gmail.com"
 		recipients = [obj.user.email]
 		recipients.append(sender)
@@ -173,7 +175,7 @@ def shop_account_detail(request, slug=None):
 
 		# to site owner
 		subject = "Booking From ShakaraExpress"
-		message = "%s, just made a booking on the shop %s at ShakaraExpress, his mobile number is %d" %(instance.optional_names, obj.business_name, instance.mobile_number)
+		message = "%s, just made a booking on the shop %s at ShakaraExpress, his mobile number is %s" %(instance.optional_names, obj.business_name, instance.mobile_contact)
 		sender = "hellotrackamechanic@gmail.com"
 		recipients = ['dejavu31us@gmail.com',]
 		recipients.append(sender)
@@ -189,7 +191,7 @@ def shop_account_detail(request, slug=None):
 
 		send_mail(subject, message, sender, recipients)
 
-		return HttpResponseRedirect(obj.get_absolute_url())
+		return HttpResponseRedirect('/booking/confirm/')
 		messages.success(request, "<strong>Booking</strong> successful, Booking Code: %s " %(instance.booking_code), extra_tags='html_safe')
 	template_name = "shops/shop_detail.html"
 	context = {
@@ -200,7 +202,7 @@ def shop_account_detail(request, slug=None):
 	return render(request, template_name, context)
 
 def shop_list(request):
-	obj = ShopAccount.objects.all()
+	obj = ShopAccount.objects.filter(active=True)
 	print (obj)
 	query = request.GET.get("q")
 	query2 = request.GET.get("q2")
