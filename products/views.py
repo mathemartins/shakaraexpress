@@ -120,6 +120,7 @@ class ProductListView(ListView):
 
 	def get_queryset(self, *args, **kwargs):
 		qs = super(ProductListView, self).get_queryset(**kwargs)
+		qs = qs.filter(sale_active=True)
 		query = self.request.GET.get("q")
 		if query:
 			qs = qs.filter(

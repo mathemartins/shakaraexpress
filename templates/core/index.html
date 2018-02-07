@@ -41,42 +41,90 @@
 			<div class="col-sm-3">
 				<img src="{% static 'staticfiles/client/images/png/shop.png' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="{% url 'shop:dashboard' %}" class="btn btn-primary btn-block"> Shop Account </a>
-			</div>
-			<div class="col-sm-3">
-				<img src="{% static 'staticfiles/client/images/png/product.png' %}" class="img-responsive center-block">
-				<hr/>
-				<a href="{% url 'products:list' %}" class="btn btn-warning btn-block"> Products </a>
+				<a href="{% url 'shop:dashboard' %}" class="btn btn-primary btn-block"> My Products </a>
 			</div>
 			<div class="col-sm-3">
 				<img src="{% static 'staticfiles/client/images/png/booking.png' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="{% url 'shop:shop-bookings' slug=obj.slug %}" class="btn btn-primary btn-block"> My Booking </a>
+				<a href="{% url 'shop:shop-bookings' slug=obj.slug %}" class="btn btn-primary btn-block"> My Bookings </a>
 			</div>
 			<div class="col-sm-3">
 				<img src="{% static 'staticfiles/client/images/png/cshop.png' %}" class="img-responsive center-block">
 				<hr/>
 				<a href="{% url 'shop:shop-detail' slug=obj.slug %}" class="btn btn-danger btn-block"> Customize My Shop </a>
 			</div>
-		{% else %}
-			<div class="col-sm-4">
-				<img src="{% static 'staticfiles/client/images/png/shop.png' %}" class="img-responsive center-block">
+			<div class="col-sm-3">
+				<img src="{% static 'staticfiles/client/images/png/scart.png' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="{% url 'shop:all' %}" class="btn btn-primary btn-block"> Shops </a>
+				<a href="#" class="btn btn-danger btn-block"> My Services </a>
 			</div>
+
 			<div class="col-sm-4">
+				<hr/>
 				<img src="{% static 'staticfiles/client/images/png/product.png' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="{% url 'products:list' %}" class="btn btn-warning btn-block"> Products </a>
+				<a href="{% url 'products:list' %}" class="btn btn-warning btn-block"> Shop Products </a>
 			</div>
 			<div class="col-sm-4">
+				<hr/>
+				<img src="{% static 'staticfiles/client/images/png/003-store.png' %}" class="img-responsive center-block">
+				<hr/>
+				<a href="{% url 'shop:all' %}" class="btn btn-info btn-block"> Book Services </a>
+			</div>
+			<div class="col-sm-4">
+				<hr/>
+				<img src="{% static 'staticfiles/client/images/png/deal.png' %}" class="img-responsive center-block">
+				<hr/>
+				<a href="{% url 'dotd' %}" class="btn btn-danger btn-block"> Deals OF The Day </a>
+			</div>
+		{% else %}
+			<div class="col-sm-3">
+				<img src="{% static 'staticfiles/client/images/png/003-store.png' %}" class="img-responsive center-block">
+				<hr/>
+				<a href="{% url 'shop:all' %}" class="btn btn-primary btn-block"> Book Services </a>
+			</div>
+			<div class="col-sm-3">
+				<img src="{% static 'staticfiles/client/images/png/product.png' %}" class="img-responsive center-block">
+				<hr/>
+				<a href="{% url 'products:list' %}" class="btn btn-warning btn-block"> Shop Products </a>
+			</div>
+			<div class="col-sm-3">
 				<img src="{% static 'staticfiles/client/images/png/more.png' %}" class="img-responsive center-block">
 				<hr/>
 				<a href="{% url 'featured' %}" class="btn btn-warning btn-block"> More/Featured </a>
 			</div>
+			<div class="col-sm-3">
+				<img src="{% static 'staticfiles/client/images/png/deal.png' %}" class="img-responsive center-block">
+				<hr/>
+				<a href="{% url 'dotd' %}" class="btn btn-danger btn-block"> Deals OF The Day </a>
+			</div>
 		{% endif %}
 		</div>
 	</div>
+
+	<br/>
+	{% if request.user == obj.user %}
+	{% else %}
+		<div class="container">
+			<div class="title-agileits">
+	        	<h2 class="w3l-agile">I WOULD LOVE TO OWN A STORE </h2> 
+		    </div>
+		    <div class="col-sm-8 jumbotron">
+		    	<h2 class="well well-sm text-center">
+		    		Own a store at SHAKARA EXPRESS,<br/><hr/>
+		    		Grow your clientele and become your own boss<hr/>
+		    	</h2>
+		    </div>
+		    <div class="col-sm-3 col-sm-offset-1 jumbotron">
+				<img src="{% static 'staticfiles/client/images/png/dollar.png' %}" class="img-responsive center-block">
+				<hr/>
+				<a href="{% url 'shop:dashboard' %}" class="btn btn-info btn-block"> Own A Store/Make Money </a>
+			</div>
+			<br/>
+		</div>
+		<br/>
+	{% endif %}
+
 {% else %}
 	<!-- blog -->
 	<div class="blog" id="blog">

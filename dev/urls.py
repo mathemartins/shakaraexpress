@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^fashion/$', views.fashion, name='fashion'),
     url(r'^beauty/$', views.beauty, name='beauty'),
     url(r'^spa/$', views.spa, name='spa'),
+    url(r'^deals-of-the-day/$', views.deal_of_the_day, name='dotd'),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^client/dashboard/$', DashboardView.as_view(), name='dashboard'),
     url(r'^test/$', CheckoutTestView.as_view(), name='test'),

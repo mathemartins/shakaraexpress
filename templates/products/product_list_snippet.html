@@ -3,44 +3,45 @@
 {% load crispy_forms_tags %}
 
 
-{% for instance in product_list %}
+{% for obj in product_list %}
 
 	<hr/>
-	<!-- about-bottom -->
 	<div class="price" id="price">
-		{% if instance.media %}
-			<div class="col-md-6">
-				<img src="{{ instance.media.url }}" class="img-responsive">
-			</div>
-		{% else %}
-		<div class="col-md-6 w3l_about_bottom_left">
-		</div>
-		{% endif %}
-	    <div class="col-md-6 w3l_about_bottom_right">
-			<div class="title-agileits1">
-	            <h3><a href="{{instance.get_absolute_url}}">{{ instance }}</a></h3>
-			</div>
-			<p>{{ instance.get_html_price|safe }}</p>
-			<hr/>
-			<a href="{{ instance.get_absolute_url }}" class="btn btn-block btn-warning"> Get Product Now </a>
-			<hr/>
+					{% if obj.media %}
+						<div class="col-md-6">
+							<img src="{{ obj.media.url }}" class="img-responsive">
+						</div>
+					{% else %}
+					<div class="col-md-6 w3l_about_bottom_left">
+					</div>
+					{% endif %}
+				    <div class="col-md-6 w3l_about_bottom_right">
+						<div class="title-agileits1">
+				            <h3><a href="{{obj.get_absolute_url}}">{{ obj }}</a></h3>
+						</div>
+						<p>{{ obj.get_html_price|safe }}</p>
+						<hr/>
+						<p> {{ obj.description }} </p>
+						<hr/>
+						<a href="{{ obj.get_absolute_url }}" class="btn btn-block btn-warning"> Get Product Now </a>
+						<hr/>
 				<p class=" text-center well well-sm">
 					<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
 						<i class="fa fa-facebook-square fa-2x"></i> 
 					</a>
-					<a href="https://twitter.com/home?status={{ instance.content| truncatechars:80 |urlify }}%20{{ request.build_absolute_uri }}/">
+					<a href="https://twitter.com/home?status={{ obj.title| truncatechars:80 |urlify }}%20{{ request.build_absolute_uri }}/">
 						<i class="fa fa-twitter-square fa-2x"></i>
 					</a>
 					<a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}' class="text-danger">
 						<i class="fa fa-google-plus-square fa-2x"></i>
 					</a>
-					<a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ instance.title }}&summary={{ share_string }}&source={{ request.build_absolute_uri }}">
+					<a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ obj.title }}&summary={{ share_string }}&source={{ request.build_absolute_uri }}">
 			          <i class="fa fa-linkedin-square fa-2x"></i>
 		      		</a>
 				</p>
-		</div>
-		<div class="clearfix"> </div>
-	</div>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
 {% empty %}
     
 	<!-- about-bottom -->

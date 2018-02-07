@@ -31,9 +31,9 @@ def homepage(request):
 
 
 def featured_objects(request):
-	featured_shop = ShopAccount.objects.filter(featured=True).order_by('?')[:10]
+	featured_shop = ShopAccount.objects.filter(featured=True).filter(active=True).order_by('?')[:10]
 	print (featured_shop)
-	featured_product = Product.objects.filter(featured=True).order_by('?')[:10]
+	featured_product = Product.objects.filter(featured=True).filter(sale_active=True).order_by('?')[:10]
 	print (featured_product)
 	featured = []
 	for obj in featured_shop:
@@ -95,4 +95,17 @@ def spa(request):
 		"spa":spa
 	}
 	return render (request, template, context)
+
+def deal_of_the_day(request):
+	product = Product.objects.filter(sale_active=True).order_by('?')[:20]
+	dotd = []
+	for deal in product:
+		if deal.sale_price:
+			dotd.append(deal)
+	template = "core/dotd.html"
+	context = {
+		"dotd":dotd
+	}
+	return render (request, template, context)
+
 

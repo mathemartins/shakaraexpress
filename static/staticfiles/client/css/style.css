@@ -3770,4 +3770,8 @@ section.social ul li {
     font-size: 0.8em;
 	}
 }
+
+.verticalLine {
+  border-left: thick solid black;
+}
 /*-- //responsive --*/
