@@ -685,7 +685,7 @@ a.w3_play_icon1:hover {
 	width:32%;
 }
 .w3l-b-one{
-      background: #000 url(../images/b1.jpg) no-repeat 0px 0px;
+      background: #000 url("../images/b1.0876abed9c83.jpg") no-repeat 0px 0px;
     min-height:100px;
     background-size: cover;
     text-align: center;
@@ -853,7 +853,7 @@ h3.w3l-agile:before,h2.w3l-agile:before  {
     border: 1px solid #e4e3ea;
 }
 .side-bar-form input[type="submit"] {
-    background: url(../images/search.png) no-repeat 9px 9px #fbb034;
+    background: url("../images/search.0745336bdf71.png") no-repeat 9px 9px #fbb034;
     width: 44px;
     height: 41px;
     border: none;
@@ -970,7 +970,7 @@ h4.side-t-w3l-agile {
     text-decoration: none;
     width:40px;
     height:40px;
-    background:#000 url("../images/next.png") no-repeat 4px 4px;
+    background:#000 url("../images/next.b9f7f0978d40.png") no-repeat 4px 4px;
 	border-radius:50%;
 }
  .callbacks_nav:hover{
@@ -978,14 +978,14 @@ h4.side-t-w3l-agile {
   }
 .callbacks_nav.next {
   left: auto;
-   background:#000 transparent url("../images/next.png") no-repeat 4px 4px;
+   background:#000 transparent url("../images/next.b9f7f0978d40.png") no-repeat 4px 4px;
        left: -9%;
  }
  .callbacks_nav.prev {
 	    right: auto;
     background-position: left top;
     left: -17%;
-    background: #000 url(../images/prev.png) no-repeat 4px 4px;
+    background: #000 url("../images/prev.1f1331e92b94.png") no-repeat 4px 4px;
 }
 #slider3-pager a {
   display: inline-block;
@@ -1216,7 +1216,7 @@ h5.sub-title a {
     border-bottom: 1px solid #ddd;
 }
 .w3l_about_bottom_left{
-    background: url(../images/price.jpg) no-repeat 0px 0px;
+    background: url("../images/price.5c6da873ab48.jpg") no-repeat 0px 0px;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -1902,7 +1902,7 @@ ul.top-links li a i.fa:hover {
 }
 .check-box input[type="checkbox"]:checked+label span:first-child:before {
     content: "";
-    background: url(../images/tick.png)no-repeat;
+    background: url("../images/tick.d43f800b5c41.png")no-repeat;
     position: absolute;
     left: 2px;
     top: 2px;
@@ -2263,7 +2263,7 @@ ul.top-links li a i.fa:hover {
 }
 /*-- Footer --*/
 .w3l-footer {
-	    background: url(../images/bottom1.jpg) no-repeat 0px 0px;
+	    background: url("../images/bottom1.727ee12f34b5.jpg") no-repeat 0px 0px;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -2518,7 +2518,7 @@ section.social ul li {
     height:34px;
     border: none;
     text-indent: 100%;
-    background: url(../images/move-top.png) no-repeat 0px 0px;
+    background: url("../images/move-top.94bef966118f.png") no-repeat 0px 0px;
 }
 /*-- /responsive --*/
 @media (max-width:1440px){
