@@ -46,6 +46,7 @@
 					Extras - {{ book_object.extra_notes }} 
 				</h3> 
 				<hr/>
+				<a class="btn btn-primary btn-block" href="{% url 'book:booking_update' pk=book_object.pk %}"> Reschedule Book </a>
 			</div>
 		</div>
 		<br/>

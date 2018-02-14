@@ -3,11 +3,11 @@ from django.contrib import admin
 from django.views.generic.base import RedirectView
 
 from bookings.views import (
-	bookings,
-	bookings_detail
-	)
+	bookings_detail,
+	booking_update
+)
 
 urlpatterns = [
-	url(r'^all/$', bookings, name='all-bookings'),
 	url(r'^(?P<pk>\d+)/detail/$', bookings_detail, name='booking_detail'),
+	url(r'^(?P<pk>\d+)/detail/edit/$', booking_update, name='booking_update'),
 ]

@@ -38,6 +38,9 @@ class BookingManager(models.Manager):
 
     def get_for_shop(self, shop):
         return self.get_queryset().filter(active=True).filter(shop=shop)
+
+    def get_for_user(self, user):
+        return self.get_queryset().filter(active=True).filter(user=user)[:5]
         
 
 class Booking (models.Model):

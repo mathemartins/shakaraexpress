@@ -5,7 +5,7 @@ from django.shortcuts import render, Http404, HttpResponseRedirect, get_object_o
 # Create your views here.
 from shops.models import ShopAccount
 from bookings.models import Booking
-from bookings.forms import BookingForm
+from bookings.forms import BookingForm, BookingUpdateForm
 from bookings.mixins import BookingManagerMixin
 from notifications.signals import notify
 
@@ -60,5 +60,19 @@ def bookings_detail(request, pk=None):
     }
     return render(request, template, context)
 
-def bookings(request):
-    pass
+
+@login_required
+def booking_update(request, pk=None):
+    obj = get_object_or_404(Booking, pk=pk)
+    booking_form  = BookingUpdateForm(request.POST or None, instance=obj)
+    if booking_form.is_valid():
+        instance = booking_form.save(commit=False)
+        instance.save()
+        return HttpResponseRedirect(obj.get_absolute_url())
+        messages.success(request, "<strong>Booking Rescheduled</strong> successful ", extra_tags='html_safe')
+    template = "bookings/update.html"
+    context = {
+        "booking_obj":obj,
+        "booking_form":booking_form
+    }
+    return render(request, template, context)

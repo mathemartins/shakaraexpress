@@ -13,6 +13,7 @@ from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 
 from markdown_deux import markdown
+from shops.utils import shop_code_generator
 
 # Create your models here.
 
@@ -30,6 +31,7 @@ sections = (
 		('Beauty', 'Beauty'),
 		('Fashion', 'Fashion'),
 		('Wellness', 'Wellness'),
+		('Spa', 'Spa'),
 		('Lifestyle', 'Lifestyle')
 	)
 
@@ -37,7 +39,7 @@ sections = (
 def upload_location(instance, filename):
     # creates an instance id folder
     # for storing images wrt shopaccount_id
-    return "%s/%s" %(instance.id, filename)
+    return "%s/%s" %(instance.pk, filename)
 
 
 class ShopAccount(models.Model):
@@ -45,15 +47,18 @@ class ShopAccount(models.Model):
 	managers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="manager_workers", blank=True)
 	business_name = models.CharField(max_length=200)
 	business_type = models.CharField(max_length=200, blank=True, null=True)
+	business_mail = models.EmailField(blank=True, null=True)
+	business_bank_details = models.TextField(blank=True, null=True)
 	shop_description = models.TextField(null=True, blank=True)
+	shop_code = models.CharField(null=True, blank=True, max_length=10)
 	dashboard_banner_image_1 = models.ImageField(upload_to = upload_location, null = True, blank = True)
 	user_image = ProcessedImageField(upload_to=upload_location, processors=[ResizeToFill(150, 150)], 
 								format='JPEG', options={'quality':100}, null=True, blank=True)
-	work_image = ProcessedImageField(upload_to=upload_location, processors=[ResizeToFill(300, 150)], 
+	work_image = ProcessedImageField(upload_to=upload_location, processors=[ResizeToFill(500, 500)], 
 								format='JPEG', options={'quality':100}, null=True, blank=True)
 	service = models.OneToOneField(Service, on_delete=models.CASCADE, primary_key=True)
 	category = models.CharField(choices=sections, max_length=100)
-	let_client_book_online = models.BooleanField(default=False)
+	let_client_book_online = models.BooleanField(default=True)
 	address = models.CharField(max_length=200)
 	map_embed = models.CharField(max_length=200, blank=True, null=True)
 	cancellation_policy = models.TextField()
@@ -101,5 +106,7 @@ def shopaccount_pre_save_reciever(sender, instance, *args, **kwargs):
 			print ("multiple models already exists, new slug generated")
 		except:
 			pass
+	if not instance.shop_code:
+		instance.shop_code = shop_code_generator()
 
 pre_save.connect(shopaccount_pre_save_reciever, sender=ShopAccount)

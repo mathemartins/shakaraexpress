@@ -11,11 +11,11 @@
 	<br/>
 	<div class="container">
 		<div class="title-agileits">
-        	<h2 class="w3l-agile">Discover &amp; book beauty and barber appointments.</h2> 
+        	<h2 class="w3l-agile">Discover &amp; book beauty, fashion, wellness and barber products and appointments.</h2> 
 	    </div>
 	    <form action="{% url 'shop:all' %}" autocomplete="on" method='GET' class="newsletter">
 	    	<div class="col-sm-4">
-				<input class="form-control" type="text" name="q" placeholder="Haircut, Salon Name, Stylist" required="True" value="{{ request.GET.q }}">
+				<input class="form-control" type="text" name="q" placeholder="Shop name or professionals" required="True" value="{{ request.GET.q }}">
 			</div>
 			<div class="col-sm-4">
 				<input class="form-control" type="text" name="q2" placeholder="location" required="True" value="{{ request.GET.q2 }}">
@@ -73,31 +73,35 @@
 			</div>
 			<div class="col-sm-4">
 				<hr/>
-				<img src="{% static 'staticfiles/client/images/png/deal.png' %}" class="img-responsive center-block">
-				<hr/>
-				<a href="{% url 'dotd' %}" class="btn btn-danger btn-block"> Deals OF The Day </a>
+				<h3 class="text-center"> My Recent Bookings</h3>
+				<br/>
+				<div class="well well-sm text-center">
+					{% for obj in my_bookings %}
+						<strong class="text-center"><a href="{{ obj.get_absolute_url }}"> {{ obj }} - reschedule </a> </strong><hr/>
+					{% endfor %}
+				</div>
 			</div>
 		{% else %}
-			<div class="col-sm-3">
+			<div class="col-sm-4">
 				<img src="{% static 'staticfiles/client/images/png/003-store.png' %}" class="img-responsive center-block">
 				<hr/>
 				<a href="{% url 'shop:all' %}" class="btn btn-primary btn-block"> Book Services </a>
 			</div>
-			<div class="col-sm-3">
+			<div class="col-sm-4">
 				<img src="{% static 'staticfiles/client/images/png/product.png' %}" class="img-responsive center-block">
 				<hr/>
 				<a href="{% url 'products:list' %}" class="btn btn-warning btn-block"> Shop Products </a>
 			</div>
-			<div class="col-sm-3">
+			<div class="col-sm-4">
 				<img src="{% static 'staticfiles/client/images/png/more.png' %}" class="img-responsive center-block">
 				<hr/>
 				<a href="{% url 'featured' %}" class="btn btn-warning btn-block"> More/Featured </a>
 			</div>
-			<div class="col-sm-3">
+ 			<!-- <div class="col-sm-3">
 				<img src="{% static 'staticfiles/client/images/png/deal.png' %}" class="img-responsive center-block">
 				<hr/>
 				<a href="{% url 'dotd' %}" class="btn btn-danger btn-block"> Deals OF The Day </a>
-			</div>
+			</div>  -->
 		{% endif %}
 		</div>
 	</div>
@@ -113,12 +117,14 @@
 		    	<h2 class="well well-sm text-center">
 		    		Own a store at SHAKARA EXPRESS,<br/><hr/>
 		    		Grow your clientele and become your own boss<hr/>
+		    		<i class="fa fa-2x fa-arrow-right"></i>
 		    	</h2>
 		    </div>
-		    <div class="col-sm-3 col-sm-offset-1 jumbotron">
+		    <div class="col-sm-3 col-sm-offset-1 jumbotron text-center">
 				<img src="{% static 'staticfiles/client/images/png/dollar.png' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="{% url 'shop:dashboard' %}" class="btn btn-info btn-block"> Own A Store/Make Money </a>
+				<a href="{% url 'shop:dashboard' %}" class="btn btn-info btn-block"> Own A Store/Make Money </a> <hr/>
+				<i class="fa fa-2x fa-arrow-up"></i>
 			</div>
 			<br/>
 		</div>

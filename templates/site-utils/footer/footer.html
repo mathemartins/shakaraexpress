@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 
 <!-- Footer -->
 	<div class="w3l-footer">
@@ -38,27 +39,29 @@
 					<div class="clearfix"> </div>
 				</div>
 				
-				
-			<div class="connect-agileits newsletter">
-				<h4>Newsletter</h4>
-					<p>Subscribe to our newsletter and we will inform you about our promotions.
-					</p>
-					<form action="#" method="post" class="newsletter">
-						<input class="email" type="email" placeholder="Your email address..." required="">
-						<input type="submit" class="submit" value="Subscribe">
-					</form>
-			</div>
+			{% if request.path == '/' %}	
+				<div class="connect-agileits newsletter">
+					<h4>Newsletter</h4>
+						<p>Subscribe to our newsletter and we will inform you about our promotions.
+						</p>
+						<form action="{% url 'newsletter-create' %}" method="post" class="newsletter" enctype='multipart/form-data'>	{% csrf_token %}
+							{{ newsletter_form | crispy }}
+							<input type="submit" class="submit" value="Subscribe">
+						</form>
+				</div>
+			{% endif %}
 			 <section class="social">
                         <ul>
-							<li><a class="icon fb" href="http://www.facebook.com/shakaraexpress"><i class="fa fa-facebook"></i></a></li>
-							<li><a class="icon tw" href="http://www.twitter.com/shakaraexpress"><i class="fa fa-twitter"></i></a></li>
+							<li><a class="icon fb" href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a class="icon tw" href="#"><i class="fa fa-twitter"></i></a></li>
 							
 							
-							<li><a class="icon pin" href="http://www.linkedin.com/shakaraexpress"><i class="fa fa-pinterest"></i></a></li>
-							<li><a class="icon db" href="http://www.instagram.com/shakara_express"><i class="fa fa-dribbble"></i></a></li>
-							<li><a class="icon gp" href="http://www.youtube.com/shakaraexpress"><i class="fa fa-google-plus"></i></a></li>
+							<li><a class="icon pin" href="#"><i class="fa fa-linkedin"></i></a></li>
+							<li><a class="icon db" href="#"><i class="fa fa-instagram"></i></a></li>
+							<li><a class="icon gp" href="#"><i class="fa fa-google-plus"></i></a></li>
 						</ul>
 					</section>
+			}
 	      </div>
 		  <div class="w3agile_footer_copy">
 				    <p>© 2018 Shakara Express. All rights reserved, Built By <a href="#">PrimaxLab</a></p>

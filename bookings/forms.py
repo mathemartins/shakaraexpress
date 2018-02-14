@@ -30,9 +30,22 @@ class BookingForm(forms.ModelForm):
         }
 
         # 'booking_date': forms.DateTimeField(required=True, input_formats = '%Y-%m-%dT%H:%M')
-
-        def cleaned_date(self):
-            booking_date = self.cleaned_data.get("booking_date")
-            return  booking_date
         
     
+class BookingUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = [
+            "service",
+            "optional_names",
+            "mobile_contact",
+            "booking_date",
+            "mode_of_payment",
+            "extra_notes",
+        ]
+
+        widgets = {
+            'booking_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        }
+
+        # 'booking_date': forms.DateTimeField(required=True, input_formats = '%Y-%m-%dT%H:%M')

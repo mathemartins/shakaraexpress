@@ -21,6 +21,7 @@ from django.contrib import admin
 from core import views
 from checkout.views import CheckoutTestView, CheckoutAjaxView, CheckoutAjaxBookingView, CheckoutTestBookingView
 from dashboard.views import DashboardView
+from newsletter.views import newsletter_create
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -31,6 +32,7 @@ urlpatterns = [
     url(r'^fashion/$', views.fashion, name='fashion'),
     url(r'^beauty/$', views.beauty, name='beauty'),
     url(r'^spa/$', views.spa, name='spa'),
+    url(r'^lifestyle/$', views.lifestyle, name='lifestyle'),
     url(r'^deals-of-the-day/$', views.deal_of_the_day, name='dotd'),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^client/dashboard/$', DashboardView.as_view(), name='dashboard'),
@@ -43,6 +45,7 @@ urlpatterns = [
     url(r'^products/', include("products.urls", namespace='products')),
     url(r'^tags/', include("tags.urls", namespace='tags')),
     url(r'^notifications/', include('notifications.urls', namespace='notify')),
+    url(r'^newsletter-create/', newsletter_create, name='newsletter-create'),
     url(r'^comments/', include('django_comments_xtd.urls')),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
 ]

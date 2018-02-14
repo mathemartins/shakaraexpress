@@ -1,6 +1,15 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, Http404, HttpResponseRedirect
+
 from shops.models import ShopAccount
+
 from products.models import Product
+
+from bookings.models import Booking
+
+from newsletter.models import Newsletter
+from newsletter.forms import NewsletterModelForm
 
 # Create your views here.
 
@@ -10,7 +19,9 @@ def homepage(request):
 		obj = ShopAccount.objects.get(user=user)
 	except Exception as e:
 		obj = None
-	print (obj)
+	my_bookings = Booking.objects.get_for_user(request.user)
+	print (my_bookings)
+	newsletter_form = NewsletterModelForm()
 	query = request.GET.get("q")
 	query2 = request.GET.get("q2")
 	if query and query2:
@@ -25,7 +36,9 @@ def homepage(request):
 					)
 	template = "core/index.html"
 	context = {
-		"obj":obj
+		"obj":obj,
+		"newsletter_form":newsletter_form,
+		"my_bookings":my_bookings
 	}
 	return render(request, template, context)
 
@@ -107,5 +120,13 @@ def deal_of_the_day(request):
 		"dotd":dotd
 	}
 	return render (request, template, context)
+
+def lifestyle(request):
+	lifestyle_ = ShopAccount.objects.filter(active=True).filter(category="lifestyle").order_by("?")[::20]
+	template = "core/lifestyle.html"
+	context = {
+		"lifestyle":lifestyle
+	}
+	return render ( request, template, context )
 
 

@@ -38,10 +38,12 @@ class ShopUpdateForm(forms.ModelForm):
 	class Meta:
 		model = ShopAccount
 		fields = [
-			'managers',
+			# 'managers',
 			'shop_description',
+			'business_mail',
 			'dashboard_banner_image_1',
 			'work_image',
+			'user_image',
 			'let_client_book_online',
 			'address',
 			'map_embed',
