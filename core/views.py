@@ -74,8 +74,7 @@ def nearby_shops(request):
 	return render (request, template, context)
 
 def wellness(request):
-	cat_well = ShopAccount.objects.filter(active=True).filter(category="wellness").order_by('?')[:20]
-	print (cat_well)
+	wellness = ShopAccount.objects.filter(active=True).filter(category="Wellness").order_by('?')[:20]
 	template = "core/wellness.html"
 	context = {
 		"wellness":wellness
@@ -84,8 +83,7 @@ def wellness(request):
 
 
 def fashion(request):
-	cat_well = ShopAccount.objects.filter(active=True).filter(category="fashion").order_by('?')[:20]
-	print (cat_well)
+	fashion = ShopAccount.objects.filter(active=True).filter(category="Fashion").order_by('?')[:20]
 	template = "core/fashion.html"
 	context = {
 		"fashion":fashion
@@ -94,8 +92,7 @@ def fashion(request):
 
 
 def beauty(request):
-	cat_well = ShopAccount.objects.filter(active=True).filter(category="beauty").order_by('?')[:20]
-	print (cat_well)
+	beauty = ShopAccount.objects.filter(active=True).filter(category="Beauty").order_by('?')[:20]
 	template = "core/beauty.html"
 	context = {
 		"beauty":beauty
@@ -104,8 +101,7 @@ def beauty(request):
 
 
 def spa(request):
-	cat_well = ShopAccount.objects.filter(active=True).filter(category="spa").order_by('?')[:20]
-	print (cat_well)
+	spa = ShopAccount.objects.filter(active=True).filter(category="Spa").order_by('?')[:20]
 	template = "core/spa.html"
 	context = {
 		"spa":spa
@@ -125,7 +121,7 @@ def deal_of_the_day(request):
 	return render (request, template, context)
 
 def lifestyle(request):
-	lifestyle_ = ShopAccount.objects.filter(active=True).filter(category="lifestyle").order_by("?")[::20]
+	lifestyle_ = ShopAccount.objects.filter(active=True).filter(category="Lifestyle").order_by("?")[::20]
 	template = "core/lifestyle.html"
 	context = {
 		"lifestyle":lifestyle

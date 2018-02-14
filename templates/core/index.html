@@ -44,6 +44,11 @@
 				<a href="{% url 'shop:dashboard' %}" class="btn btn-primary btn-block"> My Products </a>
 			</div>
 			<div class="col-sm-3">
+				<img src="{% static 'staticfiles/client/images/png/scart.png' %}" class="img-responsive center-block">
+				<hr/>
+				<a href="#" class="btn btn-danger btn-block"> My Services </a>
+			</div>
+			<div class="col-sm-3">
 				<img src="{% static 'staticfiles/client/images/png/booking.png' %}" class="img-responsive center-block">
 				<hr/>
 				<a href="{% url 'shop:shop-bookings' slug=obj.slug %}" class="btn btn-primary btn-block"> My Bookings </a>
@@ -53,12 +58,6 @@
 				<hr/>
 				<a href="{% url 'shop:shop-detail' slug=obj.slug %}" class="btn btn-danger btn-block"> Customize My Shop </a>
 			</div>
-			<div class="col-sm-3">
-				<img src="{% static 'staticfiles/client/images/png/scart.png' %}" class="img-responsive center-block">
-				<hr/>
-				<a href="#" class="btn btn-danger btn-block"> My Services </a>
-			</div>
-
 			<div class="col-sm-4">
 				<hr/>
 				<img src="{% static 'staticfiles/client/images/png/product.png' %}" class="img-responsive center-block">
@@ -97,11 +96,16 @@
 				<hr/>
 				<a href="{% url 'featured' %}" class="btn btn-warning btn-block"> More/Featured </a>
 			</div>
- 			<!-- <div class="col-sm-3">
-				<img src="{% static 'staticfiles/client/images/png/deal.png' %}" class="img-responsive center-block">
+ 			<div class="col-sm-4">
 				<hr/>
-				<a href="{% url 'dotd' %}" class="btn btn-danger btn-block"> Deals OF The Day </a>
-			</div>  -->
+				<h3 class="text-center"> My Recent Bookings</h3>
+				<br/>
+				<div class="well well-sm text-center">
+					{% for obj in my_bookings %}
+						<strong class="text-center"><a href="{{ obj.get_absolute_url }}"> {{ obj }} - reschedule </a> </strong><hr/>
+					{% endfor %}
+				</div>
+			</div>
 		{% endif %}
 		</div>
 	</div>
@@ -182,22 +186,22 @@
 						<!-- A slide container - this element is optional, if absent the plugin adds it automatically -->
 						<figure> 
 						<!-- Slide content - whatever you want --> 
-						<img src="{% static 'staticfiles/client/images/t1.jpg' %}" alt=" " class="img-responsive" />
+						<img src="{% static 'staticfiles/client/images/j1.jpg' %}" alt=" " class="img-responsive" />
 						<figcaption>Cass<span> I am loving the customer service from the shops, they are amazing..</span></figcaption>
 						</figure>
 						</a> </li>
 					<li class="mis-slide"> <a href="#" class="mis-container">
-						<figure> <img src="{% static 'staticfiles/client/images/t2.jpg' %}" alt=" " class="img-responsive" />
+						<figure> <img src="{% static 'staticfiles/client/images/j2.jpg' %}" alt=" " class="img-responsive" />
 						<figcaption>Ejiro<span> I was referred to shakara express by a friend and since then, it's like the best thing that has ever happened.. I love this guys.. </span></figcaption>
 						</figure>
 						</a> </li>
 					<li class="mis-slide"> <a href="link" class="mis-container">
-						<figure> <img src="{% static 'staticfiles/client/images/t3.jpg' %}" alt=" " class="img-responsive" />
+						<figure> <img src="{% static 'staticfiles/client/images/j3.jpg' %}" alt=" " class="img-responsive" />
 						<figcaption>Dolapo<span> Every womans need in one basket.. I love this </span></figcaption>
 						</figure>
 						</a> </li>
 					<li class="mis-slide"> <a href="#" class="mis-container">
-						<figure> <img src="{% static 'staticfiles/client/images/t4.jpg' %}" alt=" " class="img-responsive" />
+						<figure> <img src="{% static 'staticfiles/client/images/j4.jpg' %}" alt=" " class="img-responsive" />
 						<figcaption>Toria<span> Very friendly end to end clients and superb work flow... i love you guys </span></figcaption>
 						</figure>
 						</a> </li>
