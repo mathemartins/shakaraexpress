@@ -19,6 +19,7 @@ from shops.utils import shop_code_generator
 
 
 class Service(models.Model):
+	shop = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	service = models.CharField(max_length=200)
 	price = models.DecimalField(max_digits=100, decimal_places=2, default=500.00, null=True, blank=True) #100.00
 	active = models.BooleanField(default=False)
@@ -26,6 +27,8 @@ class Service(models.Model):
 
 	def __str__(self):
 		return "%s" % self.service
+
+
 
 sections = (
 		('Beauty', 'Beauty'),

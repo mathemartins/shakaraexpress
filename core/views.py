@@ -19,7 +19,10 @@ def homepage(request):
 		obj = ShopAccount.objects.get(user=user)
 	except Exception as e:
 		obj = None
-	my_bookings = Booking.objects.get_for_user(request.user)
+	if request.user.is_authenticated():
+		my_bookings = Booking.objects.get_for_user(request.user)
+	else:
+		my_bookings = None
 	print (my_bookings)
 	newsletter_form = NewsletterModelForm()
 	query = request.GET.get("q")
