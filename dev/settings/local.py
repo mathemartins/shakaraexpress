@@ -25,15 +25,15 @@ SECRET_KEY = '*gjsv)j9b2swuy@bmlf&a99pj5iretjat%ogrz9v(!@+e2#lm1'
 DEBUG = True
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'hellotrackamechanic@gmail.com'
-EMAIL_MAIN = 'hellotrackamechanic@gmail.com'
-EMAIL_HOST_PASSWORD = 'K1ngL1verp00l'
+EMAIL_HOST_USER = 'shakaraexpress@gmail.com'
+EMAIL_MAIN = 'shakaraexpress@gmail.com'
+EMAIL_HOST_PASSWORD = 'gtbank007'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-DEFAULT_FROM_EMAIL = "Team TRACKAMECHANIC <hello@trackamechanic.com>"
+DEFAULT_FROM_EMAIL = "Team SHAKARA EXPRESS <info@shakaraexpress.com>"
 
-ADMINS = [('Team TRACKAMECHANIC', EMAIL_HOST_USER)]
+ADMINS = [('Team SHAKARA EXPRESS', EMAIL_HOST_USER)]
 MANAGERS = ADMINS
 
 ALLOWED_HOSTS = ['*']

@@ -34,7 +34,8 @@
 		<div class="container">
 		<h2>
 			<strong class="text-center">
-				Dashboard Review - <i class="fa fa-user"></i> {{ request.user }}
+				Dashboard Review - <i class="fa fa-user"></i> {{ request.user }} - {% if request.user.is_superuser %}
+				<a href="/admin/shakara-express/" class="btn btn-sm btn-primary"> Admininstrator Dashboard </a> {% endif %}
 			</strong><hr/>
 		</h2>
 		{% if request.user == obj.user %}

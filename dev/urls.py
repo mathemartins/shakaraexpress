@@ -17,6 +17,7 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.views.generic import TemplateView
 
 from core import views
 from checkout.views import CheckoutTestView, CheckoutAjaxView, CheckoutAjaxBookingView, CheckoutTestBookingView
@@ -24,7 +25,7 @@ from dashboard.views import DashboardView
 from newsletter.views import newsletter_create
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/shakara-express/', admin.site.urls),
     url(r'^$', views.homepage, name='homepage'),
     url(r'^featured/$', views.featured_objects, name='featured'),
     url(r'^nearby/$', views.nearby_shops, name='nearby'),
@@ -48,6 +49,7 @@ urlpatterns = [
     url(r'^newsletter-create/', newsletter_create, name='newsletter-create'),
     url(r'^comments/', include('django_comments_xtd.urls')),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
+    url(r'^about/', TemplateView.as_view(template_name="about.html"), name="about"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
