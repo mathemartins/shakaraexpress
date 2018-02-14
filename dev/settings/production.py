@@ -25,15 +25,15 @@ SECRET_KEY = '*gjsv)j9b2swuy@bmlf&a99pj5iretjat%ogrz9v(!@+e2#lm1'
 DEBUG = True
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'hellotrackamechanic@gmail.com'
-EMAIL_MAIN = 'hellotrackamechanic@gmail.com'
-EMAIL_HOST_PASSWORD = 'K1ngL1verp00l'
+EMAIL_HOST_USER = 'shakaraexpress@gmail.com'
+EMAIL_MAIN = 'shakaraexpress@gmail.com'
+EMAIL_HOST_PASSWORD = 'gtbank007'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-DEFAULT_FROM_EMAIL = "Team TRACKAMECHANIC <hello@trackamechanic.com>"
+DEFAULT_FROM_EMAIL = "Team SHAKARA EXPRESS <info@shakaraexpress.com>"
 
-ADMINS = [('Team TRACKAMECHANIC', EMAIL_HOST_USER)]
+ADMINS = [('Team SHAKARA EXPRESS', EMAIL_HOST_USER)]
 MANAGERS = ADMINS
 
 ALLOWED_HOSTS = ['*']
@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'billing',
     'dashboard',
     'analytics',
+    'newsletter',
 
     # third-party-app-modules
     'storages',
@@ -187,19 +188,19 @@ import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
-# CORS_REPLACE_HTTPS_REFERER       = True
-# HOST_SCHEME                      = "https://"
-# SECURE_PROXY_SSL_HEADER          = ('HTTP_X_FORWARDED_PROTO', 'https')
-# SECURE_SSL_REDIRECT              = True
-# SESSION_COOKIE_SECURE            = True
-# CSRF_COOKIE_SECURE               = True
-# SECURE_HSTS_INCLUDE_SUBDOMAINS   = True
-# SECURE_HSTS_SECONDS              = 1000000
-# SECURE_FRAME_DENY                = True
+CORS_REPLACE_HTTPS_REFERER       = True
+HOST_SCHEME                      = "https://"
+SECURE_PROXY_SSL_HEADER          = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT              = True
+SESSION_COOKIE_SECURE            = True
+CSRF_COOKIE_SECURE               = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS   = True
+SECURE_HSTS_SECONDS              = 1000000
+SECURE_FRAME_DENY                = True
 
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
-# SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
 
 
 # Password validation
