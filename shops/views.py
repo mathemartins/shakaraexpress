@@ -120,7 +120,7 @@ def shop_bookings(request, slug=None):
 
 def shop_account_update(request, slug=None):
 	obj = get_object_or_404(ShopAccount, slug=slug)
-	shop_form = ShopUpdateForm(request.POST or None, instance=obj)
+	shop_form = ShopUpdateForm(request.POST or None, request.FILES or None, instance=obj)
 	if shop_form.is_valid():
 		instance = shop_form.save(commit=False)
 		instance.save()

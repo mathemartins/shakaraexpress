@@ -87,7 +87,7 @@
     			<div class="panel panel-default">
 				  <div class="panel-body">
 				  {% if object.work_image %}
-    					{{ object.work_image }}
+    					<img src="{{ object.work_image.url }}" class="img-responsive">
     				{% else %}
     					{% if object.user == request.user %}
     						<a href="{% url 'shop:shop-update' slug=object.slug %}" class="btn btn-block btn-success"> Upload Work Images. </a>
@@ -107,7 +107,7 @@
     					<p class="text-center">{{ object.get_markdown_content }}</p>
     				{% else %}
     					{% if object.user == request.user %}
-    						<a href="" class="btn btn-block btn-success"> Tell Why You Are The Better Option </a>
+    						<a href="{% url 'shop:shop-update' slug=object.slug %}" class="btn btn-block btn-success"> Tell Why You Are The Better Option </a>
     					{% else %}
     						<h3 class="text-center text-primary"> User Is Yet To Complete Shop Profile </h3>
     					{% endif %}
