@@ -18,11 +18,10 @@ def download_media_location(instance, filename):
 class Product(models.Model):
 	shop = models.ForeignKey(ShopAccount)
 	managers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="managers_products", blank=True)
-	media = ProcessedImageField(upload_to=download_media_location, processors=[ResizeToFill(500, 500)], format='JPEG', options={'quality':100}, null=True, blank=True)
+	media = ProcessedImageField(upload_to=download_media_location, processors=[ResizeToFill(300, 150)], format='JPEG', options={'quality':100}, null=True, blank=True)
 	title = models.CharField(max_length=30)
 	slug = models.SlugField(blank=True, unique=True)
 	description = models.TextField()
-	quantity_available = models.IntegerField(blank=True, null=True)
 	price = models.DecimalField(max_digits=100, decimal_places=2, default=500.00, null=True, blank=True) #100.00
 	sale_active = models.BooleanField(default=False)
 	sale_price = models.DecimalField(max_digits=100,
@@ -81,4 +80,3 @@ class CuratedProducts(models.Model):
 
 	def __str__(self):
 		return self.section_name
-

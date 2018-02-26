@@ -37,11 +37,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
 <!--// star ratings -->
 
-<style type="text/css">
-	{% block style %} {% endblock style %}
-</style>
+      <style>
+      {% block style %}{% endblock %}
+      </style>
+
 </head>
-<!DOCTYPE HTML>
 <body>
 
 	{% url 'homepage' as homepage %}
@@ -53,6 +53,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	{% endif %}
 	{% block head_extra %}{% endblock head_extra %}
 	{% block content %}
+		{% if messages %}
+			<div class="container">
+				<div class='alert alert-success text-center alert-dismissible'>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					{% for message in messages %}
+				  		<p {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }} </p><br/>
+				 	{% endfor %}
+				</div>
+			</div>
+		{% endif %}
 
 		{% block offercontent %}
 			
@@ -63,12 +73,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- footer starts -->
 	{% include 'site-utils/footer/footer.html' %}
 
-	<script>
-	$(document).ready(function(){
-		{% block jquery %}
+	{% include "javascript.html" %}
+    
+    <script>
+    $(document).ready(function(){
+        {% block jquery %}
+        {% endblock %}
+    });
 
-		{% endblock jquery %}
-	})
-	</script>
+    </script>
 </body>
 </html>

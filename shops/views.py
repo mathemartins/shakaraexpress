@@ -12,12 +12,9 @@ from django.views.generic.list import ListView
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 
-from billing.models import Transaction
 from dev.mixins import LoginRequiredMixin
-from products.models import Product
+# from products.models import Product
 
-from bookings.forms import BookingForm
-from bookings.models import Booking
 from shops.forms import NewShopForm, ShopUpdateForm
 from shops.mixins import ShopAccountMixin
 from shops.models import ShopAccount
@@ -27,11 +24,6 @@ from dev.mixins import (
 			SubmitBtnMixin,
 			AjaxRequiredMixin
 			)
-from bookings.utils import (
-	booking_code_generator, 
-	statistics_average_calculator, 
-	get_read_time,
-)
 
 
 class ShopProductDetailRedirectView(RedirectView):
@@ -41,17 +33,17 @@ class ShopProductDetailRedirectView(RedirectView):
         return obj.get_absolute_url()
 
 
-class ShopTransactionListView(ShopAccountMixin, ListView):
-	model = Transaction
-	template_name = "shops/transaction_list_view.html"
+# class ShopTransactionListView(ShopAccountMixin, ListView):
+# 	model = Transaction
+# 	template_name = "shops/transaction_list_view.html"
 
-	def get_queryset(self):
-		return self.get_transactions()
+# 	def get_queryset(self):
+# 		return self.get_transactions()
 
 
 class ShopDashboard(ShopAccountMixin, FormMixin, View):
 	form_class = NewShopForm
-	success_url = "/shops/"
+	success_url = "/shop/"
 
 	def post(self, request, *args, **kwargs):
 		form = self.get_form()
@@ -63,31 +55,29 @@ class ShopDashboard(ShopAccountMixin, FormMixin, View):
 	def get(self, request, *args, **kwargs):
 		apply_form = self.get_form() #NewShopForm()
 		account = self.get_account()
+		print (account)
 		exists = account
 		active = None
 		context = {}
 		if exists:
 			active = account.active
 		if not exists and not active:
-			context["title"] = "Set Up My Business"
+			context["title"] = "Apply for Account"
 			context["apply_form"] = apply_form
 		elif exists and not active:
-			context["title"] = " Shop Account Pending"
+			context["title"] = "Account Activation Pending"
 		elif exists and active:
-			context["title"] = "Shop Dashboard"
+			context["title"] = "My Shop Dashboard"
 			
 			#products = Product.objects.filter(shop=account)
-			print (context)
-			context["products"] = self.get_products()
-			transactions_today = self.get_transactions_today()
-			context["transactions_today"] = transactions_today
-			context["today_sales"] = self.get_today_sales()
-			context["total_sales"] = self.get_total_sales()
-			context["transactions"] = self.get_transactions().exclude(pk__in=transactions_today)[:5]
+			# context["products"] = self.get_products()
+			# transactions_today = self.get_transactions_today()
+			# context["transactions_today"] = transactions_today
+			# context["today_sales"] = self.get_today_sales()
+			# context["total_sales"] = self.get_total_sales()
+			# context["transactions"] = self.get_transactions().exclude(pk__in=transactions_today)[:5]
 		else:
 			pass
-
-		print (self.get_products())
 		
 		return render(request, "shops/dashboard.html", context)
 
@@ -103,19 +93,6 @@ class ShopDashboard(ShopAccountMixin, FormMixin, View):
 			category = category
 		)
 		return valid_data
-
-
-def shop_bookings(request, slug=None):
-	obj = get_object_or_404(ShopAccount, slug=slug)
-	obj_bookings = Booking.objects.get_for_shop(shop=obj.pk)
-
-	template_name = "shops/shop_bookings.html"
-	context = {
-		"object":obj,
-		"obj_bookings": obj_bookings,
-	}
-	return render(request, template_name, context)
-
 
 
 def shop_account_update(request, slug=None):
@@ -135,6 +112,7 @@ def shop_account_update(request, slug=None):
 	return render(request, template, context)
 
 
+
 class ShopAccountDetailView(MultiSlugMixin, DetailView):
 	model = ShopAccount
 	template_name = "shops/shop_detail.html"
@@ -143,93 +121,6 @@ class ShopAccountDetailView(MultiSlugMixin, DetailView):
 		context = super(ShopAccountDetailView, self).get_context_data(*args, **kwargs)
 		return context
 
-
-def shop_account_detail(request, slug=None):
-	obj = get_object_or_404(ShopAccount, slug=slug)
-	obj_ = Booking.objects.get_for_shop(shop=obj.pk)[:10]
-	print (obj_)
-	booking_form = BookingForm(request.POST or None)
-	if request.method == 'POST':
-		instance_location_destination = request.POST.get('instance_location_destination')
-		print (request.POST)
-	if booking_form.is_valid():
-		instance = booking_form.save(commit=False)
-		service = booking_form.cleaned_data['service']
-		print (service)
-		shop_id = obj.pk
-		booking_code = booking_code_generator()
-		instance.user = request.user
-		instance.shop = ShopAccount.objects.get(pk=shop_id)
-		instance.destination =instance_location_destination
-		instance.booking_code = booking_code
-		instance.save()
-
-		# to shop owner
-		subject = "Booking From Your Shop At ShakaraExpress"
-		message = "%s, just made a booking on your shop %s, his mobile number is %s" %(instance.optional_names, obj.business_name, instance.mobile_contact)
-		sender = "hellotrackamechanic@gmail.com"
-		recipients = [obj.user.email]
-		recipients.append(sender)
-
-		send_mail(subject, message, sender, recipients)
-
-		# to site owner
-		subject = "Booking From ShakaraExpress"
-		message = "%s, just made a booking on the shop %s at ShakaraExpress, his mobile number is %s" %(instance.optional_names, obj.business_name, instance.mobile_contact)
-		sender = "hellotrackamechanic@gmail.com"
-		recipients = ['dejavu31us@gmail.com',]
-		recipients.append(sender)
-
-		send_mail(subject, message, sender, recipients)
-
-		# to user
-		subject = "Admin At ShakaraExpress"
-		message = "Hello, Your booking code is %s" %(instance.booking_code)
-		sender = "hellotrackamechanic@gmail.com"
-		recipients = [instance.user.email]
-		recipients.append(sender)
-
-		send_mail(subject, message, sender, recipients)
-
-		return HttpResponseRedirect('/booking/confirm/')
-		messages.success(request, "<strong>Booking</strong> successful, Booking Code: %s " %(instance.booking_code), extra_tags='html_safe')
-	template_name = "shops/shop_detail.html"
-	context = {
-		"object":obj,
-		"object_": obj_,
-		"booking_form":booking_form,
-	}
-	return render(request, template_name, context)
-
-def shop_list(request):
-	obj = ShopAccount.objects.filter(active=True)
-	print (obj)
-	query = request.GET.get("q")
-	query2 = request.GET.get("q2")
-
-	if 'q' in request.GET:
-		query = request.GET.get("q")
-
-		if 'q2' in request.GET:
-			query2 = request.GET.get("q2")
-
-			if len(query) == 0:
-				if len(query2) == 0:
-					return redirect('/shops/all-professionals/')
-
-			if query and query2:
-				obj = obj.filter(
-					Q(business_name__icontains=query) |
-					Q(address__icontains=query2)
-					# Q(profession__icontains=query) |
-					# Q(category__icontains=query) |
-					# Q(address__icontains=query)
-				)
-	template = "shops/shop_list.html"
-	context={
-		'objects':obj,
-	}
-	return render (request, template, context)
 
 class ShopList(ListView):
 	model = ShopAccount

@@ -15,34 +15,18 @@ from imagekit.processors import ResizeToFill
 from markdown_deux import markdown
 from shops.utils import shop_code_generator
 
-# Create your models here.
-
-
-class Service(models.Model):
-	shop = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-	service = models.CharField(max_length=200)
-	price = models.DecimalField(max_digits=100, decimal_places=2, default=500.00, null=True, blank=True) #100.00
-	active = models.BooleanField(default=False)
-	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
-
-	def __str__(self):
-		return "%s" % self.service
-
-
 
 sections = (
 		('Beauty', 'Beauty'),
 		('Fashion', 'Fashion'),
 		('Wellness', 'Wellness'),
-		('Spa', 'Spa'),
-		('Lifestyle', 'Lifestyle')
+		('Lifestyle', 'Lifestyle'),
+		('Spa', 'Spa')
 	)
 
 
 def upload_location(instance, filename):
-    # creates an instance id folder
-    # for storing images wrt shopaccount_id
-    return "%s/%s" %(instance.pk, filename)
+    return "%s/%s" %(instance.id, filename)
 
 
 class ShopAccount(models.Model):
@@ -57,23 +41,21 @@ class ShopAccount(models.Model):
 	dashboard_banner_image_1 = models.ImageField(upload_to = upload_location, null = True, blank = True)
 	user_image = ProcessedImageField(upload_to=upload_location, processors=[ResizeToFill(150, 150)], 
 								format='JPEG', options={'quality':100}, null=True, blank=True)
-	work_image = ProcessedImageField(upload_to=upload_location, processors=[ResizeToFill(500, 500)], 
+	work_image = ProcessedImageField(upload_to=upload_location, processors=[ResizeToFill(500, 300)], 
 								format='JPEG', options={'quality':100}, null=True, blank=True)
-	service = models.OneToOneField(Service, on_delete=models.CASCADE, primary_key=True)
 	category = models.CharField(choices=sections, max_length=100)
 	let_client_book_online = models.BooleanField(default=True)
 	address = models.CharField(max_length=200)
 	map_embed = models.CharField(max_length=200, blank=True, null=True)
-	cancellation_policy = models.TextField()
+	cancellation_policy = models.TextField(blank=True, null=True)
 	mobile_number = models.CharField(max_length=11)
 	active = models.BooleanField(default=False)
 	featured = models.BooleanField(default=False)
 	slug = models.SlugField(null=True, blank=True)
-	updated = models.DateTimeField(auto_now_add=False, auto_now=True)
-	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+	timestamp = models.DateTimeField(auto_now=True)
 
 	class Meta:
-		ordering = ["-timestamp", "-updated"]
+		ordering = ["-timestamp",]
 
 
 	def __str__(self):

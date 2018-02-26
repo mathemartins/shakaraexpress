@@ -1,0 +1,40 @@
+<section>
+	<div class="container">
+		<div class="col-sm-6 col-sm-offset-3">
+
+			<p class='lead text-center text-danger'>
+				<br/>
+				<strong> Booking {% if order.order_id %}#{{ order.order_id }}{% endif %} - Summary </strong>
+			</p>
+
+				<table class='table table-striped'>
+					<tr><td>{{ order.booking.bookingitem_set.count }} Service(s): <br/><hr/> {% for i in order.booking.bookingitem_set.all %}
+						<b>{{ i.item.get_title }}</b><br/>
+					{% endfor %}</td></tr>
+					<tr><td>Booking Subtotal: NGN {{ order.booking.subtotal }}</td></tr>
+					<tr><td>Tax: NGN {{ order.booking.tax_total }}</td></tr>
+					<tr><td>Services Total: NGN {{ order.booking.total }}</td></tr>
+
+					<tr><td>Mobility: NGN {{ order.shipping_total_price }}</td></tr>
+					<tr><td>Billing Total: NGN {{ order.order_total }}</td></tr>
+				</table>
+
+				<hr/>
+
+				<div class='col-sm-8 col-sm-offset-2 text-center'>
+
+					<p><b>Billing to</b>
+					<br/>
+					{{ order.billing_address.get_address }}
+					<p>
+					<!--<p><b>Shipping to</b>
+					<br/>
+					{{ order.shipping_address.get_address }} -->
+
+				</div>
+
+			</p>
+
+		</div>
+	</div>
+</section>

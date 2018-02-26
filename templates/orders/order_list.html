@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+<section>
+	<div class="container">
+
+		{% if object_list|length <= 0 %}
+			<div class='col-sm-6 col-sm-offset-3 text-center'>
+				<br/>
+				<p class='lead text-center text-primary'> You currently have no bookings.</p>
+			</div>
+		{% else  %}
+			<div class='col-sm-6 col-sm-offset-3'>
+				<br/>
+				<h1 class="text-info text-center"><strong>Your Bookings</strong></h1><br/>
+				<table class='table table-striped'>
+					{% for object in object_list %}
+					<tr>
+						<td>
+							<strong class="text-danger"><a href='{{ object.get_absolute_url }}'>View Booking # {% if object.order_id %}{{ object.order_id }}{% else %}{{ object.id }}{% endif %}</a></strong>
+						</td>
+						<td>
+							<strong class="text-danger">Booking Services Count: {{ object.booking.items.count }}</strong>
+						</td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+		{% endif %}
+
+	</div>
+</section>
+
+{% endblock %}

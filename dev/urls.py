@@ -19,33 +19,43 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-from core import views
-from checkout.views import CheckoutTestView, CheckoutAjaxView, CheckoutAjaxBookingView, CheckoutTestBookingView
-from dashboard.views import DashboardView
+# from core import views
+# from dashboard.views import DashboardView
+from bookings.views import BookingView, ItemCountView, CheckoutView, CheckoutFinalView
 from newsletter.views import newsletter_create
+from orders.views import (
+                    AddressSelectFormView, 
+                    UserAddressCreateView, 
+                    OrderList, 
+                    OrderDetail)
 
 urlpatterns = [
     url(r'^admin/shakara-express/', admin.site.urls),
-    url(r'^$', views.homepage, name='homepage'),
-    url(r'^featured/$', views.featured_objects, name='featured'),
-    url(r'^nearby/$', views.nearby_shops, name='nearby'),
-    url(r'^wellness/$', views.wellness, name='wellness'),
-    url(r'^fashion/$', views.fashion, name='fashion'),
-    url(r'^beauty/$', views.beauty, name='beauty'),
-    url(r'^spa/$', views.spa, name='spa'),
-    url(r'^lifestyle/$', views.lifestyle, name='lifestyle'),
-    url(r'^deals-of-the-day/$', views.deal_of_the_day, name='dotd'),
+    # url(r'^$', views.homepage, name='homepage'),
+    # url(r'^featured/$', views.featured_objects, name='featured'),
+    # url(r'^nearby/$', views.nearby_shops, name='nearby'),
+    # url(r'^wellness/$', views.wellness, name='wellness'),
+    # url(r'^fashion/$', views.fashion, name='fashion'),
+    # url(r'^beauty/$', views.beauty, name='beauty'),
+    # url(r'^spa/$', views.spa, name='spa'),
+    # url(r'^lifestyle/$', views.lifestyle, name='lifestyle'),
+    # url(r'^deals-of-the-day/$', views.deal_of_the_day, name='dotd'),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^client/dashboard/$', DashboardView.as_view(), name='dashboard'),
-    url(r'^test/$', CheckoutTestView.as_view(), name='test'),
-    url(r'^booking/confirm/$', CheckoutTestBookingView.as_view(), name='booking-confirm'),
-    url(r'^checkout/$', CheckoutAjaxView.as_view(), name='checkout'),
-    url(r'^booking/checkout/$', CheckoutAjaxBookingView.as_view(), name='checkout-booking'),
+    # url(r'^cart/', include('shopping.urls')),
+    # url(r'^client/dashboard/$', DashboardView.as_view(), name='dashboard'),
     url(r'^shops/', include("shops.urls", namespace='shop')),
-    url(r'^bookings/', include('bookings.urls', namespace='book')),
+    url(r'^services/', include('services.urls')),
+    url(r'^categories/', include('services.urls_categories')),
+    url(r'^booking/$', BookingView.as_view(), name='booking'),
+    url(r'^booking/count/$', ItemCountView.as_view(), name='item_count'),
+    url(r'^orders/$', OrderList.as_view(), name='orders'),
+    url(r'^orders/(?P<pk>\d+)/$', OrderDetail.as_view(), name='order_detail'),
+    url(r'^checkout/$', CheckoutView.as_view(), name='checkout'),
+    url(r'^checkout/address/$', AddressSelectFormView.as_view(), name='order_address'),
+    url(r'^checkout/address/add/$', UserAddressCreateView.as_view(), name='user_address_create'),
+    url(r'^checkout/final/$', CheckoutFinalView.as_view(), name='checkout_final'),
     url(r'^products/', include("products.urls", namespace='products')),
     url(r'^tags/', include("tags.urls", namespace='tags')),
-    url(r'^notifications/', include('notifications.urls', namespace='notify')),
     url(r'^newsletter-create/', newsletter_create, name='newsletter-create'),
     url(r'^comments/', include('django_comments_xtd.urls')),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),

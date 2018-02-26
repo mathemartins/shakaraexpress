@@ -17,4 +17,4 @@ urlpatterns = [
     url(r'^(?P<slug>[\w-]+)/edit/$', ProductUpdateView.as_view(), name='update_slug'),
    
 
-]   
+]

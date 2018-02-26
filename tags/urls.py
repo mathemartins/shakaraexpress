@@ -9,4 +9,4 @@ from tags.views import (
 urlpatterns = [
     url(r'^$', TagListView.as_view(), name='list'),
     url(r'^(?P<slug>[\w-]+)/$', TagDetailView.as_view(), name='detail'),
-]  
+]

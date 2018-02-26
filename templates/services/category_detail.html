@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>{{ object }}</h3>
+
+
+
+<div class='row'>
+{% for service in services %}
+
+
+	<div class='col-xs-4'>
+		{% include "services/service_thumbnail.html" with service=service price=True %}
+	</div>
+	{% cycle '' '' '</div><div class="row">' %}
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

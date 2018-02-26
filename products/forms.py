@@ -100,21 +100,3 @@ class ProductModelForm(forms.ModelForm):
 			raise forms.ValidationError("Title must be greater than 3 characters long.")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

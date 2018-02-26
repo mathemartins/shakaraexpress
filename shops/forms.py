@@ -8,8 +8,9 @@ class NewShopForm(forms.ModelForm):
 		model = ShopAccount
 		fields = [
 			"business_name",
-			"service",
+			"business_type",
 			"category",
+			"address",
 			"mobile_number",
 			"let_client_book_online",
 		]
@@ -33,6 +34,7 @@ class NewShopForm(forms.ModelForm):
 				},
 			)
 		}
+
 
 class ShopUpdateForm(forms.ModelForm):
 	class Meta:

@@ -206,6 +206,3 @@ def list_view(request):
 	}
 	return render(request, template, context)
 
-
-
-

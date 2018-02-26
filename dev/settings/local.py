@@ -24,6 +24,12 @@ SECRET_KEY = '*gjsv)j9b2swuy@bmlf&a99pj5iretjat%ogrz9v(!@+e2#lm1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# SENDGRID_EMAIL_HOST = "smtp.sendgrid.net"
+# SENDGRID_EMAIL_PORT = "587"
+# SENDGRID_EMAIL_USERNAME = "app86156095@heroku.com"
+# SENDGRID_EMAIL_PASSWORD = "FReakyboygeniuse123"
+
+
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'shakaraexpress@gmail.com'
 EMAIL_MAIN = 'shakaraexpress@gmail.com'
@@ -31,10 +37,13 @@ EMAIL_HOST_PASSWORD = 'gtbank007'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
+# EMAIL_BACKEND = 'sgbackend.SenderGridBackend',
+# SENDGRID_API_KEY = 
+
 DEFAULT_FROM_EMAIL = "Team SHAKARA EXPRESS <info@shakaraexpress.com>"
 
-ADMINS = [('Team SHAKARA EXPRESS', EMAIL_HOST_USER)]
-MANAGERS = ADMINS
+# ADMINS = [('Team SHAKARA EXPRESS', EMAIL_HOST_USER)]
+# MANAGERS = ADMINS
 
 ALLOWED_HOSTS = ['*']
 
@@ -52,16 +61,16 @@ INSTALLED_APPS = [
     'imagekit',
 
     # custom app
-    'shops',
-    'bookings',
-    'notifications',
     'core',
-    'products',
     'tags',
-    'billing',
     'dashboard',
     'analytics',
+    'bookings',
     'newsletter',
+    'orders',
+    'products',
+    'services',
+    'shops',
 
     # third-party-app-modules
     'storages',
@@ -74,6 +83,9 @@ INSTALLED_APPS = [
     'star_ratings',
     'pagedown',
     'markdown_deux',
+    'django_filters',
+    'carton',
+    # 'shopping',
 
     # socialmedia auth
     'allauth.socialaccount.providers.facebook',
@@ -127,6 +139,8 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
+CART_PRODUCT_MODEL = 'products.models.Product'
+
 COMMENTS_APP = 'django_comments_xtd'
 COMMENTS_XTD_MAX_THREAD_LEVEL = 2
 COMMENTS_XTD_CONFIRM_EMAIL = True
@@ -134,20 +148,20 @@ COMMENTS_XTD_CONFIRM_EMAIL = True
 COMMENTS_XTD_SALT = (b"Timendi causa est nescire. "
                      b"Aequam memento rebus in arduis servare mentem.")
 # Source mail address used for notifications.
-COMMENTS_XTD_FROM_EMAIL = "hellotrackamechanic@gmail.com"
+COMMENTS_XTD_FROM_EMAIL = "shakaraexpress@gmail.com"
 # Contact mail address to show in messages.
-COMMENTS_XTD_CONTACT_EMAIL = "hellotrackamechanic@gmail.com"
+COMMENTS_XTD_CONTACT_EMAIL = "shakaraexpress@gmail.com"
 COMMENTS_XTD_MARKUP_FALLBACK_FILTER = 'markdown'
 
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
+# ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_MIN_LENGTH = 3
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
 ACCOUNT_SESSION_REMEMBER = "Remember me?"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"
@@ -180,27 +194,27 @@ WSGI_APPLICATION = 'dev.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'shakaraexpress.sqlite3'),
     }
 }
 
-import dj_database_url
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
+# import dj_database_url
+# db_from_env = dj_database_url.config()
+# DATABASES['default'].update(db_from_env)
 
-CORS_REPLACE_HTTPS_REFERER       = True
-HOST_SCHEME                      = "https://"
-SECURE_PROXY_SSL_HEADER          = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT              = True
-SESSION_COOKIE_SECURE            = True
-CSRF_COOKIE_SECURE               = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS   = True
-SECURE_HSTS_SECONDS              = 1000000
-SECURE_FRAME_DENY                = True
+# CORS_REPLACE_HTTPS_REFERER       = True
+# HOST_SCHEME                      = "https://"
+# SECURE_PROXY_SSL_HEADER          = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT              = True
+# SESSION_COOKIE_SECURE            = True
+# CSRF_COOKIE_SECURE               = True
+# SECURE_HSTS_INCLUDE_SUBDOMAINS   = True
+# SECURE_HSTS_SECONDS              = 1000000
+# SECURE_FRAME_DENY                = True
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# SECURE_SSL_REDIRECT = True
 
 
 # Password validation
@@ -266,3 +280,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static_cdn", "staticfiles")
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # MEDIA_ROOT = os.path.join(BASE_DIR, "static_cdn", "media")
+
+#Braintree Payments Details
+BRAINTREE_PUBLIC = "qn3p5n7njksw47r3"
+BRAINTREE_PRIVATE = "d14ac944794c0df1c81991ecf49221ff"
+BRAINTREE_MERCHANT_ID = "n84nynknvzz3j3sz"
+BRAINTREE_ENVIRONEMNT = "Sandbox"

@@ -19,7 +19,7 @@
 		<div class="breadcrumb-inner">	
 			<ul>
 				<li><a href="/">Home</a> <i>//</i></li>
-				<li><a href="{% url 'shop:all' %}">All Professionals</a> <i>//</i></li>
+				<li><a href="#">All Professionals</a> <i>//</i></li>
 				<li>{{ object }}</li>
 			</ul>
 		</div>
@@ -62,11 +62,15 @@
     				<h1 class="text-primary"> {{ object.user }} </h1>
     				<hr/>
     				<h3>
-    					<i class="glyphicon glyphicon-user" aria-hidden="true"></i> |<strong> {{ object }} </strong>
+    					<i class="glyphicon glyphicon-user" aria-hidden="true"></i> |<strong> {{ object }}</strong>
     				</h3>
     				<hr/>
     				<h3>
-    					<i class="glyphicon glyphicon-bishop" aria-hidden="true"></i> - <strong> {{ object.profession }} </strong> - <strong> {{ object.category }} </strong>
+    					<i class="glyphicon glyphicon-bishop" aria-hidden="true"></i><strong> {{ object.profession }} </strong> - <strong> {{ object.category }} </strong>
+    				</h3>
+    				<hr/>
+    				<h3>
+    					<strong> Shop Code - {{ object.shop_code }} </strong>
     				</h3>
     				<hr/>
     			</div>
@@ -107,7 +111,7 @@
     					<p class="text-center">{{ object.get_markdown_content }}</p>
     				{% else %}
     					{% if object.user == request.user %}
-    						<a href="{% url 'shop:shop-update' slug=object.slug %}" class="btn btn-block btn-success"> Tell Why You Are The Better Option </a>
+    						<a href="{% url 'shop:shop-update' slug=object.slug %}" class="btn btn-block btn-success"> Describe Your Business </a>
     					{% else %}
     						<h3 class="text-center text-primary"> User Is Yet To Complete Shop Profile </h3>
     					{% endif %}
@@ -150,7 +154,7 @@
 					  </div>
 					  <div class="panel-footer">
 					  	<h3 class="text-center">
-					  		<a href="{% url 'shop:shop-bookings' slug=object.slug %}">
+					  		<a href="#">
 					  			Your Bookings 
 					  		</a>
 					  	</h3>
@@ -162,10 +166,11 @@
     		<div class="col-sm-12">
     			<div class="col-sm-6 col-sm-offset-3">
 	    			{% if object.user == request.user %}
-	    				<a href="/" class="btn btn-block btn-danger"> Dashboard </a>
+	    				<a href="/" class="btn btn-block btn-danger"> Dashboard </a><hr/>
+	    				<a href="{% url 'shop:shop-update' slug=object.slug %}" class="btn btn-block btn-primary"> Update Shop Details </a>
 	    			{% else %}
 	    				<!-- Small modal -->
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"> Book A Request Now </button>
+						<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target=".bs-example-modal-sm">Shop Service and Book A Service </button>
 
 						<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
 						  <div class="modal-dialog modal-sm" role="document">
@@ -173,19 +178,13 @@
 						      <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						        <h4 class="modal-title" id="myModalLabel">
-						        	Bookings For {{ object }}
+						        	Select Services To Book
 						        </h4>
 						      </div>
 						      <div class="modal-body">
-						        <form method="POST" action="" enctype='multipart/form-data'> 
-						        	{% csrf_token %}
-  									<input type="hidden" name="instance_location_destination" value="{{request.get_full_path}}" />
-
-  									{{ booking_form|crispy}}
-  									<span class="input-group-btn">
-    									<button class="btn btn-info btn-block" type="submit"> Book </button>
-  									</span>
-								</form>
+						      	<strong class="text-center text-danger">
+						      		Content Here
+						      	</strong>
 						      </div>
 						    </div>
 						  </div>
@@ -219,7 +218,7 @@
 
 				{% get_comment_count for object as comment_count %}
 				<div class="text-center" style="padding-top:20px">
-				  <a href="{% url 'shop:all' %}">Back to the Shops</a>
+				  <a href="{% url 'shop:shop-detail' slug=object.slug %}">Back to the Shops</a>
 				  &nbsp;&sdot;&nbsp;
 				  {{ comment_count }} comments complaints have been posted.
 				</div>

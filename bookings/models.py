@@ -1,90 +1,92 @@
-from __future__ import unicode_literals
-import random
-import string
-
-from django.db import models
+from decimal import Decimal
 from django.conf import settings
-from django.template.defaultfilters import truncatechars
-from django.utils.text import Truncator
-from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
+from django.db import models
+from django.db.models.signals import pre_save, post_save, post_delete
 
-from markdown_deux import markdown
 
+from services.models import Variation
+from shops.models import ShopAccount
 # Create your models here.
-from shops.models import ShopAccount, Service
-from bookings.utils import (
-	booking_code_generator, 
-	statistics_average_calculator, 
-	get_read_time,
-)
 
-pay_style = (
-        ('card', 'card'),
-        ('cash', 'cash'),
-    )
 
-class BookingManager(models.Manager):
-    """docstring for BookingManager"""
-    def all(self):
-        return super(BookingManager, self).filter(active=True)
+class BookingItem(models.Model):
+	booking = models.ForeignKey("Booking")
+	item = models.ForeignKey(Variation)
+	quantity = models.PositiveIntegerField(default=1)
+	line_item_total = models.DecimalField(max_digits=10, decimal_places=2)
 
-    def recent(self):
-        try:
-        	limit_to = settings.RECENT_BOOKING_NUMBER
-        except:
-        	limit_to = 10
-        return self.get_queryset().filter(active=True)[:limit_to]
+	def __str__(self):
+		return self.item.title
 
-    def get_for_shop(self, shop):
-        return self.get_queryset().filter(active=True).filter(shop=shop)
+	def remove(self):
+		return self.item.remove_from_booking()
 
-    def get_for_user(self, user):
-        return self.get_queryset().filter(active=True).filter(user=user)[:5]
-        
 
-class Booking (models.Model):
-    """docstring for Question"""
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
-    destination = models.CharField(max_length=200, blank=True, null=True)
-    service = models.ManyToManyField(Service, related_name="select_services", blank=True)
-    shop = models.ForeignKey(ShopAccount, null=True, blank=True)
-    booking_date = models.DateTimeField(null=True, blank=True)
-    mobile_contact = models.CharField(max_length=11, blank=True, null=True)
-    optional_names = models.CharField(max_length=100, blank=True, null=True)
-    promotional_code = models.CharField(max_length=50, blank=True, null=True)
-    extra_notes = models.TextField(blank=True, null=True)
-    booking_code = models.CharField(max_length=5, blank=True, null=True)
-    mode_of_payment = models.CharField(choices=pay_style, max_length=100)
-    updated = models.DateTimeField(auto_now=True, auto_now_add=False)
-    timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
-    active = models.BooleanField(default=True)
+def booking_item_pre_save_receiver(sender, instance, *args, **kwargs):
+	qty = instance.quantity
+	qty = int(qty)
+	if qty >= 1:
+		price = instance.item.get_price()
+		line_item_total = Decimal(qty) * Decimal(price)
+		instance.line_item_total = line_item_total
 
-    objects = BookingManager()
+pre_save.connect(booking_item_pre_save_receiver, sender=BookingItem)
 
-    class Meta:
-        ordering = ['-timestamp']
 
-    def __str__(self):
-        return str(self.booking_code)
 
-    def get_absolute_url(self):
-        return reverse('book:booking_detail', kwargs={'pk':self.pk})
+def booking_item_post_save_receiver(sender, instance, *args, **kwargs):
+	instance.booking.update_subtotal()
 
-    # def get_booking_as_markdown(self):
-    #     content = self.text
-    #     markdown_text = markdown(content)
-    #     return mark_safe(markdown_text)
+post_save.connect(booking_item_post_save_receiver, sender=BookingItem)
 
-    @property
-    def get_instance_location(self):
-        return self.destination
+post_delete.connect(booking_item_post_save_receiver, sender=BookingItem)
 
-    # @property
-    # def get_preview(self):
-    #     return truncatechars(self.text, 100)
-    #     #return Truncator(self.text).char(100)
 
-    @property
-    def get_booking(self):
-        return self.booking_code
+class Booking(models.Model):
+	user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
+	shop = models.ForeignKey(ShopAccount, null=True, blank=True)
+	items = models.ManyToManyField(Variation, through=BookingItem)
+	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+	updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+	subtotal = models.DecimalField(max_digits=50, decimal_places=2, default=25.00)
+	tax_percentage  = models.DecimalField(max_digits=10, decimal_places=5, default=0.05)
+	tax_total = models.DecimalField(max_digits=50, decimal_places=2, default=25.00)
+	total = models.DecimalField(max_digits=50, decimal_places=2, default=25.00)
+
+	def __str__(self):
+		return str(self.id)
+
+	def update_subtotal(self):
+		print ("updating...")
+		subtotal = 0
+		items = self.bookingitem_set.all()
+		for item in items:
+			subtotal += item.line_item_total
+		self.subtotal = "%.2f" %(subtotal)
+		self.save()
+
+
+
+
+def do_tax_and_total_receiver(sender, instance, *args, **kwargs):
+	subtotal = Decimal(instance.subtotal)
+	tax_total = round(subtotal * Decimal(instance.tax_percentage), 2) #8.5%
+	print (instance.tax_percentage)
+	total = round(subtotal + Decimal(tax_total), 2)
+	instance.tax_total = "%.2f" %(tax_total)
+	instance.total = "%.2f" %(total)
+	#instance.save()
+
+
+
+pre_save.connect(do_tax_and_total_receiver, sender=Booking)
+
+
+
+
+
+
+
+
+
