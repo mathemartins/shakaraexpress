@@ -5,6 +5,7 @@ from django.shortcuts import render, Http404, HttpResponseRedirect
 from shops.models import ShopAccount
 
 from products.models import Product
+from services.models import Service
 
 from newsletter.models import Newsletter
 from newsletter.forms import NewsletterModelForm
@@ -49,6 +50,7 @@ def featured_objects(request):
 	print (featured_shop)
 	featured_product = Product.objects.filter(featured=True).filter(sale_active=True).order_by('?')[:10]
 	print (featured_product)
+	featured_service = Service.objects.filter(featured=True).filter(active=True).order_by('?')[:10]
 	featured = []
 	for obj in featured_shop:
 		featured.append(obj)
@@ -56,6 +58,8 @@ def featured_objects(request):
 	for obj_ in featured_product:
 		featured.append(obj_)
 		print (type(obj))
+	for instance in featured_service:
+		featured.append(instance)
 	template = "core/featured.html"
 	context = {
 		"featured":featured
@@ -64,7 +68,13 @@ def featured_objects(request):
 
 
 def nearby_shops(request):
-	nearby = ShopAccount.objects.filter(active=True).order_by('?')[:20]
+	nearby_ = Service.objects.filter(active=True).order_by('?')[:10]
+	nb_prod = Product.objects.filter(featured=True).filter(sale_active=True).order_by('?')[:10]
+	nearby = []
+	for obj in nearby_:
+		nearby.append(obj)
+	for instance in nb_prod:
+		nearby.append(instance) 
 	template = "core/nearby.html"
 	context = {
 		"nearby":nearby
@@ -72,7 +82,13 @@ def nearby_shops(request):
 	return render (request, template, context)
 
 def wellness(request):
-	wellness = ShopAccount.objects.filter(active=True).filter(category="Wellness").order_by('?')[:20]
+	wellness_ = Service.objects.filter(active=True).order_by('?')[:10]
+	well_prod = Product.objects.filter(featured=True).filter(sale_active=True).order_by('?')[:10]
+	wellness = []
+	for obj in wellness_:
+		wellness.append(obj)
+	for instance in well_prod:
+		wellness.append(instance)
 	template = "core/wellness.html"
 	context = {
 		"wellness":wellness
@@ -81,7 +97,13 @@ def wellness(request):
 
 
 def fashion(request):
-	fashion = ShopAccount.objects.filter(active=True).filter(category="Fashion").order_by('?')[:20]
+	fashion_ = Service.objects.filter(active=True).order_by('?')[:10]
+	fash_prod = Product.objects.filter(featured=True).filter(sale_active=True).order_by('?')[:10]
+	fashion = []
+	for obj in fashion_:
+		fashion.append(obj)
+	for instance in fash_prod:
+		fashion.append(instance)
 	template = "core/fashion.html"
 	context = {
 		"fashion":fashion
@@ -90,7 +112,13 @@ def fashion(request):
 
 
 def beauty(request):
-	beauty = ShopAccount.objects.filter(active=True).filter(category="Beauty").order_by('?')[:20]
+	beauty_ = Service.objects.filter(active=True).order_by('?')[:10]
+	beau_prod = Product.objects.filter(featured=True).filter(sale_active=True).order_by('?')[:10]
+	beauty = []
+	for obj in beauty_:
+		beauty.append(obj)
+	for instance in beau_prod:
+		beauty.append(instance)
 	template = "core/beauty.html"
 	context = {
 		"beauty":beauty
