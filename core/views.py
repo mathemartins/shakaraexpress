@@ -127,7 +127,13 @@ def beauty(request):
 
 
 def spa(request):
-	spa = ShopAccount.objects.filter(active=True).filter(category="Spa").order_by('?')[:20]
+	spa_ = Service.objects.filter(active=True).order_by('?')[:10]
+	spa_prod = Product.objects.filter(featured=True).filter(sale_active=True).order_by('?')[:10]
+	spa = []
+	for obj in spa_:
+		spa.append(obj)
+	for instance in spa_prod:
+		spa.append(instance)
 	template = "core/spa.html"
 	context = {
 		"spa":spa
@@ -135,11 +141,14 @@ def spa(request):
 	return render (request, template, context)
 
 def deal_of_the_day(request):
-	product = Product.objects.filter(sale_active=True).order_by('?')[:20]
+	dotd_ = Service.objects.filter(active=True).order_by('?')[:10]
+	dotd_prod = Product.objects.filter(featured=True).filter(sale_active=True).order_by('?')[:10]
 	dotd = []
-	for deal in product:
+	for deal in dotd_prod:
 		if deal.sale_price:
 			dotd.append(deal)
+	for instance in dotd_:
+		dotd.append(instance)
 	template = "core/dotd.html"
 	context = {
 		"dotd":dotd
@@ -147,7 +156,13 @@ def deal_of_the_day(request):
 	return render (request, template, context)
 
 def lifestyle(request):
-	lifestyle_ = ShopAccount.objects.filter(active=True).filter(category="Lifestyle").order_by("?")[::20]
+	lifestyle_ = Service.objects.filter(active=True).order_by('?')[:10]
+	lifestyle_prod = Product.objects.filter(featured=True).filter(sale_active=True).order_by('?')[:10]
+	lifestyle = []
+	for obj in lifestyle_:
+		lifestyle.append(obj)
+	for instance in lifestyle_prod:
+		lifestyle.append(instance)
 	template = "core/lifestyle.html"
 	context = {
 		"lifestyle":lifestyle
