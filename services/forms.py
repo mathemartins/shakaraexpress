@@ -2,7 +2,7 @@ from django import forms
 
 from django.forms.models import modelformset_factory
 
-from .models import Variation, Category
+from .models import Variation, Category, Service
 
 
 CAT_CHOICES = (
@@ -39,3 +39,39 @@ class VariationInventoryForm(forms.ModelForm):
 
 
 VariationInventoryFormSet = modelformset_factory(Variation, form=VariationInventoryForm, extra=0)
+
+
+class VariationInventoryCreateForm(forms.ModelForm):
+	class Meta:
+		model = Variation
+		fields = [
+			'service',
+			'title',
+			'price',
+			'sale_price',
+			'active',
+			'inventory',
+		]
+
+
+class ServiceCreateForm(forms.ModelForm):
+	class Meta:
+		model = Service
+		fields = [
+			"title",
+			"description",
+			"price",
+			"categories",
+			"default",
+		]
+
+class ServiceUpdateForm(forms.ModelForm):
+	class Meta:
+		model = Service
+		fields = [
+			"title",
+			"description",
+			"price",
+			"categories",
+			"default",
+		]

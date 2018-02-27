@@ -1,34 +1,33 @@
 {% extends "base.html" %}
-
-
+{% load crispy_forms_tags %}
 
 {% block content %}
 
+<section>
+	<div class="container">
+		<div class="col-sm-6 col-sm-offset-3">
+			<table class="table table-striped">
+				{% for object in object_list %}
+					<tr>
+						<td><a href='{{ object.get_absolute_url }}'>{{ object.title }}</a></td><td>{{ object.inventory }}</td>
+					</tr>
+				{% endfor %}
+			</table>
 
-<table class='table'>
-{% for object in object_list %}
+			<form method="POST" action=""> {% csrf_token %}
+				{{ formset.management_form }}
 
-<tr>
-<td><a href='{{ object.get_absolute_url }}'>{{ object.title }}</a></td><td>{{ object.inventory }}</td>
-</tr>
+				{% for form in formset %}
 
-{% endfor %}
-</table>
+					{{ form.instance.service.title }}
+					{{ form.instance.title }}
+					{{ form|crispy }}
 
-
-<form method="POST" action=""> {% csrf_token %}
-
-{{ formset.management_form }}
-
-{% for form in formset %}
-
-{{ form.instance.service.title }}
-{{ form.instance.title }}
-{{ form.as_p }}
-
-{% endfor %}
-<input type="submit" value='Update' class='btn' />
-</form>
-
+				{% endfor %}
+				<input type="submit" class="text-center btn btn-block btn-success" value='Update' class='btn' />
+			</form>
+		</div>
+	</div>
+</section>
 
 {% endblock %}

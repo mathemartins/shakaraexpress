@@ -19,8 +19,9 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-# from core import views
-# from dashboard.views import DashboardView
+from core import views as core_views
+from dashboard.views import DashboardView
+from services import views
 from bookings.views import BookingView, ItemCountView, CheckoutView, CheckoutFinalView
 from newsletter.views import newsletter_create
 from orders.views import (
@@ -31,18 +32,22 @@ from orders.views import (
 
 urlpatterns = [
     url(r'^admin/shakara-express/', admin.site.urls),
-    # url(r'^$', views.homepage, name='homepage'),
-    # url(r'^featured/$', views.featured_objects, name='featured'),
-    # url(r'^nearby/$', views.nearby_shops, name='nearby'),
-    # url(r'^wellness/$', views.wellness, name='wellness'),
-    # url(r'^fashion/$', views.fashion, name='fashion'),
-    # url(r'^beauty/$', views.beauty, name='beauty'),
-    # url(r'^spa/$', views.spa, name='spa'),
-    # url(r'^lifestyle/$', views.lifestyle, name='lifestyle'),
-    # url(r'^deals-of-the-day/$', views.deal_of_the_day, name='dotd'),
+    url(r'^$', core_views.homepage, name='homepage'),
+    url(r'^featured/$', core_views.featured_objects, name='featured'),
+    url(r'^nearby/$', core_views.nearby_shops, name='nearby'),
+    url(r'^wellness/$', core_views.wellness, name='wellness'),
+    url(r'^fashion/$', core_views.fashion, name='fashion'),
+    url(r'^beauty/$', core_views.beauty, name='beauty'),
+    url(r'^spa/$', core_views.spa, name='spa'),
+    url(r'^lifestyle/$', core_views.lifestyle, name='lifestyle'),
+    url(r'^deals-of-the-day/$', core_views.deal_of_the_day, name='dotd'),
     url(r'^accounts/', include('allauth.urls')),
     # url(r'^cart/', include('shopping.urls')),
-    # url(r'^client/dashboard/$', DashboardView.as_view(), name='dashboard'),
+    url(r'^client/dashboard/$', DashboardView.as_view(), name='dashboard'),
+    url(r'^add-service/$', views.service_create_view, name='service-create'),
+    url(r'^update-service/(?P<pk>\d+)/$', views.service_update_view, name='service-update'),
+    url(r'^my-services/$', views.myservices, name='my-service'),
+    url(r'^add-service-variations/$', views.variation_create_view, name='variation-create'),
     url(r'^shops/', include("shops.urls", namespace='shop')),
     url(r'^services/', include('services.urls')),
     url(r'^categories/', include('services.urls_categories')),

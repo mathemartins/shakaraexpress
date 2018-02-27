@@ -39,22 +39,22 @@
 			</strong><hr/>
 		</h2>
 		{% if request.user == obj.user %}
-			<div class="col-sm-3">
+			<div class="col-sm-4">
 				<img src="{% static 'staticfiles/client/images/png/shop.png' %}" class="img-responsive center-block">
 				<hr/>
 				<a href="{% url 'shop:dashboard' %}" class="btn btn-primary btn-block"> My Products </a>
 			</div>
-			<div class="col-sm-3">
+			<div class="col-sm-4">
 				<img src="{% static 'staticfiles/client/images/png/scart.png' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="#" class="btn btn-danger btn-block"> My Services </a>
+				<a href="{% url 'my-service' %}" class="btn btn-danger btn-block"> My Services </a>
 			</div>
-			<div class="col-sm-3">
+ 			<!--<div class="col-sm-3">
 				<img src="{% static 'staticfiles/client/images/png/booking.png' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="{% url 'shop:shop-bookings' slug=obj.slug %}" class="btn btn-primary btn-block"> My Bookings </a>
-			</div>
-			<div class="col-sm-3">
+				<a href="#" class="btn btn-primary btn-block"> My Bookings </a>
+			</div> -->
+			<div class="col-sm-4">
 				<img src="{% static 'staticfiles/client/images/png/cshop.png' %}" class="img-responsive center-block">
 				<hr/>
 				<a href="{% url 'shop:shop-detail' slug=obj.slug %}" class="btn btn-danger btn-block"> Customize My Shop </a>
@@ -69,9 +69,9 @@
 				<hr/>
 				<img src="{% static 'staticfiles/client/images/png/003-store.png' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="{% url 'shop:all' %}" class="btn btn-info btn-block"> Book Services </a>
+				<a href="/services/" class="btn btn-info btn-block"> Book Services </a>
 			</div>
-			<div class="col-sm-4">
+			<!--{# <div class="col-sm-4">
 				<hr/>
 				<h3 class="text-center"> My Recent Bookings</h3>
 				<br/>
@@ -80,12 +80,12 @@
 						<strong class="text-center"><a href="{{ obj.get_absolute_url }}"> {{ obj }} - reschedule </a> </strong><hr/>
 					{% endfor %}
 				</div>
-			</div>
+			</div> #} -->
 		{% else %}
 			<div class="col-sm-4">
 				<img src="{% static 'staticfiles/client/images/png/003-store.png' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="{% url 'shop:all' %}" class="btn btn-primary btn-block"> Book Services </a>
+				<a href="/services/" class="btn btn-primary btn-block"> Book Services </a>
 			</div>
 			<div class="col-sm-4">
 				<img src="{% static 'staticfiles/client/images/png/product.png' %}" class="img-responsive center-block">
@@ -97,7 +97,7 @@
 				<hr/>
 				<a href="{% url 'featured' %}" class="btn btn-warning btn-block"> More/Featured </a>
 			</div>
- 			<div class="col-sm-4">
+ 			<!--<div class="col-sm-4">
 				<hr/>
 				<h3 class="text-center"> My Recent Bookings</h3>
 				<br/>
@@ -106,7 +106,7 @@
 						<strong class="text-center"><a href="{{ obj.get_absolute_url }}"> {{ obj }} - reschedule </a> </strong><hr/>
 					{% endfor %}
 				</div>
-			</div>
+			</div> -->
 		{% endif %}
 		</div>
 	</div>

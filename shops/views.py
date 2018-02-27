@@ -13,7 +13,9 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 
 from dev.mixins import LoginRequiredMixin
-# from products.models import Product
+from products.models import Product
+
+from billing.models import Transaction
 
 from shops.forms import NewShopForm, ShopUpdateForm
 from shops.mixins import ShopAccountMixin
@@ -33,17 +35,17 @@ class ShopProductDetailRedirectView(RedirectView):
         return obj.get_absolute_url()
 
 
-# class ShopTransactionListView(ShopAccountMixin, ListView):
-# 	model = Transaction
-# 	template_name = "shops/transaction_list_view.html"
+class ShopTransactionListView(ShopAccountMixin, ListView):
+	model = Transaction
+	template_name = "shops/transaction_list_view.html"
 
-# 	def get_queryset(self):
-# 		return self.get_transactions()
+	def get_queryset(self):
+		return self.get_transactions()
 
 
 class ShopDashboard(ShopAccountMixin, FormMixin, View):
 	form_class = NewShopForm
-	success_url = "/shop/"
+	success_url = "/shops/"
 
 	def post(self, request, *args, **kwargs):
 		form = self.get_form()
@@ -55,27 +57,27 @@ class ShopDashboard(ShopAccountMixin, FormMixin, View):
 	def get(self, request, *args, **kwargs):
 		apply_form = self.get_form() #NewShopForm()
 		account = self.get_account()
-		print (account)
 		exists = account
 		active = None
 		context = {}
 		if exists:
 			active = account.active
 		if not exists and not active:
-			context["title"] = "Apply for Account"
+			context["title"] = "Set Up My Business"
 			context["apply_form"] = apply_form
 		elif exists and not active:
-			context["title"] = "Account Activation Pending"
+			context["title"] = " Shop Account Pending"
 		elif exists and active:
-			context["title"] = "My Shop Dashboard"
+			context["title"] = "Shop Dashboard"
 			
 			#products = Product.objects.filter(shop=account)
-			# context["products"] = self.get_products()
-			# transactions_today = self.get_transactions_today()
-			# context["transactions_today"] = transactions_today
-			# context["today_sales"] = self.get_today_sales()
-			# context["total_sales"] = self.get_total_sales()
-			# context["transactions"] = self.get_transactions().exclude(pk__in=transactions_today)[:5]
+			print (context)
+			context["products"] = self.get_products()
+			transactions_today = self.get_transactions_today()
+			context["transactions_today"] = transactions_today
+			context["today_sales"] = self.get_today_sales()
+			context["total_sales"] = self.get_total_sales()
+			context["transactions"] = self.get_transactions().exclude(pk__in=transactions_today)[:5]
 		else:
 			pass
 		
@@ -120,6 +122,37 @@ class ShopAccountDetailView(MultiSlugMixin, DetailView):
 	def get_context_data(self, *args, **kwargs):
 		context = super(ShopAccountDetailView, self).get_context_data(*args, **kwargs)
 		return context
+
+
+def shop_list(request):
+	obj = ShopAccount.objects.filter(active=True)
+	print (obj)
+	query = request.GET.get("q")
+	query2 = request.GET.get("q2")
+
+	if 'q' in request.GET:
+		query = request.GET.get("q")
+
+		if 'q2' in request.GET:
+			query2 = request.GET.get("q2")
+
+			if len(query) == 0:
+				if len(query2) == 0:
+					return redirect('/shops/all-professionals/')
+
+			if query and query2:
+				obj = obj.filter(
+					Q(business_name__icontains=query) |
+					Q(address__icontains=query2)
+					# Q(profession__icontains=query) |
+					# Q(category__icontains=query) |
+					# Q(address__icontains=query)
+				)
+	template = "shops/shop_list.html"
+	context={
+		'objects':obj,
+	}
+	return render (request, template, context)
 
 
 class ShopList(ListView):

@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'products',
     'services',
     'shops',
+    'billing',
 
     # third-party-app-modules
     'storages',

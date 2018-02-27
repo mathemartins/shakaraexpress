@@ -15,6 +15,4 @@ urlpatterns = [
     url(r'^(?P<slug>[\w-]+)/$', ProductDetailView.as_view(), name='detail_slug'),
     url(r'^(?P<pk>\d+)/edit/$', ProductUpdateView.as_view(), name='update'),
     url(r'^(?P<slug>[\w-]+)/edit/$', ProductUpdateView.as_view(), name='update_slug'),
-   
-
 ]

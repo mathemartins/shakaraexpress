@@ -101,7 +101,7 @@
 					{% include "products/product_list_snippet.html" with product_list=products %}
 				</div>
 
-				<div class='col-sm-6 col-sm-offset-3'>
+				<div class='col-sm-6'>
 					<br/>
 					<h3 class="text-center text-warning">
 						<strong> Quick Buttons On Products </strong>
@@ -110,6 +110,18 @@
 					<a href='{% url "shop:product_create" %}' class="btn btn-primary btn-block">Add My Product</a>
 					<hr/>
 					<a href='{% url "shop:product_list" %}' class="btn btn-warning btn-block">See My Products</a>
+					<hr/>
+				</div>
+
+				<div class='col-sm-6'>
+					<br/>
+					<h3 class="text-center text-warning">
+						<strong> Quick Buttons On Services </strong>
+					</h3>
+					<hr/>
+					<a href='{% url "service-create" %}' class="btn btn-block btn-danger">Add My Services</a>
+					<hr/>
+					<a href='{% url "my-service" %}' class="btn btn-warning btn-block">See My Services</a>
 					<hr/>
 				</div>
 

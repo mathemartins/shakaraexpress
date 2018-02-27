@@ -1,10 +1,10 @@
 from django.core.exceptions import ImproperlyConfigured
 from django.contrib import messages
 from django.db.models import Q
-from django.http import Http404
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.utils import timezone
 
 
@@ -171,7 +171,80 @@ class ServiceDetailView(DetailView):
 
 
 
+from services.forms import ServiceCreateForm, ServiceUpdateForm, VariationInventoryCreateForm
+from django.contrib import messages
 
+def service_create_view(request):
+	if not request.user.shopaccount_set.filter(user=request.user):
+		raise Http404
+	user = request.user
+	shop = ShopAccount.objects.filter(user=user)
+	form = ServiceCreateForm(request.POST or None, request.FILES or None)
+	if form.is_valid():
+		instance = form.save(commit=False)
+		instance.user = request.user
+		instance.shop = ShopAccount.objects.get(user=user)
+		instance.save()
+
+		messages.success(request, 'Service Created Successfully!')
+		return HttpResponseRedirect('/add-service-variations/')
+
+	context = {
+		"form": form,
+	}
+	return render (request, "services/service_create.html", context)
+
+
+def service_update_view(request, pk=None):
+	if not request.user.shopaccount_set.filter(user=request.user):
+		raise Http404
+	instance = get_object_or_404(Service, id=pk)
+	form = ServiceUpdateForm(request.POST or None, request.FILES or None, instance=instance)
+	if form.is_valid():
+		instance = form.save(commit=False)
+		instance.save()
+		return HttpResponseRedirect('/shops/')
+
+	context = {
+		"title":instance.title,
+		"instance":instance,
+		"form":form,
+	}
+	return render (request, "services/service_update.html", context)
+
+
+def myservices(request, pk=None):
+	if not request.user.shopaccount_set.filter(user=request.user):
+		raise Http404
+	if not request.user.is_authenticated():
+		raise Http404
+	user = request.user
+	shop = ShopAccount.objects.filter(user=user)
+	shop_service = Service.objects.filter(shop=shop)
+	print (shop_service)
+	context = {
+		"service":shop_service
+	}
+	return render(request, "services/myservices.html", context)
+
+
+
+def variation_create_view(request):
+	if not request.user.shopaccount_set.filter(user=request.user):
+		raise Http404
+	form = VariationInventoryCreateForm(request.POST or None, request.FILES or None)
+	if form.is_valid():
+		instance = form.save(commit=False)
+		instance.save()
+
+		messages.success(request, 'Variations Added Successfully')
+		return  HttpResponseRedirect('/shops/')
+	context = {
+		"form":form
+	}
+	return render(request, "services/variations_create.html", context)
+
+		
 
 def service_detail_view_func(request, id):
 	#service_instance = Service.objects.get(id=id)
