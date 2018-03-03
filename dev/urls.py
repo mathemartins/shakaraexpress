@@ -64,7 +64,8 @@ urlpatterns = [
     url(r'^newsletter-create/', newsletter_create, name='newsletter-create'),
     url(r'^comments/', include('django_comments_xtd.urls')),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
-    url(r'^about/', TemplateView.as_view(template_name="about.html"), name="about"),
+    url(r'^about/$', TemplateView.as_view(template_name="about.html"), name="about"),
+    url(r'^partner-business-terms-and-conditions/$', TemplateView.as_view(template_name="partner.html"), name="partner-terms"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

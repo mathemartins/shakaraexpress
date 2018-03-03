@@ -47,17 +47,13 @@ def homepage(request):
 
 def featured_objects(request):
 	featured_shop = ShopAccount.objects.filter(featured=True).filter(active=True).order_by('?')[:10]
-	print (featured_shop)
 	featured_product = Product.objects.filter(featured=True).filter(sale_active=True).order_by('?')[:10]
-	print (featured_product)
 	featured_service = Service.objects.filter(featured=True).filter(active=True).order_by('?')[:10]
 	featured = []
 	for obj in featured_shop:
 		featured.append(obj)
-		print (type(obj))
 	for obj_ in featured_product:
 		featured.append(obj_)
-		print (type(obj))
 	for instance in featured_service:
 		featured.append(instance)
 	template = "core/featured.html"
