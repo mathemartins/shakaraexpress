@@ -43,6 +43,7 @@ class ShopUpdateForm(forms.ModelForm):
 			# 'managers',
 			'shop_description',
 			'business_mail',
+			'business_type',
 			'dashboard_banner_image_1',
 			'work_image',
 			'user_image',

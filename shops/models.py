@@ -43,6 +43,10 @@ class ShopAccount(models.Model):
 								format='JPEG', options={'quality':100}, null=True, blank=True)
 	work_image = ProcessedImageField(upload_to=upload_location, processors=[ResizeToFill(500, 300)], 
 								format='JPEG', options={'quality':100}, null=True, blank=True)
+	work_image2 = ProcessedImageField(upload_to=upload_location, processors=[ResizeToFill(500, 300)], 
+								format='JPEG', options={'quality':100}, null=True, blank=True)
+	work_image3 = ProcessedImageField(upload_to=upload_location, processors=[ResizeToFill(500, 300)], 
+								format='JPEG', options={'quality':100}, null=True, blank=True)
 	category = models.CharField(choices=sections, max_length=100)
 	let_client_book_online = models.BooleanField(default=True)
 	address = models.CharField(max_length=200)
