@@ -66,7 +66,7 @@ class ShopDashboard(ShopAccountMixin, FormMixin, View):
 			context["title"] = "Set Up My Business"
 			context["apply_form"] = apply_form
 		elif exists and not active:
-			context["title"] = " Shop Account Pending"
+			context["title"] = "Account Activation Pending"
 		elif exists and active:
 			context["title"] = "Shop Dashboard"
 			
