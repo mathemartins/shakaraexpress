@@ -97,7 +97,7 @@ class Order(models.Model):
 	user = models.ForeignKey(UserCheckout, null=True)
 	billing_address = models.ForeignKey(UserAddress, related_name='billing_address', null=True)
 	shipping_address = models.ForeignKey(UserAddress, related_name='shipping_address', null=True)
-	shipping_total_price = models.DecimalField(max_digits=50, decimal_places=2, default=200.00)
+	shipping_total_price = models.DecimalField(max_digits=50, decimal_places=2, default=0.00)
 	order_total = models.DecimalField(max_digits=50, decimal_places=2, )
 	order_id = models.CharField(max_length=20, null=True, blank=True)
 

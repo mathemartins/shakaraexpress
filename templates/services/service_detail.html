@@ -64,15 +64,18 @@ $("#submit-btn").click(function(event){
 
 			<div class='row'>
 				<div class='col-sm-8'>
-					<h2 class="text-center text-info">{{ object.title }}</h2>
+					<br/>
+					<h2 class="text-center text-info"><strong>{{ object.title }}</strong></h2>
+					<hr/>
 					{% if object.get_image_url %}
 						<div class="text-center">
 							<img id='img' class='img-responsive' src='{{ object.get_image_url }}' />
+							<hr/>
 						</div>
 					{% endif %}
 
-					<p class='lead text-center'>
-						{{ object.description }}
+					<p class='lead text-center well well-sm'>
+						<strong>{{ object.description }}</strong>
 					</p>
 				</div>
 
@@ -81,7 +84,7 @@ $("#submit-btn").click(function(event){
 					<form id='add-form' method='GET' action="{% url 'booking' %}">
 						<p id='jquery-message' class='lead text-center'></p>
 						{% if object.variation_set.count > 1 %}
-							<h3 id='price' class="text-center text-info">{{ object.variation_set.first.price }}</h3>
+							<h3 id='price' class="text-center text-info"><strong>NGN{{ object.variation_set.first.price }}</strong></h3><br/>
 							<select name='item' class='form-control variation_select'>
 								{% for vari_obj in object.variation_set.all %}
 									<option  data-sale-price="{{ vari_obj.sale_price }}" data-price="{{ vari_obj.price }}" value="{{ vari_obj.id }}">{{ vari_obj }}</option>
@@ -114,7 +117,7 @@ $("#submit-btn").click(function(event){
 						<a href="#"><i class="fa fa-twitter-square fa-3x"></i></a>
 					</p>
 					<hr/>
-					<h4 class="text-center text-info"> Related Services From Same Shop</h4>
+					<h4 class="text-center text-info"> Related Services From Same Shop</h4><br/>
 					<div class='row'>
 						{% for service in related %}
 							<div class='col-xs-6'>

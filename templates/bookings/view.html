@@ -84,7 +84,7 @@ $(".item-qty").change(function(){
 								<td><form action="." method="GET" class="form-control" ><input type='hidden' name='item' value='{{ item.item.id }}' /><input type='number' class='item-qty' name='qty' value='{{ item.quantity }}' /><input type='submit' class='btn-update btn btn-link' value='Update item' style='display:none;'/></form></td>
 
 								<td id='item-line-total-{{ item.item.id }}'>{{ item.line_item_total }}</td>
-								<td class='text-right' ><a href='{{ item.remove }}'>X</a></td>
+								<td class='text-right' ><a href='{{ item.remove }}'><strong>X</strong></a></td>
 							</tr>
 						{% endfor %}
 						<tr>

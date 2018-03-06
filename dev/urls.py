@@ -65,6 +65,9 @@ urlpatterns = [
     url(r'^comments/', include('django_comments_xtd.urls')),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
     url(r'^about/$', TemplateView.as_view(template_name="about.html"), name="about"),
+    url(r'^terms-of-service/$', TemplateView.as_view(template_name="terms.html"), name="terms"),
+    url(r'^privacy-policy/$', TemplateView.as_view(template_name="privacy.html"), name="privacy"),
+    url(r'^terms-of-service/bookings-and-ecomerce/$', TemplateView.as_view(template_name="tos.html"), name="tos"),
     url(r'^partner-business-terms-and-conditions/$', TemplateView.as_view(template_name="partner.html"), name="partner-terms"),
 ]
 
