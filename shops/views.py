@@ -20,6 +20,9 @@ from billing.models import Transaction
 from shops.forms import NewShopForm, ShopUpdateForm
 from shops.mixins import ShopAccountMixin
 from shops.models import ShopAccount
+
+from services.models import Service
+
 from dev.mixins import (
 			LoginRequiredMixin,
 			MultiSlugMixin, 
@@ -121,6 +124,8 @@ class ShopAccountDetailView(MultiSlugMixin, DetailView):
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(ShopAccountDetailView, self).get_context_data(*args, **kwargs)
+		shop = context["shopaccount"]
+		context["shopaccount"] = Service.objects.filter(shop=shop)
 		return context
 
 

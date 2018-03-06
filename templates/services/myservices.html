@@ -6,12 +6,42 @@
 	<section>
 		<div class="container">
 			<br/>
+			<h2 class="text-center text-danger"><strong> My Services </strong></h2>
+			<hr/>
 			{% for obj in service %}
 				<div class="col-sm-6 col-sm-offset-3">
 					<h3 class="text-info text-center"> {{ obj }}  -  <strong> <a class="btn btn-danger" href="{% url 'service-update' pk=obj.id %}"> Edit </a> </strong></h3>
 				</div>
 				<br/>
 			{% endfor %}
+		</div>
+	</section>
+	<hr/>
+	<section>
+		<div class="container">
+			<div class='col-sm-6'>
+				<br/>
+				<h3 class="text-center text-warning">
+					<strong> Quick Buttons On Products </strong>
+				</h3>
+				<hr/>
+				<a href='{% url "shop:product_create" %}' class="btn btn-primary btn-block">Add My Product</a>
+				<hr/>
+				<a href='{% url "shop:product_list" %}' class="btn btn-warning btn-block">See My Products</a>
+				<hr/>
+			</div>
+
+			<div class='col-sm-6'>
+				<br/>
+				<h3 class="text-center text-warning">
+					<strong> Quick Buttons On Services </strong>
+				</h3>
+				<hr/>
+				<a href='{% url "service-create" %}' class="btn btn-block btn-danger">Add My Services</a>
+				<hr/>
+				<a href='{% url "my-service" %}' class="btn btn-warning btn-block">See My Services</a>
+				<hr/>
+			</div>
 		</div>
 	</section>
 

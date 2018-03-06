@@ -22,7 +22,8 @@ def homepage(request):
 		my_bookings = None
 	else:
 		my_bookings = None
-	print (my_bookings)
+	active = obj.active
+	print(active)
 	newsletter_form = NewsletterModelForm()
 	query = request.GET.get("q")
 	query2 = request.GET.get("q2")
@@ -40,15 +41,16 @@ def homepage(request):
 	context = {
 		"obj":obj,
 		"newsletter_form":newsletter_form,
-		"my_bookings":my_bookings
+		"my_bookings":my_bookings,
+		"active":active
 	}
 	return render(request, template, context)
 
 
 def featured_objects(request):
 	featured_shop = ShopAccount.objects.filter(featured=True).filter(active=True).order_by('?')[:10]
-	featured_product = Product.objects.filter(featured=True).filter(sale_active=True).order_by('?')[:10]
-	featured_service = Service.objects.filter(featured=True).filter(active=True).order_by('?')[:10]
+	featured_product = Product.objects.filter(featured=True).filter(sale_active=True).order_by('?')[:10] #
+	featured_service = Service.objects.filter(featured=True).filter(active=True).order_by('?')[:10] #
 	featured = []
 	for obj in featured_shop:
 		featured.append(obj)
@@ -56,6 +58,7 @@ def featured_objects(request):
 		featured.append(obj_)
 	for instance in featured_service:
 		featured.append(instance)
+	print (featured)
 	template = "core/featured.html"
 	context = {
 		"featured":featured
@@ -78,8 +81,8 @@ def nearby_shops(request):
 	return render (request, template, context)
 
 def wellness(request):
-	wellness_ = Service.objects.filter(active=True).order_by('?')[:10]
-	well_prod = Product.objects.filter(featured=True).filter(sale_active=True).order_by('?')[:10]
+	wellness_ = Service.objects.filter(active=True).filter(shakara_category="Wellness").order_by('?')[:10]
+	well_prod = Product.objects.filter(featured=True).filter(category="Wellness").filter(sale_active=True).order_by('?')[:10]
 	wellness = []
 	for obj in wellness_:
 		wellness.append(obj)
@@ -93,8 +96,8 @@ def wellness(request):
 
 
 def fashion(request):
-	fashion_ = Service.objects.filter(active=True).order_by('?')[:10]
-	fash_prod = Product.objects.filter(featured=True).filter(sale_active=True).order_by('?')[:10]
+	fashion_ = Service.objects.filter(active=True).filter(shakara_category="Fashion").order_by('?')[:10]
+	fash_prod = Product.objects.filter(featured=True).filter(sale_active=True).filter(category="Fashion").order_by('?')[:10]
 	fashion = []
 	for obj in fashion_:
 		fashion.append(obj)
@@ -108,8 +111,8 @@ def fashion(request):
 
 
 def beauty(request):
-	beauty_ = Service.objects.filter(active=True).order_by('?')[:10]
-	beau_prod = Product.objects.filter(featured=True).filter(sale_active=True).order_by('?')[:10]
+	beauty_ = Service.objects.filter(active=True).filter(shakara_category="Beauty").order_by('?')[:10]
+	beau_prod = Product.objects.filter(featured=True).filter(sale_active=True).filter(category="Beauty").order_by('?')[:10]
 	beauty = []
 	for obj in beauty_:
 		beauty.append(obj)
@@ -123,8 +126,8 @@ def beauty(request):
 
 
 def spa(request):
-	spa_ = Service.objects.filter(active=True).order_by('?')[:10]
-	spa_prod = Product.objects.filter(featured=True).filter(sale_active=True).order_by('?')[:10]
+	spa_ = Service.objects.filter(active=True).filter(shakara_category="Spa").order_by('?')[:10]
+	spa_prod = Product.objects.filter(featured=True).filter(category="Spa").filter(sale_active=True).order_by('?')[:10]
 	spa = []
 	for obj in spa_:
 		spa.append(obj)
@@ -152,8 +155,8 @@ def deal_of_the_day(request):
 	return render (request, template, context)
 
 def lifestyle(request):
-	lifestyle_ = Service.objects.filter(active=True).order_by('?')[:10]
-	lifestyle_prod = Product.objects.filter(featured=True).filter(sale_active=True).order_by('?')[:10]
+	lifestyle_ = Service.objects.filter(active=True).filter(shakara_category="Lifestyle").order_by('?')[:10]
+	lifestyle_prod = Product.objects.filter(featured=True).filter(category="Lifestyle").filter(sale_active=True).order_by('?')[:10]
 	lifestyle = []
 	for obj in lifestyle_:
 		lifestyle.append(obj)

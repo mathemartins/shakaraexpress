@@ -9,6 +9,15 @@ from django.utils.text import slugify
 
 from shops.models import ShopAccount
 
+sections = (
+		('Beauty', 'Beauty'),
+		('Fashion', 'Fashion'),
+		('Wellness', 'Wellness'),
+		('Lifestyle', 'Lifestyle'),
+		('Spa', 'Spa')
+	)
+
+
 class ServiceQuerySet(models.query.QuerySet):
 	def active(self):
 		return self.filter(active=True)
@@ -40,6 +49,7 @@ class Service(models.Model):
 	active = models.BooleanField(default=True)
 	categories = models.ManyToManyField('Category', blank=True)
 	default = models.ForeignKey('Category', related_name='default_category', null=True, blank=True)
+	shakara_category = models.CharField(choices=sections, max_length=100, default='Beauty')
 	featured = models.BooleanField(default=False)
 
 	objects = ServiceManager()

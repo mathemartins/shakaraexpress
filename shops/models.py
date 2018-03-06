@@ -16,6 +16,15 @@ from markdown_deux import markdown
 from shops.utils import shop_code_generator
 
 
+
+class ServiceOptions(models.Model):
+	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+	category = models.CharField(max_length=200, blank=True, null=True, unique=True)
+
+	def __str__(self):
+		return self.category
+
+
 sections = (
 		('Beauty', 'Beauty'),
 		('Fashion', 'Fashion'),

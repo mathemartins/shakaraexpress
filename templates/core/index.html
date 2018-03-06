@@ -39,31 +39,43 @@
 			</strong><hr/>
 		</h2>
 		{% if request.user == obj.user %}
-			<div class="col-sm-4">
+			<div class="col-sm-3">
 				<img src="{% static 'staticfiles/client/images/png/shop.png' %}" class="img-responsive center-block">
 				<hr/>
 				<a href="{% url 'shop:dashboard' %}" class="btn btn-primary btn-block"> My Products </a>
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-3">
 				<img src="{% static 'staticfiles/client/images/png/scart.png' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="{% url 'my-service' %}" class="btn btn-danger btn-block"> My Services </a>
+				{% if active %}
+					<a href="{% url 'my-service' %}" class="btn btn-danger btn-block"> My Services </a>
+				{% else %}
+					<a href="#" class="btn btn-danger btn-block btn-disabled" disabled> Sorry Shop Account Is Deactivated </a>
+				{% endif %}
 			</div>
- 			<!--<div class="col-sm-3">
+ 			<div class="col-sm-3">
 				<img src="{% static 'staticfiles/client/images/png/booking.png' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="#" class="btn btn-primary btn-block"> My Bookings </a>
-			</div> -->
-			<div class="col-sm-4">
+				<a href="{% url 'booking' %}" class="btn btn-primary btn-block"> See My Recent Bookings </a>
+			</div>
+			<div class="col-sm-3">
 				<img src="{% static 'staticfiles/client/images/png/cshop.png' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="{% url 'shop:shop-detail' slug=obj.slug %}" class="btn btn-danger btn-block"> Customize My Shop </a>
+				{% if active %}
+					<a href="{% url 'shop:shop-detail' slug=obj.slug %}" class="btn btn-danger btn-block"> Customize My Shop </a>
+				{% else %}
+					<a href="#" class="btn btn-danger btn-block btn-disabled" disabled> Sorry Shop Account Is Deactivated </a>
+				{% endif %}
 			</div>
 			<div class="col-sm-4">
 				<hr/>
 				<img src="{% static 'staticfiles/client/images/png/product.png' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="{% url 'products:list' %}" class="btn btn-warning btn-block"> Shop Products </a>
+				{% if active %}
+					<a href="{% url 'products:list' %}" class="btn btn-warning btn-block"> Shop Products </a>
+				{% else %}
+					<a href="#" class="btn btn-danger btn-block btn-disabled" disabled> Sorry Shop Account Is Deactivated </a>
+				{% endif %}
 			</div>
 			<div class="col-sm-4">
 				<hr/>
@@ -71,16 +83,18 @@
 				<hr/>
 				<a href="/services/" class="btn btn-info btn-block"> Book Services </a>
 			</div>
-			<!--{# <div class="col-sm-4">
+			<div class="col-sm-4">
 				<hr/>
 				<h3 class="text-center"> My Recent Bookings</h3>
 				<br/>
 				<div class="well well-sm text-center">
 					{% for obj in my_bookings %}
 						<strong class="text-center"><a href="{{ obj.get_absolute_url }}"> {{ obj }} - reschedule </a> </strong><hr/>
+					{% empty %}
+						<strong class="text-center text-danger"> Bookings For The Last 48Hrs Only </strong>
 					{% endfor %}
 				</div>
-			</div> #} -->
+			</div>
 		{% else %}
 			<div class="col-sm-4">
 				<img src="{% static 'staticfiles/client/images/png/003-store.png' %}" class="img-responsive center-block">
@@ -97,16 +111,18 @@
 				<hr/>
 				<a href="{% url 'featured' %}" class="btn btn-warning btn-block"> More/Featured </a>
 			</div>
- 			<!--<div class="col-sm-4">
+ 			<div class="col-sm-4">
 				<hr/>
 				<h3 class="text-center"> My Recent Bookings</h3>
 				<br/>
 				<div class="well well-sm text-center">
 					{% for obj in my_bookings %}
 						<strong class="text-center"><a href="{{ obj.get_absolute_url }}"> {{ obj }} - reschedule </a> </strong><hr/>
+					{% empty %}
+						<strong class="text-center text-danger"> Bookings For The Last 48Hrs Only </strong>
 					{% endfor %}
 				</div>
-			</div> -->
+			</div>
 		{% endif %}
 		</div>
 	</div>

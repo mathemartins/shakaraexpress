@@ -44,8 +44,8 @@ class ProductAddForm(forms.Form):
 
 
 class ProductModelForm(forms.ModelForm):
-	tags = forms.CharField(label='Related tags', required=False)
-	publish = forms.ChoiceField(widget=forms.RadioSelect, choices=PUBLISH_CHOICES, required=False)
+	# tags = forms.CharField(label='Related tags', required=False)
+	# publish = forms.ChoiceField(widget=forms.RadioSelect, choices=PUBLISH_CHOICES, required=False)
 	# description = forms.CharField(widget=forms.Textarea(
 	# 		attrs={
 	# 			"class": "my-custom-class",
@@ -85,7 +85,7 @@ class ProductModelForm(forms.ModelForm):
 
 	def clean_price(self):
 		price = self.cleaned_data.get("price")
-		if price <= 500.00:
+		if price < 500.00:
 			raise forms.ValidationError("Price must be greater than #500")
 		elif price >= 1000000.00:
 			raise forms.ValidationError("Price must be less than #1 million")

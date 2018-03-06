@@ -53,3 +53,12 @@ class ShopUpdateForm(forms.ModelForm):
 			'cancellation_policy',
 			'mobile_number'
 		]
+
+		widgets = {
+			"cancellation_policy": forms.TextInput(
+				attrs= {
+					"placeholder": "No Cancellation, No Refunds and No Returns",
+					"class": "form-control",
+				}
+			),
+		}
