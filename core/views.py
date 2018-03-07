@@ -23,7 +23,10 @@ def homepage(request):
 	else:
 		my_bookings = None
 	if request.user.is_authenticated():
-		active = obj.active
+		if obj is not None:
+			active = obj.active
+		else:
+			active = None
 	else:
 		active = None
 	newsletter_form = NewsletterModelForm()
