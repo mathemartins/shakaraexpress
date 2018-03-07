@@ -59,6 +59,7 @@ class ProductModelForm(forms.ModelForm):
 			"title",
 			"description",
 			"price",
+			"sale_price",
 			"media",
 		]
 		widgets = {
