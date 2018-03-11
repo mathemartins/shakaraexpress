@@ -103,11 +103,11 @@ input[type="submit"],.w3l_header_left ul li a,.related-post-right h4 a,.comments
 
 
 .inner-header-agile {
-       padding: 0 5em;
+    padding: 0 5em;
     position: fixed;
-    background: rgba(17, 17, 17, 0.6);
+    background: rgba(177, 161, 161, 0.6);
     width: 100%;
-	z-index:9999;
+    z-index:9999;
 }
 .inner-header-agile.part2 {
     position: relative;
