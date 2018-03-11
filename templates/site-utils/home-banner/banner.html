@@ -110,7 +110,7 @@
 				  {% if request.user.is_authenticated %}
 				  	<a class="w3_play_icon1" href="#"> {{ request.user }} </a>
 				  {% else %}
-				  <a class="" href="{% url 'shop:dashboard' %}"> SET UP MY BUSINESS </a>
+				  <a class="btn btn-success" href="{% url 'shop:dashboard' %}"><strong> SET UP MY BUSINESS </strong> </a>
 				  {% endif %}
 			   </div>
 			<!--/banner-ingo-->
