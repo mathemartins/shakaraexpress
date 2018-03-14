@@ -13,7 +13,7 @@
 	</h1><br/>
 
 	<div class="well well-sm">
-	<p class="text-default text-center">{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+	<!-- <p class="text-default text-center">{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a> -->.{% endblocktrans %}</p>
 	</div>
 
 	<div class="col-sm-6">
@@ -28,7 +28,7 @@
 	</div>
 	<div class="col-sm-6">
 		<div class="well well-sm">
-			<p> Already have a third-party account?, sign-in from your third party account to use Shakara Express </p>
+			<p> Already have an account?, Then please <a href="{{ login_url }}">sign in</a> or sign in from any of your third party account to use Shakara Express.</p>
 		</div>
 		{% load socialaccount %}
           {% providers_media_js %}
