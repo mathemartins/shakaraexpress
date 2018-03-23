@@ -20,7 +20,7 @@
 	<!-- //breadcrumb -->
 	
 	<section>
-		<div class="container">
+		<div class="container-fluid">
 
 		{% for obj in featured %}
 			<hr/>
@@ -28,11 +28,11 @@
 			<div class="price" id="price">
 			{% if obj.business_name %}
 				{% if obj.dashboard_banner_image_1 %}
-					<div class="col-md-6">
+					<div class="col-md-6" style="background-size: cover;">
 						<img src="{{ obj.dashboard_banner_image_1.url }}" class="img-responsive" style="background-size: cover; background-repeat: no-repeat">
 					</div>
 				{% else %}
-				<div class="col-md-6 w3l_about_bottom_left">
+				<div class="col-md-6 w3l_about_bottom_left" style="background-size: cover;">
 				</div>
 				{% endif %}
 			    <div class="col-md-6 w3l_about_bottom_right">
@@ -63,11 +63,11 @@
 			<!-- about-bottom -->
 				<div class="price" id="price">
 					{% if obj.media %}
-						<div class="col-md-6">
+						<div class="col-md-6" style="background-size: cover;">
 							<img src="{{ obj.media.url }}" class="img-responsive" style="background-size: cover; background-repeat: no-repeat">
 						</div>
 					{% else %}
-					<div class="col-md-6 w3l_about_bottom_left">
+					<div class="col-md-6 w3l_about_bottom_left" style="background-size: cover;">
 					</div>
 					{% endif %}
 				    <div class="col-md-6 w3l_about_bottom_right">
@@ -101,11 +101,11 @@
 				<!-- about-bottom -->
 				<div class="price" id="price">
 					{% if obj.title %}
-						<div class="col-md-6">
+						<div class="col-md-6" style="background-size: cover;">
 							<img src="{{ obj.serviceimage.image_set.url }}" class="img-responsive" style="background-size: cover; background-repeat: no-repeat">
 						</div>
 					{% else %}
-					<div class="col-md-6 w3l_about_bottom_left">
+					<div class="col-md-6 w3l_about_bottom_left" style="background-size: cover;">
 					</div>
 					{% endif %}
 				    <div class="col-md-6 w3l_about_bottom_right">

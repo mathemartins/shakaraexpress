@@ -20,18 +20,18 @@
 	<!-- //breadcrumb -->
 	
 	<section>
-		<div class="container">
+		<div class="container-fluid">
 
 		{% for obj in beauty %}
 			<hr/>
 			<!-- about-bottom -->
 			<div class="price" id="price">
 				{% if obj.work_image %}
-					<div class="col-md-6">
-						<img src="{{ obj.work_image.url }}" class="img-responsive">
+					<div class="col-md-6" style="background-size: cover;">
+						<img src="{{ obj.work_image.url }}" class="img-responsive" style="background-size: cover;">
 					</div>
 				{% else %}
-				<div class="col-md-6 w3l_about_bottom_left">
+				<div class="col-md-6 w3l_about_bottom_left" style="background-size: cover;">
 				</div>
 				{% endif %}
 			    <div class="col-md-6 w3l_about_bottom_right">
