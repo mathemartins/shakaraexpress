@@ -3595,6 +3595,7 @@ section.social ul li {
 }
 @media (max-width:384px){
 	.w3l_about_bottom_left {
+    background-size: cover;
 		min-height: 269px;
 	}
 	.contact-grid {

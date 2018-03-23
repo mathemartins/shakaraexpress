@@ -62,7 +62,7 @@ class ShopAccount(models.Model):
 	map_embed = models.CharField(max_length=200, blank=True, null=True)
 	cancellation_policy = models.TextField(blank=True, null=True)
 	mobile_number = models.CharField(max_length=11)
-	active = models.BooleanField(default=False)
+	active = models.BooleanField(default=True)
 	featured = models.BooleanField(default=False)
 	slug = models.SlugField(null=True, blank=True)
 	timestamp = models.DateTimeField(auto_now=True)

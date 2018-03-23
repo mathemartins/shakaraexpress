@@ -6,13 +6,13 @@
 {% for obj in product_list %}
 
 	<hr/>
-	<div class="price" id="price">
+	<div class="price" id="price" style="background-size: cover;">
 					{% if obj.media %}
-						<div class="col-md-6">
+						<div class="col-md-6" style="background-size: cover;">
 							<img src="{{ obj.media.url }}" class="img-responsive">
 						</div>
 					{% else %}
-					<div class="col-md-6 w3l_about_bottom_left">
+					<div class="col-md-6 w3l_about_bottom_left" style="background-size: cover;">
 					</div>
 					{% endif %}
 				    <div class="col-md-6 w3l_about_bottom_right">
