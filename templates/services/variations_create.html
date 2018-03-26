@@ -5,12 +5,22 @@
 
 	<section>
 		<div class="container">
-			<div class="col-sm-6 col-sm-offset-3">
+			<div class="col-sm-6">
+				<br/>
+				<h3 class="text-center"> <strong>Add A Similar Version Of The Registered Product</strong><hr/> </h3>
 				<form method="POST" action="" enctype='multipart/form-data'> 
 					{% csrf_token %}
 					{{ form|crispy }}
 					<input type="submit" value="Add Service Variations" class="btn btn-block btn-success" name="">
 				</form>
+				<br/>
+			</div>
+			<div class="col-sm-6">
+				<br/>
+				<h3 class="text-center"> <strong>Skip This: </strong><hr/> </h3>
+				<a href="/add-service-image/" class="btn btn-danger btn-block">
+					I don't have a different version of this service
+				</a>
 			</div>
 		</div>
 	</section>

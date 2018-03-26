@@ -51,14 +51,20 @@ class ShopUpdateForm(forms.ModelForm):
 			'address',
 			'map_embed',
 			'cancellation_policy',
+			'working_hours',
 			'mobile_number'
 		]
 
 		widgets = {
 			"cancellation_policy": forms.TextInput(
 				attrs= {
-					"placeholder": "No Cancellation, No Refunds and No Returns",
+					"placeholder": "To Avoid Cancellations and Refunds, Use Keywrod 'No Cancellation, No Refunds and No Returns'",
 					"class": "form-control",
 				}
 			),
+			"working_hours": forms.TextInput(
+				attrs = {
+					"placeholder": "Monday - Thursdays :: 08:00am - 10:00pm | Fridays :: 09:00am - 09:00pm | Saturdays :: 10:00am - 08:00am",
+				}
+			)
 		}

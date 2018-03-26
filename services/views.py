@@ -11,7 +11,7 @@ from django.utils import timezone
 from django_filters import FilterSet, CharFilter, NumberFilter
 # Create your views here.
 
-from services.forms import VariationInventoryFormSet, ServiceFilterForm
+from services.forms import VariationInventoryFormSet, ServiceFilterForm, ServiceImageUploadForm
 from services.mixins import StaffRequiredMixin
 from services.models import Service, Variation, Category
 
@@ -194,6 +194,23 @@ def service_create_view(request):
 	}
 	return render (request, "services/service_create.html", context)
 
+from services.models import ServiceImage
+
+def service_image_view(request):
+	service = Service.objects.filter(user=request.user).last()
+	form = ServiceImageUploadForm(request.POST or None, request.FILES or None)
+	if form.is_valid():
+		instance = form.save(commit=False)
+		instance.service = service
+		instance.save()
+		return HttpResponseRedirect('/shops/')
+
+	context = {
+		"title": service,
+		"form": form,
+	}
+	return render(request, "services/service_image.html", context)
+
 
 def service_update_view(request, pk=None):
 	if not request.user.shopaccount_set.filter(user=request.user):
@@ -232,13 +249,15 @@ def myservices(request, pk=None):
 def variation_create_view(request):
 	if not request.user.shopaccount_set.filter(user=request.user):
 		raise Http404
+	service = Service.objects.filter(user=request.user).last()
 	form = VariationInventoryCreateForm(request.POST or None, request.FILES or None)
 	if form.is_valid():
 		instance = form.save(commit=False)
+		instance.service = service
 		instance.save()
 
 		messages.success(request, 'Variations Added Successfully')
-		return  HttpResponseRedirect('/shops/')
+		return  HttpResponseRedirect('/add-service-image/')
 	context = {
 		"form":form
 	}

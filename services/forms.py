@@ -2,7 +2,7 @@ from django import forms
 
 from django.forms.models import modelformset_factory
 
-from .models import Variation, Category, Service
+from .models import Variation, Category, Service, ServiceImage
 
 
 CAT_CHOICES = (
@@ -45,13 +45,13 @@ class VariationInventoryCreateForm(forms.ModelForm):
 	class Meta:
 		model = Variation
 		fields = [
-			'service',
 			'title',
 			'price',
 			'sale_price',
 			'active',
 			'inventory',
 		]
+
 
 
 class ServiceCreateForm(forms.ModelForm):
@@ -64,6 +64,15 @@ class ServiceCreateForm(forms.ModelForm):
 			"categories",
 			"default",
 		]
+
+
+class ServiceImageUploadForm(forms.ModelForm):
+	class Meta:
+		model = ServiceImage
+		fields = [
+			"image"
+		]
+
 
 class ServiceUpdateForm(forms.ModelForm):
 	class Meta:

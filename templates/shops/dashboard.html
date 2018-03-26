@@ -113,21 +113,21 @@
 					<hr/>
 				</div>
 
-				<div class='col-sm-6'>
-					<br/>
-					<h3 class="text-center text-warning">
-						<strong> Quick Buttons On Services </strong>
-					</h3>
-					<hr/>
-					<a href='{% url "service-create" %}' class="btn btn-block btn-danger">Add My Services</a>
-					<hr/>
-					<a href='{% url "my-service" %}' class="btn btn-warning btn-block">See My Services</a>
-					<hr/>
-				</div>
-
 				<hr/>
 
 			{% endif %}
+
+			<div class='col-sm-6'>
+				<br/>
+				<h3 class="text-center text-warning">
+					<strong> Quick Buttons On Services </strong>
+				</h3>
+				<hr/>
+				<a href='{% url "service-create" %}' class="btn btn-block btn-danger">Add My Services</a>
+				<hr/>
+				<a href='{% url "my-service" %}' class="btn btn-warning btn-block">See My Services</a>
+				<hr/>
+			</div>
 
 			{% if transactions %}
 				<div class='col-sm-12'>

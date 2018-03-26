@@ -45,6 +45,7 @@ urlpatterns = [
     # url(r'^cart/', include('shopping.urls')),
     url(r'^client/dashboard/$', DashboardView.as_view(), name='dashboard'),
     url(r'^add-service/$', views.service_create_view, name='service-create'),
+    url(r'^add-service-image/$', views.service_image_view, name='service-image'),
     url(r'^update-service/(?P<pk>\d+)/$', views.service_update_view, name='service-update'),
     url(r'^my-services/$', views.myservices, name='my-service'),
     url(r'^add-service-variations/$', views.variation_create_view, name='variation-create'),
