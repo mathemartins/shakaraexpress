@@ -146,7 +146,7 @@
     					<p class="text-center">{{ object.cancel_markdown }}</p>
     				{% else %}
     					{% if object.user == request.user %}
-    						<a href="" class="btn btn-block btn-success">
+    						<a href="{% url 'shop:shop-update' slug=object.slug %}" class="btn btn-block btn-success">
     							Setup your cancellation policy to protect yourself from no-shows and late cancellations...
     						</a>
     					{% else %}

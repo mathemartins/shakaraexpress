@@ -44,6 +44,7 @@ class ShopUpdateForm(forms.ModelForm):
 			'shop_description',
 			'business_mail',
 			'business_type',
+			'business_bank_details',
 			'dashboard_banner_image_1',
 			'work_image',
 			'user_image',
@@ -56,13 +57,13 @@ class ShopUpdateForm(forms.ModelForm):
 		]
 
 		widgets = {
-			"cancellation_policy": forms.TextInput(
+			"cancellation_policy": forms.Textarea(
 				attrs= {
 					"placeholder": "To Avoid Cancellations and Refunds, Use Keywrod 'No Cancellation, No Refunds and No Returns'",
 					"class": "form-control",
 				}
 			),
-			"working_hours": forms.TextInput(
+			"working_hours": forms.Textarea(
 				attrs = {
 					"placeholder": "Monday - Thursdays :: 08:00am - 10:00pm | Fridays :: 09:00am - 09:00pm | Saturdays :: 10:00am - 08:00am",
 				}

@@ -63,6 +63,7 @@
 						</div>
 						<div id="cd-search" class="cd-search">
 							<form action="#" method="post">
+								{% csrf_token %}
 								<input name="Search" type="search" placeholder="Products, Services, Shop name or Professionals">
 							</form>
 						</div>
