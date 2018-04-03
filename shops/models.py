@@ -50,9 +50,9 @@ class ShopAccount(models.Model):
 	dashboard_banner_image_1 = models.ImageField(upload_to = upload_location, null = True, blank = True)
 	user_image = ProcessedImageField(upload_to=upload_location, processors=[ResizeToFill(150, 150)], 
 								format='JPEG', options={'quality':100}, null=True, blank=True)
-	work_image = ProcessedImageField(upload_to=upload_location, processors=[ResizeToFill(500, 300)], 
+	work_image = ProcessedImageField(upload_to=upload_location, processors=[ResizeToFill(700, 700)], 
 								format='JPEG', options={'quality':100}, null=True, blank=True)
-	work_image2 = ProcessedImageField(upload_to=upload_location, processors=[ResizeToFill(500, 300)], 
+	work_image2 = ProcessedImageField(upload_to=upload_location, processors=[ResizeToFill(700, 700)], 
 								format='JPEG', options={'quality':100}, null=True, blank=True)
 	work_image3 = ProcessedImageField(upload_to=upload_location, processors=[ResizeToFill(500, 300)], 
 								format='JPEG', options={'quality':100}, null=True, blank=True)

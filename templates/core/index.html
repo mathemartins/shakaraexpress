@@ -9,7 +9,7 @@
 
 	<!-- /beauty search -->
 	<br/>
-	<div class="container">
+	<div class="container" id="search-and-filter">
 		<div class="title-agileits">
         	<h2 class="w3l-agile">Discover beauty, fashion, wellness and barbershop appointments or products.</h2> 
 	    </div>
@@ -41,12 +41,12 @@
 		</h2>
 		{% if request.user == obj.user %}
 			<div class="col-sm-3">
-				<img src="{% static 'staticfiles/client/images/png/shop.png' %}" class="img-responsive center-block">
+				<img src="{% static 'staticfiles/client/images/png/products.svg' %}" class="img-responsive center-block">
 				<hr/>
 				<a href="{% url 'shop:dashboard' %}" class="btn btn-primary btn-block"> My Products </a>
 			</div>
 			<div class="col-sm-3">
-				<img src="{% static 'staticfiles/client/images/png/scart.png' %}" class="img-responsive center-block">
+				<img src="{% static 'staticfiles/client/images/png/services.svg' %}" class="img-responsive center-block">
 				<hr/>
 				{% if active %}
 					<a href="{% url 'my-service' %}" class="btn btn-danger btn-block"> My Services </a>
@@ -55,12 +55,12 @@
 				{% endif %}
 			</div>
  			<div class="col-sm-3">
-				<img src="{% static 'staticfiles/client/images/png/booking.png' %}" class="img-responsive center-block">
+				<img src="{% static 'staticfiles/client/images/png/mybookings.svg' %}" class="img-responsive center-block">
 				<hr/>
 				<a href="{% url 'booking' %}" class="btn btn-primary btn-block"> See My Recent Bookings </a>
 			</div>
 			<div class="col-sm-3">
-				<img src="{% static 'staticfiles/client/images/png/cshop.png' %}" class="img-responsive center-block">
+				<img src="{% static 'staticfiles/client/images/png/shop.svg' %}" class="img-responsive center-block">
 				<hr/>
 				{% if active %}
 					<a href="{% url 'shop:shop-detail' slug=obj.slug %}" class="btn btn-danger btn-block"> Customize My Shop </a>
@@ -70,7 +70,7 @@
 			</div>
 			<div class="col-sm-4">
 				<hr/>
-				<img src="{% static 'staticfiles/client/images/png/product.png' %}" class="img-responsive center-block">
+				<img src="{% static 'staticfiles/client/images/png/sproduct.svg' %}" class="img-responsive center-block">
 				<hr/>
 				{% if active %}
 					<a href="{% url 'products:list' %}" class="btn btn-warning btn-block"> Shop Products </a>
@@ -80,7 +80,7 @@
 			</div>
 			<div class="col-sm-4">
 				<hr/>
-				<img src="{% static 'staticfiles/client/images/png/003-store.png' %}" class="img-responsive center-block">
+				<img src="{% static 'staticfiles/client/images/png/bservices.svg' %}" class="img-responsive center-block">
 				<hr/>
 				<a href="/services/" class="btn btn-info btn-block"> Book Services </a>
 			</div>
@@ -100,17 +100,17 @@
 			</div>
 		{% else %}
 			<div class="col-sm-4">
-				<img src="{% static 'staticfiles/client/images/png/003-store.png' %}" class="img-responsive center-block">
+				<img src="{% static 'staticfiles/client/images/png/bservices.svg' %}" class="img-responsive center-block">
 				<hr/>
 				<a href="/services/" class="btn btn-primary btn-block"> Book Services </a>
 			</div>
 			<div class="col-sm-4">
-				<img src="{% static 'staticfiles/client/images/png/product.png' %}" class="img-responsive center-block">
+				<img src="{% static 'staticfiles/client/images/png/sproduct.svg' %}" class="img-responsive center-block">
 				<hr/>
 				<a href="{% url 'products:list' %}" class="btn btn-warning btn-block"> Shop Products </a>
 			</div>
 			<div class="col-sm-4">
-				<img src="{% static 'staticfiles/client/images/png/more.png' %}" class="img-responsive center-block">
+				<img src="{% static 'staticfiles/client/images/png/support.svg' %}" class="img-responsive center-block">
 				<hr/>
 				<a href="{% url 'featured' %}" class="btn btn-warning btn-block"> More/Featured </a>
 			</div>
@@ -163,12 +163,13 @@
 					<div class="container">
 					     <div class="title-agileits">
                             <h2 class="w3l-agile">Browse &amp; Discover</h2> 
+                            <small> click and hold photos for few seconds to display image title</small>
 			             </div>
 				    <div class="gallery-grids">
 					<div class="col-md-4 gallery-grid">
 						<div class="grid">
 							<figure class="effect-apollo">
-								<a class="example-image-link" href="{% static 'staticfiles/client/images/SEbeauty.jpg' %}" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
+								<a class="example-image-link" href="#search-and-filter" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
 									<img src="{% static 'staticfiles/client/images/SEbeauty.jpg' %}" alt="" />
 									<figcaption>
 										<p><strong>Beauty</strong></p>
@@ -180,7 +181,7 @@
 					<div class="col-md-4 gallery-grid">
 						<div class="grid">
 							<figure class="effect-apollo">
-								<a class="example-image-link" href="{% static 'staticfiles/client/images/SEnaturals.jpg' %}" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
+								<a class="example-image-link" href="#search-and-filter" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
 									<img src="{% static 'staticfiles/client/images/SEnaturals.jpg' %}" alt="" />
 									<figcaption>
 										<p><strong>Naturals</strong></p>
@@ -192,7 +193,7 @@
 					<div class="col-md-4 gallery-grid">
 						<div class="grid">
 							<figure class="effect-apollo">
-								<a class="example-image-link" href="{% static 'staticfiles/client/images/SEbraids.jpg' %}" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
+								<a class="example-image-link" href="#search-and-filter" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
 									<img src="{% static 'staticfiles/client/images/SEbraids.jpg' %}" alt="" />
 									<figcaption>
 										<p><strong>Braids</strong></p>
@@ -204,7 +205,7 @@
 					<div class="col-md-4 gallery-grid">
 						<div class="grid">
 							<figure class="effect-apollo">
-								<a class="example-image-link" href="{% static 'staticfiles/client/images/SEmensgroomingandkidscut.jpg' %}" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
+								<a class="example-image-link" href="#search-and-filter" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
 									<img src="{% static 'staticfiles/client/images/SEmensgroomingandkidscut.jpg' %}" alt="" />
 									<figcaption>
 										<p><strong>Men's Grooming &amp; Kids Cut</strong></p>
@@ -216,7 +217,7 @@
 					<div class="col-md-4 gallery-grid">
 						<div class="grid">
 							<figure class="effect-apollo">
-								<a class="example-image-link" href="{% static 'staticfiles/client/images/SEnails.jpg' %}" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
+								<a class="example-image-link" href="#search-and-filter" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
 									<img src="{% static 'staticfiles/client/images/SEnails.jpg' %}" alt="" />
 									<figcaption>
 										<p><strong>Nails</strong></p>
@@ -228,7 +229,7 @@
 					<div class="col-md-4 gallery-grid">
 						<div class="grid">
 							<figure class="effect-apollo">
-								<a class="example-image-link" href="{% static 'staticfiles/client/images/SEfashion.jpg' %}" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
+								<a class="example-image-link" href="#search-and-filter" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
 									<img src="{% static 'staticfiles/client/images/SEfashion.jpg' %}" alt="" />
 									<figcaption>
 										<p><strong>Fashion</strong></p>
@@ -240,7 +241,7 @@
 					<div class="col-md-4 gallery-grid">
 						<div class="grid">
 							<figure class="effect-apollo">
-								<a class="example-image-link" href="{% static 'staticfiles/client/images/SEweaveandextention3.jpg' %}" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
+								<a class="example-image-link" href="#search-and-filter" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
 									<img src="{% static 'staticfiles/client/images/SEweaveandextention3.jpg' %}" alt="" />
 									<figcaption>
 										<p><strong>Weaves &amp; Extensions</strong></p>
@@ -252,7 +253,7 @@
 					<div class="col-md-4 gallery-grid">
 						<div class="grid">
 							<figure class="effect-apollo">
-								<a class="example-image-link" href="{% static 'staticfiles/client/images/SEspa.jpg' %}" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
+								<a class="example-image-link" href="#search-and-filter" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
 									<img src="{% static 'staticfiles/client/images/SEspa.jpg' %}" alt="" />
 									<figcaption>
 										<p><strong>Spa</strong></p>
@@ -264,7 +265,7 @@
 					<div class="col-md-4 gallery-grid">
 						<div class="grid">
 							<figure class="effect-apollo">
-								<a class="example-image-link" href="{% static 'staticfiles/client/images/SEdailydeals.jpg' %}" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
+								<a class="example-image-link" href="#search-and-filter" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
 									<img src="{% static 'staticfiles/client/images/SEdailydeals.jpg' %}" alt="" />
 									<figcaption>
 									<p><strong>Daily Deals</strong></p>

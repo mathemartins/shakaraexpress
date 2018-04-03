@@ -47,6 +47,7 @@ class ShopUpdateForm(forms.ModelForm):
 			'business_bank_details',
 			'dashboard_banner_image_1',
 			'work_image',
+			'work_image2',
 			'user_image',
 			'let_client_book_online',
 			'address',

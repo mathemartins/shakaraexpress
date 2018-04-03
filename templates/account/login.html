@@ -14,7 +14,7 @@
     {% get_providers as socialaccount_providers %}
     <div class="well well-sm">
     {% if socialaccount_providers %}
-      <p class="text-center text-default">{% blocktrans with site.name as site_name %}Don't have an account with us?, Please sign in with any of your existing third party accounts listed below. Or, click here to <a href="{{ signup_url }}">sign up</a>
+      <p class="text-center text-default">{% blocktrans with site.name as site_name %}Don't have an account with us?, Please sign in with any of your existing third party accounts listed below. Or, click here to <a href="{{ signup_url }}" class="btn btn-success">Sign Up</a>
       for a <strong>SHAKARA EXPRESS </strong> account:
       {% endblocktrans %}</p>
     </div>

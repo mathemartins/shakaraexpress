@@ -25,7 +25,7 @@ def download_media_location(instance, filename):
 class Product(models.Model):
 	shop = models.ForeignKey(ShopAccount)
 	managers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="managers_products", blank=True)
-	media = ProcessedImageField(upload_to=download_media_location, processors=[ResizeToFill(300, 150)], format='JPEG', options={'quality':100}, null=True, blank=True)
+	media = ProcessedImageField(upload_to=download_media_location, processors=[ResizeToFill(500, 500)], format='JPEG', options={'quality':100}, null=True, blank=True)
 	title = models.CharField(max_length=30)
 	slug = models.SlugField(blank=True, unique=True)
 	description = models.TextField()
