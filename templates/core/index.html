@@ -11,7 +11,7 @@
 	<br/>
 	<div class="container" id="search-and-filter">
 		<div class="title-agileits">
-        	<h2 class="w3l-agile">Discover beauty, fashion, wellness and barbershop appointments or products.</h2> 
+        	<h2 class="w3l-agile" style="color:#000000">Discover beauty, fashion, wellness and barbershop appointments or products.</h2> 
 	    </div>
 	    <form action="{% url 'shop:all' %}" autocomplete="on" method='GET' class="newsletter">
 	    	{% csrf_token %}
@@ -36,44 +36,48 @@
 		<h2>
 			<strong class="text-center">
 				Dashboard Review - <i class="fa fa-user"></i> {{ request.user }} - {% if request.user.is_superuser %}
-				<a href="/admin/shakara-express/" class="btn btn-sm btn-primary"> Admininstrator Dashboard </a>{% else %} <i class="fa fa-check"></i> {% endif %}
+				<a href="/admin/shakara-express/" class="btn btn-sm btn-success"> Admininstrator Dashboard </a>{% else %} <i class="fa fa-check"></i> {% endif %}
 			</strong><hr/>
 		</h2>
 		{% if request.user == obj.user %}
 			<div class="col-sm-3">
 				<img src="{% static 'staticfiles/client/images/png/products.svg' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="{% url 'shop:dashboard' %}" class="btn btn-primary btn-block"> My Products </a>
+				<a href="{% url 'shop:dashboard' %}" class="btn btn-success btn-block"> My Products </a>
+				<br/>
 			</div>
 			<div class="col-sm-3">
 				<img src="{% static 'staticfiles/client/images/png/services.svg' %}" class="img-responsive center-block">
 				<hr/>
 				{% if active %}
-					<a href="{% url 'my-service' %}" class="btn btn-danger btn-block"> My Services </a>
+					<a href="{% url 'my-service' %}" class="btn btn-success btn-block"> My Services </a>
 				{% else %}
 					<a href="#" class="btn btn-danger btn-block btn-disabled" disabled> Sorry Shop Account Is Deactivated </a>
 				{% endif %}
+				<br/>
 			</div>
  			<div class="col-sm-3">
 				<img src="{% static 'staticfiles/client/images/png/mybookings.svg' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="{% url 'booking' %}" class="btn btn-primary btn-block"> See My Recent Bookings </a>
+				<a href="{% url 'booking' %}" class="btn btn-success btn-block"> See My Recent Bookings </a>
+				<br/>
 			</div>
 			<div class="col-sm-3">
 				<img src="{% static 'staticfiles/client/images/png/shop.svg' %}" class="img-responsive center-block">
 				<hr/>
 				{% if active %}
-					<a href="{% url 'shop:shop-detail' slug=obj.slug %}" class="btn btn-danger btn-block"> Customize My Shop </a>
+					<a href="{% url 'shop:shop-detail' slug=obj.slug %}" class="btn btn-success btn-block"> Customize My Shop </a>
 				{% else %}
 					<a href="#" class="btn btn-danger btn-block btn-disabled" disabled> Sorry Shop Account Is Deactivated </a>
 				{% endif %}
+				<br/>
 			</div>
 			<div class="col-sm-4">
 				<hr/>
 				<img src="{% static 'staticfiles/client/images/png/sproduct.svg' %}" class="img-responsive center-block">
 				<hr/>
 				{% if active %}
-					<a href="{% url 'products:list' %}" class="btn btn-warning btn-block"> Shop Products </a>
+					<a href="{% url 'products:list' %}" class="btn btn-success btn-block"> Shop Products </a>
 				{% else %}
 					<a href="#" class="btn btn-danger btn-block btn-disabled" disabled> Sorry Shop Account Is Deactivated </a>
 				{% endif %}
@@ -82,7 +86,7 @@
 				<hr/>
 				<img src="{% static 'staticfiles/client/images/png/bservices.svg' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="/services/" class="btn btn-info btn-block"> Book Services </a>
+				<a href="/services/" class="btn btn-success btn-block"> Book Services </a>
 			</div>
 			<div class="col-sm-4">
 				<hr/>
@@ -102,17 +106,17 @@
 			<div class="col-sm-4">
 				<img src="{% static 'staticfiles/client/images/png/bservices.svg' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="/services/" class="btn btn-primary btn-block"> Book Services </a>
+				<a href="/services/" class="btn btn-success btn-block"> Book Services </a>
 			</div>
 			<div class="col-sm-4">
 				<img src="{% static 'staticfiles/client/images/png/sproduct.svg' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="{% url 'products:list' %}" class="btn btn-warning btn-block"> Shop Products </a>
+				<a href="{% url 'products:list' %}" class="btn btn-success btn-block"> Shop Products </a>
 			</div>
 			<div class="col-sm-4">
 				<img src="{% static 'staticfiles/client/images/png/support.svg' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="{% url 'featured' %}" class="btn btn-warning btn-block"> More </a>
+				<a href="{% url 'featured' %}" class="btn btn-success btn-block"> More </a>
 			</div>
  			<div class="col-sm-4">
 				<hr/>
@@ -126,7 +130,7 @@
 							<a href="/booking/"> Bookings For The Last 7 days </a>
 						</strong>
 						<hr/>
-						<a href="#" class="btn btn-block btn-warning">See all bookings</a>
+						<a href="#" class="btn btn-block btn-success">See all bookings</a>
 					{% endfor %}
 				</div>
 			</div>
@@ -139,7 +143,7 @@
 	{% else %}
 		<div class="container">
 			<div class="title-agileits">
-	        	<h2 class="w3l-agile">I WOULD LOVE TO OWN A STORE </h2> 
+	        	<h2 class="w3l-agile" style="color:#000000">I WOULD LOVE TO OWN A STORE </h2> 
 		    </div>
 		    <div class="col-sm-8 jumbotron">
 		    	<h2 class="well well-sm text-center">
@@ -151,7 +155,7 @@
 		    <div class="col-sm-3 col-sm-offset-1 jumbotron text-center">
 				<img src="{% static 'staticfiles/client/images/png/naira.svg' %}" class="img-responsive center-block">
 				<hr/>
-				<a href="{% url 'shop:dashboard' %}" class="btn btn-info btn-block"> Own A Store/Make Money </a> <hr/>
+				<a href="{% url 'shop:dashboard' %}" class="btn btn-success btn-block"> Own A Store/Make Money </a> <hr/>
 				<strong>Click Here </strong><i class="fa fa-2x fa-arrow-up"></i>
 			</div>
 			<br/>
@@ -164,8 +168,7 @@
 				<div class="w3_content_agilleinfo_inner">
 					<div class="container">
 					     <div class="title-agileits">
-                            <h2 class="w3l-agile">Browse &amp; Discover</h2> 
-                            <small> click and hold photos for few seconds to display image title</small>
+                            <h2 class="w3l-agile" style="color:#000000">Browse &amp; Discover</h2> 
 			             </div>
 				    <div class="gallery-grids">
 					<div class="col-md-4 gallery-grid">
@@ -173,6 +176,7 @@
 							<figure class="effect-apollo">
 								<a class="example-image-link" href="#search-and-filter" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
 									<img src="{% static 'staticfiles/client/images/SEbeauty.jpg' %}" alt="" />
+									<div class="centered"> <strong> Beauty </strong> </div>
 									<figcaption>
 										<p><strong>Beauty</strong></p>
 									</figcaption>	
@@ -185,6 +189,7 @@
 							<figure class="effect-apollo">
 								<a class="example-image-link" href="#search-and-filter" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
 									<img src="{% static 'staticfiles/client/images/SEnaturals.jpg' %}" alt="" />
+									<div class="centered"> <strong> Naturals </strong> </div>
 									<figcaption>
 										<p><strong>Naturals</strong></p>
 									</figcaption>	
@@ -197,6 +202,7 @@
 							<figure class="effect-apollo">
 								<a class="example-image-link" href="#search-and-filter" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
 									<img src="{% static 'staticfiles/client/images/SEbraids.jpg' %}" alt="" />
+									<div class="centered"> <strong> Braids </strong> </div>
 									<figcaption>
 										<p><strong>Braids</strong></p>
 									</figcaption>		
@@ -209,6 +215,7 @@
 							<figure class="effect-apollo">
 								<a class="example-image-link" href="#search-and-filter" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
 									<img src="{% static 'staticfiles/client/images/SEmensgroomingandkidscut.jpg' %}" alt="" />
+									<div class="centered"> <strong> Men's Grooming &amp; Kids Cut </strong> </div>
 									<figcaption>
 										<p><strong>Men's Grooming &amp; Kids Cut</strong></p>
 									</figcaption>	
@@ -221,6 +228,7 @@
 							<figure class="effect-apollo">
 								<a class="example-image-link" href="#search-and-filter" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
 									<img src="{% static 'staticfiles/client/images/SEnails.jpg' %}" alt="" />
+									<div class="centered"> <strong> Nails </strong> </div>
 									<figcaption>
 										<p><strong>Nails</strong></p>
 									</figcaption>	
@@ -233,6 +241,7 @@
 							<figure class="effect-apollo">
 								<a class="example-image-link" href="#search-and-filter" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
 									<img src="{% static 'staticfiles/client/images/SEfashion.jpg' %}" alt="" />
+									<div class="centered"> <strong> Fashion </strong> </div>
 									<figcaption>
 										<p><strong>Fashion</strong></p>
 									</figcaption>		
@@ -245,6 +254,7 @@
 							<figure class="effect-apollo">
 								<a class="example-image-link" href="#search-and-filter" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
 									<img src="{% static 'staticfiles/client/images/SEweaveandextention3.jpg' %}" alt="" />
+									<div class="centered"> <strong> Weaves &amp; Extensions </strong> </div>
 									<figcaption>
 										<p><strong>Weaves &amp; Extensions</strong></p>
 									</figcaption>	
@@ -257,6 +267,7 @@
 							<figure class="effect-apollo">
 								<a class="example-image-link" href="#search-and-filter" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
 									<img src="{% static 'staticfiles/client/images/SEspa.jpg' %}" alt="" />
+									<div class="centered"> <strong> Spa </strong> </div>
 									<figcaption>
 										<p><strong>Spa</strong></p>
 									</figcaption>	
@@ -269,6 +280,7 @@
 							<figure class="effect-apollo">
 								<a class="example-image-link" href="#search-and-filter" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
 									<img src="{% static 'staticfiles/client/images/SEdailydeals.jpg' %}" alt="" />
+									<div class="centered"> <strong> Daily Deals </strong> </div>
 									<figcaption>
 									<p><strong>Daily Deals</strong></p>
 									</figcaption>		
@@ -286,7 +298,7 @@
 	<div class="blog" id="blog">
 		<div class="container">
 			<div class="title-agileits">
-                 <h3 class="w3l-agile">Shakara Express For Business</h3> 
+                 <h3 class="w3l-agile" style="color:#000000">Shakara Express For Business</h3> 
 			</div>
 			<div class="w3-agile-blog-grids">
 				<div class="w3-agile-blog-grid">
@@ -299,12 +311,12 @@
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 							</div>
 							<div class="blog-left-right-top">
-								<h4><a href="single.html">Are you a professional stylist, beauty, or a spa professional? </a></h4>
+								<h4><a href="#" style="color:#000000">Are you a professional stylist, beauty, or a spa professional? </a></h4>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
 						<div class="w3-agile-blog-right-info">
-							<p>Manage your business, accept payments and grow your clientele using Shakara Express.</p>
+							<p style="color:#000000">Manage your business, accept payments and grow your clientele using Shakara Express.</p>
 							<a href="{% url 'shop:dashboard' %}" class="hvr-shutter-in-horizontal">Set Up My Business</a>
 						</div>
 					</div>
@@ -320,7 +332,7 @@
 <div class="clients-section">
     <div class="container">
 	    <div class="title-agileits">
-                 <h3 class="w3l-agile">Our Customers Say</h3> 
+                 <h3 class="w3l-agile" style="color:#000000">Our Customers Say</h3> 
 			</div>
 	    <div class="mis-stage"> 
 				<!-- The element to select and apply miSlider to - the class is optional -->
