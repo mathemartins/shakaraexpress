@@ -22,7 +22,7 @@ from django.views.generic import TemplateView
 from core import views as core_views
 from dashboard.views import DashboardView
 from services import views
-from bookings.views import BookingView, ItemCountView, CheckoutView, CheckoutFinalView
+from bookings.views import BookingView, ItemCountView, CheckoutView, CheckoutFinalView, MyBookings
 from newsletter.views import newsletter_create
 from orders.views import (
                     AddressSelectFormView, 
@@ -41,6 +41,7 @@ urlpatterns = [
     url(r'^spa/$', core_views.spa, name='spa'),
     url(r'^lifestyle/$', core_views.lifestyle, name='lifestyle'),
     url(r'^deals-of-the-day/$', core_views.deal_of_the_day, name='dotd'),
+    url(r'^my-bookings/$', MyBookings.as_view(), name='my_bookings'),
     url(r'^accounts/', include('allauth.urls')),
     # url(r'^cart/', include('shopping.urls')),
     url(r'^client/dashboard/$', DashboardView.as_view(), name='dashboard'),

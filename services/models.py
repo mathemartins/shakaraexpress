@@ -49,13 +49,15 @@ class Service(models.Model):
 	active = models.BooleanField(default=True)
 	categories = models.ManyToManyField('Category', blank=True)
 	default = models.ForeignKey('Category', related_name='default_category', null=True, blank=True)
-	shakara_category = models.CharField(choices=sections, max_length=100, default='Beauty')
+	category = models.CharField(choices=sections, max_length=100, default='Beauty')
 	featured = models.BooleanField(default=False)
+	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+	updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
 	objects = ServiceManager()
 
 	class Meta:
-		ordering = ["-title"]
+		ordering = ["-timestamp", "-updated", "-title"]
 
 	def __str__(self): #def __str__(self):
 		return self.title 

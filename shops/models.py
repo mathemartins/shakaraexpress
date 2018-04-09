@@ -66,10 +66,11 @@ class ShopAccount(models.Model):
 	active = models.BooleanField(default=True)
 	featured = models.BooleanField(default=False)
 	slug = models.SlugField(null=True, blank=True)
-	timestamp = models.DateTimeField(auto_now=True)
+	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+	updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
 	class Meta:
-		ordering = ["-timestamp",]
+		ordering = ["-timestamp", "-updated"]
 
 
 	def __str__(self):

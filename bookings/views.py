@@ -51,7 +51,11 @@ class ItemCountView(View):
 			print ("Happened here")
 			raise Http404
 
-
+class MyBookings(View):
+	def get(self, request, *args, **kwargs):
+		context = {}
+		template = "bookings/mybookings.html"
+		return render(request, template, context)
 
 class BookingView(SingleObjectMixin, View):
 	model = Booking

@@ -61,7 +61,7 @@ class ServiceCreateForm(forms.ModelForm):
 			"title",
 			"description",
 			"price",
-			"categories",
+			"category",
 			"default",
 		]
 

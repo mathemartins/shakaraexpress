@@ -35,6 +35,11 @@ class Product(models.Model):
 			 decimal_places=2, default=500.00, null=True, blank=True) #100.00
 	category = models.CharField(choices=sections, max_length=100, default='Beauty')
 	featured = models.BooleanField(default=False)
+	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+	updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+	class Meta:
+		ordering = ["-timestamp", "-updated"]
 
 	def __str__(self): #def __unicode__(self):
 		return self.title

@@ -1,16 +1,49 @@
-<?xml version="1.0"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="96px" height="96px" class=""><g><g>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="96px" height="96px">
+<g>
 	<g>
 		<g>
-			<path d="M504,40H8c-4.418,0-8,3.582-8,8v416c0,4.418,3.582,8,8,8h496c4.418,0,8-3.582,8-8V48C512,43.582,508.418,40,504,40z      M496,104H112V56h384V104z M96,56v48H16V56H96z M16,456V120h480v336H16z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFA300"/>
-			<path d="M464,144H48c-4.418,0-8,3.582-8,8v272c0,4.418,3.582,8,8,8h416c4.418,0,8-3.582,8-8V152C472,147.582,468.418,144,464,144     z M456,416H56V160h400V416z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFA300"/>
-			<rect x="32" y="72" width="16" height="16" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFA300"/>
-			<rect x="64" y="72" width="16" height="16" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFA300"/>
-			<rect x="464" y="72" width="16" height="16" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFA300"/>
-			<rect x="432" y="72" width="16" height="16" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFA300"/>
-			<path d="M168,344h152v16H192v16h18.158c-1.364,2.355-2.158,5.082-2.158,8c0,8.837,7.163,16,16,16s16-7.163,16-16     c0-2.918-0.794-5.645-2.158-8h36.316c-1.364,2.355-2.158,5.082-2.158,8c0,8.837,7.163,16,16,16s16-7.163,16-16     c0-2.918-0.794-5.645-2.158-8H320c0.221,0.005,0.442,0.005,0.663,0c8.654-0.183,15.52-7.347,15.337-16v-24V224v-32h16v16h16v-24     c0-4.418-3.582-8-8-8h-24c-0.221-0.005-0.442-0.005-0.663,0c-8.653,0.183-15.52,7.346-15.337,16v24H168c-4.418,0-8,3.582-8,8v112     C160,340.418,163.582,344,168,344z M176,288h24v40h-24V288z M280,328h-24v-40h24V328z M296,288h24v40h-24V288z M256,272v-40h24     v40H256z M240,272h-24v-40h24V272z M240,288v40h-24v-40H240z M320,272h-24v-40h24V272z M200,232v40h-24v-40H200z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFA300"/>
-			<rect x="160" y="360" width="16" height="16" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFA300"/>
-			<path d="M88,192h40v-16H80c-4.418,0-8,3.582-8,8v48h16V192z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFA300"/>
+			<path d="M504,40H8c-4.418,0-8,3.582-8,8v416c0,4.418,3.582,8,8,8h496c4.418,0,8-3.582,8-8V48C512,43.582,508.418,40,504,40z      M496,104H112V56h384V104z M96,56v48H16V56H96z M16,456V120h480v336H16z" fill="#827C82"/>
+			<path d="M464,144H48c-4.418,0-8,3.582-8,8v272c0,4.418,3.582,8,8,8h416c4.418,0,8-3.582,8-8V152C472,147.582,468.418,144,464,144     z M456,416H56V160h400V416z" fill="#827C82"/>
+			<rect x="32" y="72" width="16" height="16" fill="#827C82"/>
+			<rect x="64" y="72" width="16" height="16" fill="#827C82"/>
+			<rect x="464" y="72" width="16" height="16" fill="#827C82"/>
+			<rect x="432" y="72" width="16" height="16" fill="#827C82"/>
+			<path d="M168,344h152v16H192v16h18.158c-1.364,2.355-2.158,5.082-2.158,8c0,8.837,7.163,16,16,16s16-7.163,16-16     c0-2.918-0.794-5.645-2.158-8h36.316c-1.364,2.355-2.158,5.082-2.158,8c0,8.837,7.163,16,16,16s16-7.163,16-16     c0-2.918-0.794-5.645-2.158-8H320c0.221,0.005,0.442,0.005,0.663,0c8.654-0.183,15.52-7.347,15.337-16v-24V224v-32h16v16h16v-24     c0-4.418-3.582-8-8-8h-24c-0.221-0.005-0.442-0.005-0.663,0c-8.653,0.183-15.52,7.346-15.337,16v24H168c-4.418,0-8,3.582-8,8v112     C160,340.418,163.582,344,168,344z M176,288h24v40h-24V288z M280,328h-24v-40h24V328z M296,288h24v40h-24V288z M256,272v-40h24     v40H256z M240,272h-24v-40h24V272z M240,288v40h-24v-40H240z M320,272h-24v-40h24V272z M200,232v40h-24v-40H200z" fill="#827C82"/>
+			<rect x="160" y="360" width="16" height="16" fill="#827C82"/>
+			<path d="M88,192h40v-16H80c-4.418,0-8,3.582-8,8v48h16V192z" fill="#827C82"/>
 		</g>
 	</g>
-</g></g> </svg>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>

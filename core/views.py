@@ -63,7 +63,6 @@ def featured_objects(request):
 		featured.append(obj_)
 	for instance in featured_service:
 		featured.append(instance)
-	print (featured)
 	template = "core/featured.html"
 	context = {
 		"featured":featured
@@ -86,7 +85,7 @@ def nearby_shops(request):
 	return render (request, template, context)
 
 def wellness(request):
-	wellness_ = Service.objects.filter(active=True).filter(shakara_category="Wellness").order_by('?')[:10]
+	wellness_ = Service.objects.filter(active=True).filter(category="Wellness").order_by('?')[:10]
 	well_prod = Product.objects.filter(featured=True).filter(category="Wellness").filter(sale_active=True).order_by('?')[:10]
 	wellness = []
 	for obj in wellness_:
@@ -101,7 +100,7 @@ def wellness(request):
 
 
 def fashion(request):
-	fashion_ = Service.objects.filter(active=True).filter(shakara_category="Fashion").order_by('?')[:10]
+	fashion_ = Service.objects.filter(active=True).filter(category="Fashion").order_by('?')[:10]
 	fash_prod = Product.objects.filter(featured=True).filter(sale_active=True).filter(category="Fashion").order_by('?')[:10]
 	fashion = []
 	for obj in fashion_:
@@ -116,7 +115,7 @@ def fashion(request):
 
 
 def beauty(request):
-	beauty_ = Service.objects.filter(active=True).filter(shakara_category="Beauty").order_by('?')[:10]
+	beauty_ = Service.objects.filter(active=True).filter(category="Beauty").order_by('?')[:10]
 	beau_prod = Product.objects.filter(featured=True).filter(sale_active=True).filter(category="Beauty").order_by('?')[:10]
 	beauty = []
 	for obj in beauty_:
@@ -131,7 +130,7 @@ def beauty(request):
 
 
 def spa(request):
-	spa_ = Service.objects.filter(active=True).filter(shakara_category="Spa").order_by('?')[:10]
+	spa_ = Service.objects.filter(active=True).filter(category="Spa").order_by('?')[:10]
 	spa_prod = Product.objects.filter(featured=True).filter(category="Spa").filter(sale_active=True).order_by('?')[:10]
 	spa = []
 	for obj in spa_:
@@ -160,7 +159,7 @@ def deal_of_the_day(request):
 	return render (request, template, context)
 
 def lifestyle(request):
-	lifestyle_ = Service.objects.filter(active=True).filter(shakara_category="Lifestyle").order_by('?')[:10]
+	lifestyle_ = Service.objects.filter(active=True).filter(category="Lifestyle").order_by('?')[:10]
 	lifestyle_prod = Product.objects.filter(featured=True).filter(category="Lifestyle").filter(sale_active=True).order_by('?')[:10]
 	lifestyle = []
 	for obj in lifestyle_:

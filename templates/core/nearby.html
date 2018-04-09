@@ -28,7 +28,7 @@
 			<div class="price" id="price">
 			{% if obj.business_name %}
 				{% if obj.dashboard_banner_image_1 %}
-					<div class="col-md-6" style="background-size: cover;">
+					<div class="" style="background-size: cover;">
 						<img src="{{ obj.dashboard_banner_image_1.url }}" class="img-responsive" style="background-size: cover; background-repeat: no-repeat">
 					</div>
 				{% else %}
@@ -58,12 +58,45 @@
 		      		</a>
 				</p>
 				</div>
-				<div class="clearfix"> </div>
+			{% elif obj.dashboard_banner_image_1 %}
+				<div class="price" id="price">
+					{% if obj.work_image %}
+						<div class="col-md-6" style="background-size: cover;">
+							<img src="{{ obj.work_image.url }}" class="img-responsive" style="background-size: cover; background-repeat: no-repeat">
+						</div>
+					{% else %}
+					<div class="col-md-6 w3l_about_bottom_left" style="background-size: cover;">
+					</div>
+					{% endif %}
+				    <div class="col-md-6 w3l_about_bottom_right">
+						<div class="title-agileits1">
+				            <h3><a href="{{obj.get_absolute_url}}">{{ obj }}</a></h3>
+						</div>
+						<p> {{ obj.shop_description }} </p>
+						<hr/>
+						<a href="{{ obj.get_absolute_url }}" class="btn btn-block btn-warning"> Book From Shop Now </a>
+						<hr/>
+				<p class=" text-center well well-sm">
+					<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
+						<i class="fa fa-facebook-square fa-2x"></i> 
+					</a>
+					<a href="https://twitter.com/home?status={{ obj.title| truncatechars:80 |urlify }}%20{{ request.build_absolute_uri }}/">
+						<i class="fa fa-twitter-square fa-2x"></i>
+					</a>
+					<a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}' class="text-danger">
+						<i class="fa fa-google-plus-square fa-2x"></i>
+					</a>
+					<a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ obj.title }}&summary={{ share_string }}&source={{ request.build_absolute_uri }}">
+			          <i class="fa fa-linkedin-square fa-2x"></i>
+		      		</a>
+				</p>
+					</div>
+				</div>
 			{% elif obj.media %}
 			<!-- about-bottom -->
 				<div class="price" id="price">
 					{% if obj.media %}
-						<div class="col-md-6" style="background-size: cover;">
+						<div class="" style="background-size: cover;">
 							<img src="{{ obj.media.url }}" class="img-responsive" style="background-size: cover; background-repeat: no-repeat">
 						</div>
 					{% else %}
@@ -95,13 +128,12 @@
 		      		</a>
 				</p>
 					</div>
-					<div class="clearfix"> </div>
 				</div>
 			{% else %}
 				<!-- about-bottom -->
 				<div class="price" id="price">
 					{% if obj.title %}
-						<div class="col-md-6" style="background-size: cover;">
+						<div class="" style="background-size: cover;">
 							<img src="{{ obj.serviceimage.image_set.url }}" class="img-responsive" style="background-size: cover; background-repeat: no-repeat">
 						</div>
 					{% else %}
@@ -133,7 +165,6 @@
 		      		</a>
 				</p>
 					</div>
-					<div class="clearfix"> </div>
 				</div>
 			{% endif %}
 			</div>
