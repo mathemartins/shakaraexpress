@@ -17,6 +17,8 @@ sections = (
 		('Spa', 'Spa')
 	)
 
+def download_media_location(instance, filename):
+	return "%s/%s" %(instance.slugy, filename)
 
 class ServiceQuerySet(models.query.QuerySet):
 	def active(self):
@@ -39,6 +41,8 @@ class ServiceManager(models.Manager):
 		qs = (services_one | services_two).exclude(id=instance.id).distinct()
 		return qs
 
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 class Service(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -50,6 +54,8 @@ class Service(models.Model):
 	categories = models.ManyToManyField('Category', blank=True)
 	default = models.ForeignKey('Category', related_name='default_category', null=True, blank=True)
 	category = models.CharField(choices=sections, max_length=100, default='Beauty')
+	slugy = models.SlugField(blank=True)
+	display_image = ProcessedImageField(upload_to=download_media_location, processors=[ResizeToFill(500, 500)], format='JPEG', options={'quality':100}, null=True, blank=True)
 	featured = models.BooleanField(default=False)
 	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 	updated = models.DateTimeField(auto_now_add=False, auto_now=True)
@@ -70,6 +76,26 @@ class Service(models.Model):
 		if img:
 			return img.image.url
 		return img #None
+
+from django.db.models.signals import pre_save, post_save
+
+def create_slug(instance, new_slug=None):
+	slugy = slugify(instance.title)
+	if new_slugy is not None:
+		slugy = new_slugy
+	qs = Service.objects.filter(slugy=slugy)
+	exists = qs.exists()
+	if exists:
+		new_slugy = "%s-%s" %(slugy, qs.first().id)
+		return create_slug(instance, new_slugy=new_slugy)
+	return slugy
+
+
+def service_pre_save_receiver(sender, instance, *args, **kwargs):
+	if not instance.slugy:
+		instance.slugy = create_slug(instance)
+		
+pre_save.connect(service_pre_save_receiver, sender=Service)
 
 
 

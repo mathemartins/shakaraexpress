@@ -203,7 +203,7 @@ def service_image_view(request):
 		instance = form.save(commit=False)
 		instance.service = service
 		instance.save()
-		return HttpResponseRedirect('/shops/')
+		return HttpResponseRedirect('/my-services/')
 
 	context = {
 		"title": service,
@@ -220,7 +220,7 @@ def service_update_view(request, pk=None):
 	if form.is_valid():
 		instance = form.save(commit=False)
 		instance.save()
-		return HttpResponseRedirect('/shops/')
+		return HttpResponseRedirect('/my-services/')
 
 	context = {
 		"title":instance.title,

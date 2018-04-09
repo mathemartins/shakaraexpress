@@ -6,11 +6,11 @@
 	<section>
 		<div class="container">
 			<br/>
-			<h2 class="text-center text-danger"><strong> My Services </strong></h2>
+			<h2 class="text-center text-danger"><strong> My Services Review</strong></h2>
 			<hr/>
 			{% for obj in service %}
 				<div class="col-sm-6 col-sm-offset-3">
-					<h3 class="text-info text-center"> {{ obj }}  -  <strong> <a class="btn btn-danger" href="{% url 'service-update' pk=obj.id %}"> Edit </a> </strong></h3>
+					<h3 class="text-info text-center"> {{ obj }} || NGN{{ obj.price }}  -  <strong> <a class="btn btn-danger" href="{% url 'service-update' pk=obj.id %}"> Edit </a> </strong></h3>
 				</div>
 				<br/>
 			{% endfor %}

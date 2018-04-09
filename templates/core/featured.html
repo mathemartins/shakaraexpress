@@ -132,9 +132,9 @@
 			{% else %}
 				<!-- about-bottom -->
 				<div class="price" id="price">
-					{% if obj.title %}
+					{% if obj.display_image %}
 						<div class="" style="background-size: cover;">
-							<img src="{{ obj.serviceimage.image_set.url }}" class="img-responsive" style="background-size: cover; background-repeat: no-repeat">
+							<img src="{{ obj.display_image.url }}" class="img-responsive" style="background-size: cover; background-repeat: no-repeat">
 						</div>
 					{% else %}
 					<div class="col-md-6 w3l_about_bottom_left" style="background-size: cover;">
