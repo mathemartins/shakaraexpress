@@ -28,7 +28,7 @@
 			<div class="price" id="price">
 			{% if obj.business_name %}
 				{% if obj.dashboard_banner_image_1 %}
-					<div class="" style="background-size: cover;">
+					<div class="col-md-6" style="background-size: cover;">
 						<img src="{{ obj.dashboard_banner_image_1.url }}" class="img-responsive" style="background-size: cover; background-repeat: no-repeat">
 					</div>
 				{% else %}
@@ -39,11 +39,11 @@
 					<div class="title-agileits1">
 			            <h3><a href="{{obj.get_absolute_url}}">{{ obj }}</a></h3>
 					</div>
-					<p>{{ obj.get_markdown_content }}</p>
+					<p>{{ obj.get_markdown_content | truncatechars_html:50 }}</p>
 					<hr/>
 					<a href="{{ obj.get_absolute_url }}" class="btn btn-block btn-warning"> Book From This Shop </a>
 					<hr/>
-				<p class=" text-center well well-sm">
+				<p class=" text-center">
 					<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
 						<i class="fa fa-facebook-square fa-2x"></i> 
 					</a>
@@ -72,11 +72,11 @@
 						<div class="title-agileits1">
 				            <h3><a href="{{obj.get_absolute_url}}">{{ obj }}</a></h3>
 						</div>
-						<p> {{ obj.shop_description }} </p>
+						<p> {{ obj.shop_description | truncatechars_html:50 }} </p>
 						<hr/>
 						<a href="{{ obj.get_absolute_url }}" class="btn btn-block btn-warning"> Book From Shop Now </a>
 						<hr/>
-				<p class=" text-center well well-sm">
+				<p class=" text-center">
 					<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
 						<i class="fa fa-facebook-square fa-2x"></i> 
 					</a>
@@ -96,7 +96,7 @@
 			<!-- about-bottom -->
 				<div class="price" id="price">
 					{% if obj.media %}
-						<div class="" style="background-size: cover;">
+						<div class="col-md-6" style="background-size: cover;">
 							<img src="{{ obj.media.url }}" class="img-responsive" style="background-size: cover; background-repeat: no-repeat">
 						</div>
 					{% else %}
@@ -109,11 +109,11 @@
 						</div>
 						<p>{{ obj.get_html_price|safe }}</p>
 						<hr/>
-						<p> {{ obj.description }} </p>
+						<p> {{ obj.description | truncatechars_html:50 }} </p>
 						<hr/>
 						<a href="{{ obj.get_absolute_url }}" class="btn btn-block btn-warning"> Get Product Now </a>
 						<hr/>
-				<p class=" text-center well well-sm">
+				<p class=" text-center">
 					<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
 						<i class="fa fa-facebook-square fa-2x"></i> 
 					</a>
@@ -134,7 +134,7 @@
 				<!-- about-bottom -->
 				<div class="price" id="price">
 					{% if obj.title %}
-						<div class="" style="background-size: cover;">
+						<div class="col-md-6" style="background-size: cover;">
 							<img src="{{ obj.serviceimage.image_set.url }}" class="img-responsive" style="background-size: cover; background-repeat: no-repeat">
 						</div>
 					{% else %}
@@ -147,11 +147,11 @@
 						</div>
 						<p>{{ obj.price|safe }}</p>
 						<hr/>
-						<p> {{ obj.description }} </p>
+						<p> {{ obj.description | truncatechars_html:50 }} </p>
 						<hr/>
 						<a href="{{ obj.get_absolute_url }}" class="btn btn-block btn-warning"> Book Service Now </a>
 						<hr/>
-				<p class=" text-center well well-sm">
+				<p class=" text-center">
 					<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
 						<i class="fa fa-facebook-square fa-2x"></i> 
 					</a>
