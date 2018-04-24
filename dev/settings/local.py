@@ -24,26 +24,16 @@ SECRET_KEY = '*gjsv)j9b2swuy@bmlf&a99pj5iretjat%ogrz9v(!@+e2#lm1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# SENDGRID_EMAIL_HOST = "smtp.sendgrid.net"
-# SENDGRID_EMAIL_PORT = "587"
-# SENDGRID_EMAIL_USERNAME = "app86156095@heroku.com"
-# SENDGRID_EMAIL_PASSWORD = "FReakyboygeniuse123"
 
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'shakaraexpress@gmail.com'
-EMAIL_MAIN = 'shakaraexpress@gmail.com'
-EMAIL_HOST_PASSWORD = 'gtbank007'
+EMAIL_BACKEND = 'sgbackend.SenderGridBackend',
+SENDGRID_API_KEY = "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"
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'appapp90887780@heroku.com@mathegeniuse@gmail.com'
+EMAIL_HOST_PASSWORD = 'FReakyboygeniuse123'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-
-# EMAIL_BACKEND = 'sgbackend.SenderGridBackend',
-# SENDGRID_API_KEY = 
-
-DEFAULT_FROM_EMAIL = "Team SHAKARA EXPRESS <info@shakaraexpress.com>"
-
-ADMINS = [('Team SHAKARA EXPRESS', EMAIL_HOST_USER)]
-MANAGERS = ADMINS
 
 ALLOWED_HOSTS = ['*']
 
@@ -154,9 +144,11 @@ COMMENTS_XTD_FROM_EMAIL = "shakaraexpress@gmail.com"
 COMMENTS_XTD_CONTACT_EMAIL = "shakaraexpress@gmail.com"
 COMMENTS_XTD_MARKUP_FALLBACK_FILTER = 'markdown'
 
+from django.conf import settings
+
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
-# ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300
@@ -164,6 +156,9 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_MIN_LENGTH = 3
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
+ACCOUNT_CONFIRM_EMAIL_ON_GET = False
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = settings.LOGIN_URL
+ACCOUNT_EMAIL_CONFIRMATION_HMAC=True
 ACCOUNT_SESSION_REMEMBER = "Remember me?"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 LOGIN_REDIRECT_URL = "/"
@@ -216,6 +211,9 @@ SECURE_FRAME_DENY                = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
+
+# google_client_id = '827667370031-7lcmhde5s83jmishdgsfc1gsresvkl9u.apps.googleusercontent.com'
+# google_client_secret_key = 'chNI_nLiRi63rDce1wRIWMn2'
 
 
 # Password validation
