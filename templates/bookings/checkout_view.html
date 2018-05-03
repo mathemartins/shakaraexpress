@@ -3,9 +3,6 @@
 {% load crispy_forms_tags %}
 
 
-
-
-
 <script>
 {% block jquery %}
 var clientToken = "{{ client_token }}";
@@ -13,7 +10,6 @@ var clientToken = "{{ client_token }}";
 braintree.setup(clientToken, "dropin", {
   container: "payment-form"
 });
-
 
 
 {% endblock %}
@@ -53,11 +49,59 @@ braintree.setup(clientToken, "dropin", {
 				</p>
 				<br/>
 
-				<form id="checkout" method='POST' action="{% url 'checkout_final' %}">{% csrf_token %}
+				<!-- <form id="checkout" method='POST' action="{% url 'checkout_final' %}">{% csrf_token %}
 					<div id="payment-form"></div>
 					<p class="text-info text-center"><b><button type='submit' class="btn btn-block btn-success">Complete Order</button></b></p>
-				</form>
+				</form> -->
 				<br/>
+
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+
+				<p>
+					<em>
+						<small>
+							<a id="95101" class="quickteller-checkout-anchor text-center btn btn-block" style="text-align: center;"></a>
+						</small>
+					</em>
+				</p>
+
+				<h2 class="text-center lead"><small>Payment With: Quick Teller </small> </h2>
+
+				<script>// <![CDATA[
+				var QTCheckout = QTCheckout || {};
+				var testMode = true;
+				var baseUrl = "";
+				QTCheckout.paymentItems = QTCheckout.paymentItems || [];
+				QTCheckout.paymentItems.push({
+					paymentCode: '95101',
+					extraData: {
+						amount:"{{ order.order_total }}",
+						buttonSize: 'large',
+						customerId:"{{ order.user.pk }}",
+						mobileNumber:"{{ order.billing_address.mobile_number }}",
+						emailAddress:"mathegeniuse@gmail.com",
+						redirectUrl: "https://www.shakaraexpress.com",
+						requestReference: "9999867437401"
+					}
+				});
+
+				if (testMode == true) baseUrl = "https://pwq.sandbox.interswitchng.com/scripts/quickteller-checkout-min.js?v=";
+				else baseUrl = "https://paywith.quickteller.com/scripts/quickteller-checkout-min.js?v=";
+				if (!QTCheckout.qtScript) {
+					var qtScript = document.createElement('script');
+					qtScript.type = 'text/javascript';
+					qtScript.async = true;
+					qtScript.src = baseUrl + new Date().getDay();
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(qtScript, s);
+					QTCheckout.qtScript = qtScript;
+				}
+
+				else if (QTCheckout.buildPaymentItemsUI) {
+					QTCheckout.buildPaymentItemsUI();
+				}
+				// ]]></script>
+
 			</div>
 		{% endif %}
 	</div>
