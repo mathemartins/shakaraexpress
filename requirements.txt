@@ -35,7 +35,7 @@ django-scheduler==0.8.7
 django-sendgrid==1.0.1
 django-star-ratings==0.6.0
 django-storages==1.6.5
-djangorestframework==3.6.4
+djangorestframework==3.11.2
 docutils==0.14
 dropbox==8.2.0
 gunicorn==19.7.1
