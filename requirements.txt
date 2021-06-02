@@ -44,7 +44,7 @@ icalendar==4.0.0
 idna==2.6
 jmespath==0.9.3
 Markdown==2.6.9
-markdown2==2.3.5
+markdown2==2.4.0
 oauthlib==2.0.6
 olefile==0.44
 pilkit==2.0
