@@ -39,7 +39,7 @@ djangorestframework==3.6.4
 docutils==0.14
 dropbox==8.2.0
 gunicorn==19.7.1
-html5lib==0.9999999
+html5lib==0.99999999
 icalendar==4.0.0
 idna==2.6
 jmespath==0.9.3
